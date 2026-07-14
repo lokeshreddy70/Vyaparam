@@ -1,0 +1,1377 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  SUPER_ADMIN
+  OWNER
+  MANAGER
+  CASHIER
+  KITCHEN_STAFF
+  WAITER
+}
+
+enum BusinessType {
+  RESTAURANT
+  CAFE
+  BAKERY
+  GROCERY
+  SUPERMARKET
+  MEDICAL
+  PHARMACY
+  CEMENT
+  HARDWARE
+  PAINT
+  ELECTRICAL
+  PESTICIDE
+  AGRICULTURE
+  WHOLESALE
+  RETAIL
+}
+
+enum OrderType {
+  DINE_IN
+  TAKEAWAY
+  DELIVERY
+}
+
+enum KotStatus {
+  QUEUED
+  READY
+  CANCELLED
+}
+
+enum OrderStatus {
+  PENDING
+  SENT_TO_KITCHEN
+  READY
+  BILLED
+  CANCELLED
+}
+
+enum InvoiceStatus {
+  UNPAID
+  PARTIALLY_PAID
+  PAID
+  REFUNDED
+}
+
+enum PaymentMethod {
+  CASH
+  CARD
+  UPI
+  BANK_TRANSFER
+  WALLET
+}
+
+enum TableStatus {
+  AVAILABLE
+  OCCUPIED
+  CLEANING
+}
+
+enum MovementType {
+  IN
+  OUT
+  ADJUSTMENT
+  TRANSFER_IN
+  TRANSFER_OUT
+}
+
+enum PurchaseOrderStatus {
+  DRAFT
+  OPEN
+  PARTIALLY_RECEIVED
+  RECEIVED
+  CANCELLED
+}
+
+enum SalesOrderStatus {
+  DRAFT
+  CONFIRMED
+  PARTIALLY_FULFILLED
+  FULFILLED
+  CANCELLED
+}
+
+enum TransferStatus {
+  DRAFT
+  IN_TRANSIT
+  COMPLETED
+  CANCELLED
+}
+
+enum SubscriptionStatus {
+  ACTIVE
+  PAST_DUE
+  CANCELLED
+  EXPIRED
+}
+
+enum NotificationType {
+  INFO
+  WARNING
+  ERROR
+  SUCCESS
+}
+
+model Business {
+  id          String   @id @default(uuid())
+  name        String
+  type        BusinessType
+  address     String?
+  phone       String?
+  gstNumber   String?
+  createdBy   String?
+  updatedBy   String?
+  deletedBy   String?
+  deletedAt   DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  branches          Branch[]
+  users             User[]
+  employees         Employee[]
+  roles             RoleEntity[]
+  permissions       Permission[]
+  rolePermissions   RolePermission[]
+  customerGroups    CustomerGroup[]
+  customers         Customer[]
+  supplierGroups    SupplierGroup[]
+  suppliers         Supplier[]
+  categories        Category[]
+  subCategories     SubCategory[]
+  brands            Brand[]
+  units             Unit[]
+  products          Product[]
+  productVariants   ProductVariant[]
+  warehouses        Warehouse[]
+  inventories       Inventory[]
+  inventoryMovements InventoryMovement[]
+  purchaseOrders    PurchaseOrder[]
+  purchaseItems     PurchaseItem[]
+  salesOrders       SalesOrder[]
+  salesItems        SalesItem[]
+  bills             Bill[]
+  billItems         BillItem[]
+  invoices          Invoice[]
+  payments          Payment[]
+  expenses          Expense[]
+  expenseCategories ExpenseCategory[]
+  taxes             Tax[]
+  discounts         Discount[]
+  coupons           Coupon[]
+  priceLists        PriceList[]
+  stockAdjustments  StockAdjustment[]
+  transfers         Transfer[]
+  tables            RestaurantTable[]
+  kitchenOrders     KitchenOrder[]
+  orders            Order[]
+  notifications     Notification[]
+  settings          Setting[]
+  subscriptionPlans SubscriptionPlan[]
+  subscriptions     Subscription[]
+  featureFlags      FeatureFlag[]
+  refreshTokens     RefreshToken[]
+  sessions          Session[]
+  auditLogs         AuditLog[]
+  activityLogs      ActivityLog[]
+  errorLogs         ErrorLog[]
+
+  @@index([deletedAt])
+  @@map("businesses")
+}
+
+model Branch {
+  id        String   @id @default(uuid())
+  businessId String
+  name      String
+  address   String?
+  phone     String?
+  createdBy String?
+  updatedBy String?
+  deletedBy String?
+  deletedAt DateTime?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  business           Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  users              User[]
+  employees          Employee[]
+  customers          Customer[]
+  suppliers          Supplier[]
+  products           Product[]
+  productVariants    ProductVariant[]
+  warehouses         Warehouse[]
+  inventories        Inventory[]
+  inventoryMovements InventoryMovement[]
+  purchaseOrders     PurchaseOrder[]
+  salesOrders        SalesOrder[]
+  bills              Bill[]
+  invoices           Invoice[]
+  payments           Payment[]
+  expenses           Expense[]
+  priceLists         PriceList[]
+  stockAdjustments   StockAdjustment[]
+  transfersFrom      Transfer[] @relation("TransferFromBranch")
+  transfersTo        Transfer[] @relation("TransferToBranch")
+  tables             RestaurantTable[]
+  orders             Order[]
+  kitchenOrders      KitchenOrder[]
+  notifications      Notification[]
+  settings           Setting[]
+  refreshTokens      RefreshToken[]
+  sessions           Session[]
+  auditLogs          AuditLog[]
+  activityLogs       ActivityLog[]
+  errorLogs          ErrorLog[]
+
+  @@unique([businessId, name])
+  @@index([businessId, deletedAt])
+  @@map("branches")
+}
+
+model User {
+  id               String   @id @default(uuid())
+  businessId       String
+  branchId         String?
+  name             String
+  email            String   @unique
+  passwordHash     String
+  role             Role     @default(OWNER)
+  isActive         Boolean  @default(true)
+  failedLoginAttempts Int   @default(0)
+  lockedUntil      DateTime?
+  refreshTokenHash String?
+  createdBy        String?
+  updatedBy        String?
+  deletedBy        String?
+  deletedAt        DateTime?
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  business         Business  @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  branch           Branch?   @relation(fields: [branchId], references: [id], onDelete: SetNull)
+  employee         Employee?
+  customerInvoices Invoice[] @relation("InvoiceCustomer")
+  cashierInvoices  Invoice[] @relation("InvoiceCashier")
+  refreshTokens    RefreshToken[]
+  sessions         Session[]
+  auditLogs        AuditLog[]
+  activityLogs     ActivityLog[]
+  errorLogs        ErrorLog[]
+
+  @@index([businessId, branchId, deletedAt])
+  @@map("users")
+}
+
+model Employee {
+  id         String   @id @default(uuid())
+  businessId String
+  branchId   String?
+  userId     String   @unique
+  employeeNo String
+  designation String?
+  createdBy  String?
+  updatedBy  String?
+  deletedBy  String?
+  deletedAt  DateTime?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  business Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  branch   Branch?  @relation(fields: [branchId], references: [id], onDelete: SetNull)
+  user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([businessId, employeeNo])
+  @@index([businessId, branchId, deletedAt])
+  @@map("employees")
+}
+
+model RoleEntity {
+  id          String   @id @default(uuid())
+  businessId  String?
+  name        String
+  description String?
+  createdBy   String?
+  updatedBy   String?
+  deletedBy   String?
+  deletedAt   DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  business        Business?        @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  rolePermissions RolePermission[]
+
+  @@unique([businessId, name])
+  @@index([businessId, deletedAt])
+  @@map("roles")
+}
+
+model Permission {
+  id          String   @id @default(uuid())
+  businessId  String?
+  name        String
+  description String?
+  createdBy   String?
+  updatedBy   String?
+  deletedBy   String?
+  deletedAt   DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  business        Business?        @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  rolePermissions RolePermission[]
+
+  @@unique([businessId, name])
+  @@index([businessId, deletedAt])
+  @@map("permissions")
+}
+
+model RolePermission {
+  id           String   @id @default(uuid())
+  businessId   String
+  roleId       String
+  permissionId String
+  createdBy    String?
+  updatedBy    String?
+  deletedBy    String?
+  deletedAt    DateTime?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  business   Business   @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  role       RoleEntity @relation(fields: [roleId], references: [id], onDelete: Cascade)
+  permission Permission @relation(fields: [permissionId], references: [id], onDelete: Cascade)
+
+  @@unique([roleId, permissionId])
+  @@index([businessId, deletedAt])
+  @@map("role_permissions")
+}
+
+model CustomerGroup {
+  id         String   @id @default(uuid())
+  businessId String
+  name       String
+  createdBy  String?
+  updatedBy  String?
+  deletedBy  String?
+  deletedAt  DateTime?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  business  Business   @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  customers Customer[]
+
+  @@unique([businessId, name])
+  @@index([businessId, deletedAt])
+  @@map("customer_groups")
+}
+
+model Customer {
+  id              String   @id @default(uuid())
+  businessId      String
+  branchId        String?
+  customerGroupId String?
+  name            String
+  phone           String?
+  email           String?
+  createdBy       String?
+  updatedBy       String?
+  deletedBy       String?
+  deletedAt       DateTime?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  business      Business       @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  branch        Branch?        @relation(fields: [branchId], references: [id], onDelete: SetNull)
+  customerGroup CustomerGroup? @relation(fields: [customerGroupId], references: [id], onDelete: SetNull)
+  bills         Bill[]
+  salesOrders   SalesOrder[]
+
+  @@unique([businessId, phone])
+  @@index([businessId, branchId, deletedAt])
+  @@map("customers")
+}
+
+model SupplierGroup {
+  id         String   @id @default(uuid())
+  businessId String
+  name       String
+  createdBy  String?
+  updatedBy  String?
+  deletedBy  String?
+  deletedAt  DateTime?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  business  Business   @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  suppliers Supplier[]
+
+  @@unique([businessId, name])
+  @@index([businessId, deletedAt])
+  @@map("supplier_groups")
+}
+
+model Supplier {
+  id              String   @id @default(uuid())
+  businessId      String
+  branchId        String?
+  supplierGroupId String?
+  name            String
+  phone           String?
+  email           String?
+  createdBy       String?
+  updatedBy       String?
+  deletedBy       String?
+  deletedAt       DateTime?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  business      Business       @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  branch        Branch?        @relation(fields: [branchId], references: [id], onDelete: SetNull)
+  supplierGroup SupplierGroup? @relation(fields: [supplierGroupId], references: [id], onDelete: SetNull)
+  purchaseOrders PurchaseOrder[]
+
+  @@unique([businessId, phone])
+  @@index([businessId, branchId, deletedAt])
+  @@map("suppliers")
+}
+
+model Category {
+  id         String   @id @default(uuid())
+  businessId String
+  name       String
+  createdBy  String?
+  updatedBy  String?
+  deletedBy  String?
+  deletedAt  DateTime?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  business      Business      @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  products      Product[]
+  subCategories SubCategory[]
+
+  @@unique([businessId, name])
+  @@index([businessId, deletedAt])
+  @@map("categories")
+}
+
+model SubCategory {
+  id         String   @id @default(uuid())
+  businessId String
+  categoryId String
+  name       String
+  createdBy  String?
+  updatedBy  String?
+  deletedBy  String?
+  deletedAt  DateTime?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  business Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  category Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  products Product[]
+
+  @@unique([categoryId, name])
+  @@index([businessId, deletedAt])
+  @@map("sub_categories")
+}
+
+model Brand {
+  id         String   @id @default(uuid())
+  businessId String
+  name       String
+  createdBy  String?
+  updatedBy  String?
+  deletedBy  String?
+  deletedAt  DateTime?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  business Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  products Product[]
+
+  @@unique([businessId, name])
+  @@index([businessId, deletedAt])
+  @@map("brands")
+}
+
+model Unit {
+  id         String   @id @default(uuid())
+  businessId String
+  name       String
+  symbol     String
+  createdBy  String?
+  updatedBy  String?
+  deletedBy  String?
+  deletedAt  DateTime?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  business Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  products Product[]
+
+  @@unique([businessId, symbol])
+  @@index([businessId, deletedAt])
+  @@map("units")
+}
+
+model Product {
+  id            String   @id @default(uuid())
+  businessId    String
+  branchId      String?
+  categoryId    String?
+  subCategoryId String?
+  brandId       String?
+  unitId        String?
+  name          String
+  description   String?
+  sku           String?
+  barcode       String?
+  price         Float
+  taxPercent    Float?   @default(0)
+  trackStock    Boolean  @default(false)
+  stockQty      Int?     @default(0)
+  isAvailable   Boolean  @default(true)
+  imageUrl      String?
+  createdBy     String?
+  updatedBy     String?
+  deletedBy     String?
+  deletedAt     DateTime?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  business        Business         @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  branch          Branch?          @relation(fields: [branchId], references: [id], onDelete: SetNull)
+  category        Category?        @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+  subCategory     SubCategory?     @relation(fields: [subCategoryId], references: [id], onDelete: SetNull)
+  brand           Brand?           @relation(fields: [brandId], references: [id], onDelete: SetNull)
+  unit            Unit?            @relation(fields: [unitId], references: [id], onDelete: SetNull)
+  orderItems      OrderItem[]
+  purchaseItems   PurchaseItem[]
+  salesItems      SalesItem[]
+  billItems       BillItem[]
+  variants        ProductVariant[]
+  inventories     Inventory[]
+
+  @@unique([businessId, sku])
+  @@index([businessId, branchId, categoryId, deletedAt])
+  @@map("products")
+}
+
+model ProductVariant {
+  id          String   @id @default(uuid())
+  businessId  String
+  branchId    String?
+  productId   String
+  sku         String?
+  barcode     String?
+  name        String
+  price       Float
+  createdBy   String?
+  updatedBy   String?
+  deletedBy   String?
+  deletedAt   DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  business  Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  branch    Branch?  @relation(fields: [branchId], references: [id], onDelete: SetNull)
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@unique([productId, name])
+  @@index([businessId, branchId, deletedAt])
+  @@map("product_variants")
+}
+
+model Warehouse {
+  id         String   @id @default(uuid())
+  businessId String
+  branchId   String?
+  name       String
+  code       String
+  createdBy  String?
+  updatedBy  String?
+  deletedBy  String?
+  deletedAt  DateTime?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  business         Business             @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  branch           Branch?              @relation(fields: [branchId], references: [id], onDelete: SetNull)
+  inventories      Inventory[]
+  transfersFrom    Transfer[]           @relation("TransferFromWarehouse")
+  transfersTo      Transfer[]           @relation("TransferToWarehouse")
+  stockAdjustments StockAdjustment[]
+
+  @@unique([businessId, code])
+  @@index([businessId, branchId, deletedAt])
+  @@map("warehouses")
+}
+
+model Inventory {
+  id           String   @id @default(uuid())
+  businessId   String
+  branchId     String?
+  warehouseId  String
+  productId    String
+  quantity     Float    @default(0)
+  reorderLevel Float?   @default(0)
+  createdBy    String?
+  updatedBy    String?
+  deletedBy    String?
+  deletedAt    DateTime?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  business           Business             @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  branch             Branch?              @relation(fields: [branchId], references: [id], onDelete: SetNull)
+  warehouse          Warehouse            @relation(fields: [warehouseId], references: [id], onDelete: Restrict)
+  product            Product              @relation(fields: [productId], references: [id], onDelete: Restrict)
+  inventoryMovements InventoryMovement[]
+
+  @@unique([warehouseId, productId])
+  @@index([businessId, branchId, deletedAt])
+  @@map("inventory")
+}
+
+model InventoryMovement {
+  id          String       @id @default(uuid())
+  businessId  String
+  branchId    String?
+  inventoryId String
+  type        MovementType
+  quantity    Float
+  reference   String?
+  remarks     String?
+  createdBy   String?
+  updatedBy   String?
+  deletedBy   String?
+  deletedAt   DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  business  Business  @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  branch    Branch?   @relation(fields: [branchId], references: [id], onDelete: SetNull)
+  inventory Inventory @relation(fields: [inventoryId], references: [id], onDelete: Cascade)
+
+  @@index([businessId, branchId, type, createdAt])
+  @@map("inventory_movements")
+}
+
+model PurchaseOrder {
+  id          String              @id @default(uuid())
+  businessId  String
+  branchId    String?
+  supplierId  String?
+  orderNo     String
+  status      PurchaseOrderStatus @default(DRAFT)
+  notes       String?
+  createdBy   String?
+  updatedBy   String?
+  deletedBy   String?
+  deletedAt   DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  business      Business       @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  branch        Branch?        @relation(fields: [branchId], references: [id], onDelete: SetNull)
+  supplier      Supplier?      @relation(fields: [supplierId], references: [id], onDelete: SetNull)
+  purchaseItems PurchaseItem[]
+
+  @@unique([businessId, orderNo])
+  @@index([businessId, branchId, status, deletedAt])
+  @@map("purchase_orders")
+}
+
+model PurchaseItem {
+  id              String   @id @default(uuid())
+  businessId      String
+  purchaseOrderId String
+  productId       String
+  quantity        Float
+  unitPrice       Float
+  taxPercent      Float?   @default(0)
+  createdBy       String?
+  updatedBy       String?
+  deletedBy       String?
+  deletedAt       DateTime?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  business      Business      @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  purchaseOrder PurchaseOrder @relation(fields: [purchaseOrderId], references: [id], onDelete: Cascade)
+  product       Product       @relation(fields: [productId], references: [id], onDelete: Restrict)
+
+  @@index([businessId, purchaseOrderId, deletedAt])
+  @@map("purchase_items")
+}
+
+model SalesOrder {
+  id          String           @id @default(uuid())
+  businessId  String
+  branchId    String?
+  customerId  String?
+  orderNo     String
+  status      SalesOrderStatus @default(DRAFT)
+  notes       String?
+  createdBy   String?
+  updatedBy   String?
+  deletedBy   String?
+  deletedAt   DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  business   Business    @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  branch     Branch?     @relation(fields: [branchId], references: [id], onDelete: SetNull)
+  customer   Customer?   @relation(fields: [customerId], references: [id], onDelete: SetNull)
+  salesItems SalesItem[]
+
+  @@unique([businessId, orderNo])
+  @@index([businessId, branchId, status, deletedAt])
+  @@map("sales_orders")
+}
+
+model SalesItem {
+  id           String   @id @default(uuid())
+  businessId   String
+  salesOrderId String
+  productId    String
+  quantity     Float
+  unitPrice    Float
+  taxPercent   Float?   @default(0)
+  createdBy    String?
+  updatedBy    String?
+  deletedBy    String?
+  deletedAt    DateTime?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  business   Business   @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  salesOrder SalesOrder @relation(fields: [salesOrderId], references: [id], onDelete: Cascade)
+  product    Product    @relation(fields: [productId], references: [id], onDelete: Restrict)
+
+  @@index([businessId, salesOrderId, deletedAt])
+  @@map("sales_items")
+}
+
+model Bill {
+  id         String   @id @default(uuid())
+  businessId String
+  branchId   String?
+  customerId String?
+  billNo     String
+  subtotal   Float
+  taxTotal   Float    @default(0)
+  discount   Float    @default(0)
+  grandTotal Float
+  createdBy  String?
+  updatedBy  String?
+  deletedBy  String?
+  deletedAt  DateTime?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  business  Business   @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  branch    Branch?    @relation(fields: [branchId], references: [id], onDelete: SetNull)
+  customer  Customer?  @relation(fields: [customerId], references: [id], onDelete: SetNull)
+  billItems BillItem[]
+  payments  Payment[]
+
+  @@unique([businessId, billNo])
+  @@index([businessId, branchId, deletedAt])
+  @@map("bills")
+}
+
+model BillItem {
+  id        String   @id @default(uuid())
+  businessId String
+  billId    String
+  productId String
+  quantity  Float
+  unitPrice Float
+  taxPercent Float?  @default(0)
+  createdBy String?
+  updatedBy String?
+  deletedBy String?
+  deletedAt DateTime?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  business Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  bill     Bill     @relation(fields: [billId], references: [id], onDelete: Cascade)
+  product  Product  @relation(fields: [productId], references: [id], onDelete: Restrict)
+
+  @@index([businessId, billId, deletedAt])
+  @@map("bill_items")
+}
+
+model Payment {
+  id         String        @id @default(uuid())
+  businessId String?
+  branchId   String?
+  invoiceId  String?
+  billId     String?
+  method     PaymentMethod
+  amount     Float
+  reference  String?
+  createdBy  String?
+  updatedBy  String?
+  deletedBy  String?
+  deletedAt  DateTime?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  business Business? @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  branch   Branch?  @relation(fields: [branchId], references: [id], onDelete: SetNull)
+  invoice  Invoice? @relation(fields: [invoiceId], references: [id], onDelete: SetNull)
+  bill     Bill?    @relation(fields: [billId], references: [id], onDelete: SetNull)
+
+  @@index([businessId, branchId, method, createdAt])
+  @@map("payments")
+}
+
+model ExpenseCategory {
+  id         String   @id @default(uuid())
+  businessId String
+  name       String
+  createdBy  String?
+  updatedBy  String?
+  deletedBy  String?
+  deletedAt  DateTime?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  business Business  @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  expenses Expense[]
+
+  @@unique([businessId, name])
+  @@index([businessId, deletedAt])
+  @@map("expense_categories")
+}
+
+model Expense {
+  id                String   @id @default(uuid())
+  businessId        String
+  branchId          String?
+  expenseCategoryId String?
+  amount            Float
+  notes             String?
+  spentAt           DateTime @default(now())
+  createdBy         String?
+  updatedBy         String?
+  deletedBy         String?
+  deletedAt         DateTime?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  business        Business         @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  branch          Branch?          @relation(fields: [branchId], references: [id], onDelete: SetNull)
+  expenseCategory ExpenseCategory? @relation(fields: [expenseCategoryId], references: [id], onDelete: SetNull)
+
+  @@index([businessId, branchId, spentAt, deletedAt])
+  @@map("expenses")
+}
+
+model Tax {
+  id         String   @id @default(uuid())
+  businessId String
+  name       String
+  rate       Float
+  isActive   Boolean  @default(true)
+  createdBy  String?
+  updatedBy  String?
+  deletedBy  String?
+  deletedAt  DateTime?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  business Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+
+  @@unique([businessId, name])
+  @@index([businessId, deletedAt])
+  @@map("taxes")
+}
+
+model Discount {
+  id         String   @id @default(uuid())
+  businessId String
+  name       String
+  value      Float
+  isPercent  Boolean  @default(true)
+  isActive   Boolean  @default(true)
+  createdBy  String?
+  updatedBy  String?
+  deletedBy  String?
+  deletedAt  DateTime?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  business Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+
+  @@unique([businessId, name])
+  @@index([businessId, deletedAt])
+  @@map("discounts")
+}
+
+model Coupon {
+  id         String   @id @default(uuid())
+  businessId String
+  code       String
+  value      Float
+  isPercent  Boolean  @default(true)
+  maxUses    Int?
+  usedCount  Int      @default(0)
+  startsAt   DateTime?
+  endsAt     DateTime?
+  isActive   Boolean  @default(true)
+  createdBy  String?
+  updatedBy  String?
+  deletedBy  String?
+  deletedAt  DateTime?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  business Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+
+  @@unique([businessId, code])
+  @@index([businessId, isActive, startsAt, endsAt])
+  @@map("coupons")
+}
+
+model PriceList {
+  id          String   @id @default(uuid())
+  businessId  String
+  branchId    String?
+  name        String
+  currency    String   @default("INR")
+  isDefault   Boolean  @default(false)
+  startsAt    DateTime?
+  endsAt      DateTime?
+  createdBy   String?
+  updatedBy   String?
+  deletedBy   String?
+  deletedAt   DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  business Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  branch   Branch?  @relation(fields: [branchId], references: [id], onDelete: SetNull)
+
+  @@unique([businessId, name])
+  @@index([businessId, branchId, deletedAt])
+  @@map("price_lists")
+}
+
+model StockAdjustment {
+  id          String   @id @default(uuid())
+  businessId  String
+  branchId    String?
+  warehouseId String?
+  reason      String?
+  createdBy   String?
+  updatedBy   String?
+  deletedBy   String?
+  deletedAt   DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  business  Business   @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  branch    Branch?    @relation(fields: [branchId], references: [id], onDelete: SetNull)
+  warehouse Warehouse? @relation(fields: [warehouseId], references: [id], onDelete: SetNull)
+
+  @@index([businessId, branchId, createdAt, deletedAt])
+  @@map("stock_adjustments")
+}
+
+model Transfer {
+  id              String         @id @default(uuid())
+  businessId      String
+  fromBranchId    String?
+  toBranchId      String?
+  fromWarehouseId String?
+  toWarehouseId   String?
+  transferNo      String
+  status          TransferStatus @default(DRAFT)
+  notes           String?
+  createdBy       String?
+  updatedBy       String?
+  deletedBy       String?
+  deletedAt       DateTime?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  business      Business   @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  fromBranch    Branch?    @relation("TransferFromBranch", fields: [fromBranchId], references: [id], onDelete: SetNull)
+  toBranch      Branch?    @relation("TransferToBranch", fields: [toBranchId], references: [id], onDelete: SetNull)
+  fromWarehouse Warehouse? @relation("TransferFromWarehouse", fields: [fromWarehouseId], references: [id], onDelete: SetNull)
+  toWarehouse   Warehouse? @relation("TransferToWarehouse", fields: [toWarehouseId], references: [id], onDelete: SetNull)
+
+  @@unique([businessId, transferNo])
+  @@index([businessId, status, deletedAt])
+  @@map("transfers")
+}
+
+model RestaurantTable {
+  id         String      @id @default(uuid())
+  businessId String
+  branchId   String?
+  label      String
+  capacity   Int
+  status     TableStatus @default(AVAILABLE)
+  createdBy  String?
+  updatedBy  String?
+  deletedBy  String?
+  deletedAt  DateTime?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  business Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  branch   Branch?  @relation(fields: [branchId], references: [id], onDelete: SetNull)
+  orders   Order[]
+
+  @@unique([businessId, label])
+  @@index([businessId, branchId, status, deletedAt])
+  @@map("restaurant_tables")
+}
+
+model Order {
+  id          String      @id @default(uuid())
+  businessId  String
+  branchId    String?
+  tableId     String?
+  customerId  String?
+  waiterId    String?
+  type        OrderType
+  notes       String?
+  status      OrderStatus @default(PENDING)
+  createdBy   String?
+  updatedBy   String?
+  deletedBy   String?
+  deletedAt   DateTime?
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+
+  business      Business         @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  branch        Branch?          @relation(fields: [branchId], references: [id], onDelete: SetNull)
+  table         RestaurantTable? @relation(fields: [tableId], references: [id], onDelete: SetNull)
+  items         OrderItem[]
+  invoice       Invoice?
+  kitchenOrders KitchenOrder[]
+
+  @@index([businessId, branchId, status, createdAt])
+  @@map("orders")
+}
+
+model OrderItem {
+  id         String    @id @default(uuid())
+  orderId    String
+  productId  String
+  quantity   Int
+  unitPrice  Float
+  modifiers  Json?
+  kotStatus  KotStatus @default(QUEUED)
+  createdAt  DateTime  @default(now())
+
+  order    Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  product  Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@index([orderId, kotStatus])
+  @@map("order_items")
+}
+
+model KitchenOrder {
+  id          String   @id @default(uuid())
+  businessId  String
+  branchId    String?
+  orderId     String
+  status      KotStatus @default(QUEUED)
+  notes       String?
+  createdBy   String?
+  updatedBy   String?
+  deletedBy   String?
+  deletedAt   DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  business Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  branch   Branch?  @relation(fields: [branchId], references: [id], onDelete: SetNull)
+  order    Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+
+  @@index([businessId, branchId, status, deletedAt])
+  @@map("kitchen_orders")
+}
+
+model Invoice {
+  id         String        @id @default(uuid())
+  businessId String
+  branchId   String?
+  orderId    String?       @unique
+  customerId String?
+  cashierId  String?
+  invoiceNo  String
+  status     InvoiceStatus @default(UNPAID)
+  subtotal   Float
+  taxTotal   Float
+  discount   Float         @default(0)
+  grandTotal Float
+  createdBy  String?
+  updatedBy  String?
+  deletedBy  String?
+  deletedAt  DateTime?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  business Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  branch   Branch?  @relation(fields: [branchId], references: [id], onDelete: SetNull)
+  order    Order?   @relation(fields: [orderId], references: [id], onDelete: SetNull)
+  customer User?    @relation("InvoiceCustomer", fields: [customerId], references: [id], onDelete: SetNull)
+  cashier  User?    @relation("InvoiceCashier", fields: [cashierId], references: [id], onDelete: SetNull)
+  payments Payment[]
+
+  @@unique([businessId, invoiceNo])
+  @@index([businessId, branchId, status, deletedAt])
+  @@map("invoices")
+}
+
+model Notification {
+  id         String           @id @default(uuid())
+  businessId String
+  branchId   String?
+  userId     String?
+  type       NotificationType @default(INFO)
+  title      String
+  message    String
+  isRead     Boolean          @default(false)
+  createdBy  String?
+  updatedBy  String?
+  deletedBy  String?
+  deletedAt  DateTime?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  business Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  branch   Branch?  @relation(fields: [branchId], references: [id], onDelete: SetNull)
+
+  @@index([businessId, branchId, isRead, createdAt])
+  @@map("notifications")
+}
+
+model Setting {
+  id         String   @id @default(uuid())
+  businessId String
+  branchId   String?
+  key        String
+  value      Json
+  createdBy  String?
+  updatedBy  String?
+  deletedBy  String?
+  deletedAt  DateTime?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  business Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  branch   Branch?  @relation(fields: [branchId], references: [id], onDelete: SetNull)
+
+  @@unique([businessId, branchId, key])
+  @@index([businessId, deletedAt])
+  @@map("settings")
+}
+
+model SubscriptionPlan {
+  id          String   @id @default(uuid())
+  businessId  String
+  name        String
+  code        String
+  amount      Float
+  durationDays Int
+  isActive    Boolean  @default(true)
+  createdBy   String?
+  updatedBy   String?
+  deletedBy   String?
+  deletedAt   DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  business      Business        @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  subscriptions Subscription[]
+
+  @@unique([businessId, code])
+  @@index([businessId, isActive, deletedAt])
+  @@map("subscription_plans")
+}
+
+model Subscription {
+  id                 String             @id @default(uuid())
+  businessId         String
+  subscriptionPlanId String
+  status             SubscriptionStatus @default(ACTIVE)
+  startsAt           DateTime
+  endsAt             DateTime
+  createdBy          String?
+  updatedBy          String?
+  deletedBy          String?
+  deletedAt          DateTime?
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+
+  business         Business         @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  subscriptionPlan SubscriptionPlan @relation(fields: [subscriptionPlanId], references: [id], onDelete: Restrict)
+
+  @@index([businessId, status, endsAt, deletedAt])
+  @@map("subscriptions")
+}
+
+model FeatureFlag {
+  id         String   @id @default(uuid())
+  businessId String
+  key        String
+  isEnabled  Boolean  @default(false)
+  createdBy  String?
+  updatedBy  String?
+  deletedBy  String?
+  deletedAt  DateTime?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  business Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+
+  @@unique([businessId, key])
+  @@index([businessId, deletedAt])
+  @@map("feature_flags")
+}
+
+model RefreshToken {
+  id         String   @id @default(uuid())
+  businessId String
+  branchId   String?
+  userId     String
+  tokenHash  String
+  expiresAt  DateTime
+  revokedAt  DateTime?
+  createdBy  String?
+  updatedBy  String?
+  deletedBy  String?
+  deletedAt  DateTime?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  business Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  branch   Branch?  @relation(fields: [branchId], references: [id], onDelete: SetNull)
+  user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([businessId, branchId, userId, expiresAt])
+  @@map("refresh_tokens")
+}
+
+model Session {
+  id         String   @id @default(uuid())
+  businessId String
+  branchId   String?
+  userId     String
+  ipAddress  String?
+  userAgent  String?
+  expiresAt  DateTime
+  revokedAt  DateTime?
+  createdBy  String?
+  updatedBy  String?
+  deletedBy  String?
+  deletedAt  DateTime?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  business Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  branch   Branch?  @relation(fields: [branchId], references: [id], onDelete: SetNull)
+  user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([businessId, branchId, userId, expiresAt])
+  @@map("sessions")
+}
+
+model AuditLog {
+  id         String   @id @default(uuid())
+  businessId String
+  branchId   String?
+  userId     String?
+  action     String
+  entityType String
+  entityId   String?
+  metadata   Json?
+  createdBy  String?
+  updatedBy  String?
+  deletedBy  String?
+  deletedAt  DateTime?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  business Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  branch   Branch?  @relation(fields: [branchId], references: [id], onDelete: SetNull)
+  user     User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  @@index([businessId, branchId, createdAt])
+  @@map("audit_logs")
+}
+
+model ActivityLog {
+  id         String   @id @default(uuid())
+  businessId String
+  branchId   String?
+  userId     String?
+  activity   String
+  metadata   Json?
+  createdBy  String?
+  updatedBy  String?
+  deletedBy  String?
+  deletedAt  DateTime?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  business Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  branch   Branch?  @relation(fields: [branchId], references: [id], onDelete: SetNull)
+  user     User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  @@index([businessId, branchId, createdAt])
+  @@map("activity_logs")
+}
+
+model ErrorLog {
+  id         String   @id @default(uuid())
+  businessId String
+  branchId   String?
+  userId     String?
+  message    String
+  stack      String?
+  context    Json?
+  level      String   @default("ERROR")
+  createdBy  String?
+  updatedBy  String?
+  deletedBy  String?
+  deletedAt  DateTime?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  business Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  branch   Branch?  @relation(fields: [branchId], references: [id], onDelete: SetNull)
+  user     User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  @@index([businessId, branchId, createdAt])
+  @@map("error_logs")
+}
+
+model PasswordReset {
+  id         String   @id @default(uuid())
+  email      String
+  otp        String
+  expiresAt  DateTime
+  createdAt  DateTime @default(now())
+
+  @@index([email, expiresAt])
+  @@map("password_resets")
+}

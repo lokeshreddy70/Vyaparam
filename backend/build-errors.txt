@@ -1,0 +1,2392 @@
+
+> vyaparam-backend@1.0.0 build
+> nest build
+
+[96mprisma/seed.ts[0m:[93m1[0m:[93m24[0m - [91merror[0m[90m TS2305: [0mModule '"@prisma/client"' has no exported member 'Role'.
+
+[7m1[0m import { PrismaClient, Role, BusinessType, TableStatus } from '@prisma/client';
+[7m [0m [91m                       ~~~~[0m
+[96mprisma/seed.ts[0m:[93m1[0m:[93m30[0m - [91merror[0m[90m TS2305: [0mModule '"@prisma/client"' has no exported member 'BusinessType'.
+
+[7m1[0m import { PrismaClient, Role, BusinessType, TableStatus } from '@prisma/client';
+[7m [0m [91m                             ~~~~~~~~~~~~[0m
+[96mprisma/seed.ts[0m:[93m1[0m:[93m44[0m - [91merror[0m[90m TS2305: [0mModule '"@prisma/client"' has no exported member 'TableStatus'.
+
+[7m1[0m import { PrismaClient, Role, BusinessType, TableStatus } from '@prisma/client';
+[7m [0m [91m                                           ~~~~~~~~~~~[0m
+[96msrc/app.module.ts[0m:[93m24[0m:[93m7[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'isGlobalOptions' does not exist in type 'ConfigModuleOptions'.
+
+[7m24[0m       isGlobalOptions: { cache: true },
+[7m  [0m [91m      ~~~~~~~~~~~~~~~[0m
+[96msrc/app.module.ts[0m:[93m28[0m:[93m31[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'ttl' does not exist in type 'ThrottlerModuleOptions'.
+
+[7m28[0m     ThrottlerModule.forRoot({ ttl: 60, limit: 20 }),
+[7m  [0m [91m                              ~~~[0m
+[96msrc/auth/auth.controller.ts[0m:[93m16[0m:[93m23[0m - [91merror[0m[90m TS2305: [0mModule '"../common/decorators/current-user.decorator"' has no exported member 'AuthenticatedUser'.
+
+[7m16[0m import { CurrentUser, AuthenticatedUser } from '../common/decorators/current-user.decorator';
+[7m  [0m [91m                      ~~~~~~~~~~~~~~~~~[0m
+[96msrc/auth/auth.controller.ts[0m:[93m22[0m:[93m3[0m - [91merror[0m[90m TS1241: [0mUnable to resolve signature of method decorator when called as an expression.
+  The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+
+[7m22[0m   @Post('register-business')
+[7m  [0m [91m  ~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+  [96mnode_modules/typescript/lib/lib.decorators.legacy.d.ts[0m:[93m21[0m:[93m82[0m
+    [7m21[0m declare type MethodDecorator = <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) => TypedPropertyDescriptor<T> | void;
+    [7m  [0m [96m                                                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    An argument for 'descriptor' was not provided.
+[96msrc/auth/auth.controller.ts[0m:[93m22[0m:[93m4[0m - [91merror[0m[90m TS1270: [0mDecorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((dto: RegisterBusinessDto) => Promise<{ accessToken: string; refreshToken: string; business: { id: any; name: any; type: any; }; }>)'.
+  Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((dto: RegisterBusinessDto) => Promise<{ accessToken: string; refreshToken: string; business: { id: any; name: any; type: any; }; }>)'.
+
+[7m22[0m   @Post('register-business')
+[7m  [0m [91m   ~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/auth/auth.controller.ts[0m:[93m23[0m:[93m20[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+
+[7m23[0m   registerBusiness(@Body() dto: RegisterBusinessDto) {
+[7m  [0m [91m                   ~[0m
+[96msrc/auth/auth.controller.ts[0m:[93m28[0m:[93m3[0m - [91merror[0m[90m TS1241: [0mUnable to resolve signature of method decorator when called as an expression.
+  The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+
+[7m28[0m   @HttpCode(HttpStatus.OK)
+[7m  [0m [91m  ~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+  [96mnode_modules/typescript/lib/lib.decorators.legacy.d.ts[0m:[93m21[0m:[93m82[0m
+    [7m21[0m declare type MethodDecorator = <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) => TypedPropertyDescriptor<T> | void;
+    [7m  [0m [96m                                                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    An argument for 'descriptor' was not provided.
+[96msrc/auth/auth.controller.ts[0m:[93m28[0m:[93m4[0m - [91merror[0m[90m TS1270: [0mDecorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((dto: LoginDto) => Promise<{ user: { id: any; name: any; email: any; role: any; businessId: any; }; accessToken: string; refreshToken: string; }>)'.
+  Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((dto: LoginDto) => Promise<{ user: { id: any; name: any; email: any; role: any; businessId: any; }; accessToken: string; refreshToken: string; }>)'.
+
+[7m28[0m   @HttpCode(HttpStatus.OK)
+[7m  [0m [91m   ~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/auth/auth.controller.ts[0m:[93m29[0m:[93m3[0m - [91merror[0m[90m TS1241: [0mUnable to resolve signature of method decorator when called as an expression.
+  The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+
+[7m29[0m   @Post('login')
+[7m  [0m [91m  ~~~~~~~~~~~~~~[0m
+
+  [96mnode_modules/typescript/lib/lib.decorators.legacy.d.ts[0m:[93m21[0m:[93m82[0m
+    [7m21[0m declare type MethodDecorator = <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) => TypedPropertyDescriptor<T> | void;
+    [7m  [0m [96m                                                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    An argument for 'descriptor' was not provided.
+[96msrc/auth/auth.controller.ts[0m:[93m29[0m:[93m4[0m - [91merror[0m[90m TS1270: [0mDecorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((dto: LoginDto) => Promise<{ user: { id: any; name: any; email: any; role: any; businessId: any; }; accessToken: string; refreshToken: string; }>)'.
+  Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((dto: LoginDto) => Promise<{ user: { id: any; name: any; email: any; role: any; businessId: any; }; accessToken: string; refreshToken: string; }>)'.
+
+[7m29[0m   @Post('login')
+[7m  [0m [91m   ~~~~~~~~~~~~~[0m
+[96msrc/auth/auth.controller.ts[0m:[93m30[0m:[93m9[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+
+[7m30[0m   login(@Body() dto: LoginDto) {
+[7m  [0m [91m        ~[0m
+[96msrc/auth/auth.controller.ts[0m:[93m35[0m:[93m3[0m - [91merror[0m[90m TS1241: [0mUnable to resolve signature of method decorator when called as an expression.
+  The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+
+[7m35[0m   @Post('refresh')
+[7m  [0m [91m  ~~~~~~~~~~~~~~~~[0m
+
+  [96mnode_modules/typescript/lib/lib.decorators.legacy.d.ts[0m:[93m21[0m:[93m82[0m
+    [7m21[0m declare type MethodDecorator = <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) => TypedPropertyDescriptor<T> | void;
+    [7m  [0m [96m                                                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    An argument for 'descriptor' was not provided.
+[96msrc/auth/auth.controller.ts[0m:[93m35[0m:[93m4[0m - [91merror[0m[90m TS1270: [0mDecorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((req: Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>) => Promise<{ accessToken: string; refreshToken: string; }>)'.
+  Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((req: Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>) => Promise<{ accessToken: string; refreshToken: string; }>)'.
+
+[7m35[0m   @Post('refresh')
+[7m  [0m [91m   ~~~~~~~~~~~~~~~[0m
+[96msrc/auth/auth.controller.ts[0m:[93m36[0m:[93m11[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+
+[7m36[0m   refresh(@Req() req: Request) {
+[7m  [0m [91m          ~[0m
+[96msrc/auth/auth.controller.ts[0m:[93m42[0m:[93m3[0m - [91merror[0m[90m TS1241: [0mUnable to resolve signature of method decorator when called as an expression.
+  The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+
+[7m42[0m   @Post('logout')
+[7m  [0m [91m  ~~~~~~~~~~~~~~~[0m
+
+  [96mnode_modules/typescript/lib/lib.decorators.legacy.d.ts[0m:[93m21[0m:[93m82[0m
+    [7m21[0m declare type MethodDecorator = <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) => TypedPropertyDescriptor<T> | void;
+    [7m  [0m [96m                                                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    An argument for 'descriptor' was not provided.
+[96msrc/auth/auth.controller.ts[0m:[93m42[0m:[93m4[0m - [91merror[0m[90m TS1270: [0mDecorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((user: AuthenticatedUser) => Promise<{ success: boolean; }>)'.
+  Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((user: AuthenticatedUser) => Promise<{ success: boolean; }>)'.
+
+[7m42[0m   @Post('logout')
+[7m  [0m [91m   ~~~~~~~~~~~~~~[0m
+[96msrc/auth/auth.controller.ts[0m:[93m43[0m:[93m10[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+
+[7m43[0m   logout(@CurrentUser() user: AuthenticatedUser) {
+[7m  [0m [91m         ~[0m
+[96msrc/auth/auth.controller.ts[0m:[93m49[0m:[93m3[0m - [91merror[0m[90m TS1241: [0mUnable to resolve signature of method decorator when called as an expression.
+  The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+
+[7m49[0m   @Post('staff')
+[7m  [0m [91m  ~~~~~~~~~~~~~~[0m
+
+  [96mnode_modules/typescript/lib/lib.decorators.legacy.d.ts[0m:[93m21[0m:[93m82[0m
+    [7m21[0m declare type MethodDecorator = <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) => TypedPropertyDescriptor<T> | void;
+    [7m  [0m [96m                                                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    An argument for 'descriptor' was not provided.
+[96msrc/auth/auth.controller.ts[0m:[93m49[0m:[93m4[0m - [91merror[0m[90m TS1270: [0mDecorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((user: AuthenticatedUser, dto: CreateStaffDto) => Promise<{ id: any; name: any; email: any; role: any; }>)'.
+  Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((user: AuthenticatedUser, dto: CreateStaffDto) => Promise<{ id: any; name: any; email: any; role: any; }>)'.
+
+[7m49[0m   @Post('staff')
+[7m  [0m [91m   ~~~~~~~~~~~~~[0m
+[96msrc/auth/auth.controller.ts[0m:[93m50[0m:[93m15[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+
+[7m50[0m   createStaff(@CurrentUser() user: AuthenticatedUser, @Body() dto: CreateStaffDto) {
+[7m  [0m [91m              ~[0m
+[96msrc/auth/auth.controller.ts[0m:[93m50[0m:[93m55[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+
+[7m50[0m   createStaff(@CurrentUser() user: AuthenticatedUser, @Body() dto: CreateStaffDto) {
+[7m  [0m [91m                                                      ~[0m
+[96msrc/auth/auth.controller.ts[0m:[93m55[0m:[93m3[0m - [91merror[0m[90m TS1241: [0mUnable to resolve signature of method decorator when called as an expression.
+  The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+
+[7m55[0m   @HttpCode(HttpStatus.OK)
+[7m  [0m [91m  ~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+  [96mnode_modules/typescript/lib/lib.decorators.legacy.d.ts[0m:[93m21[0m:[93m82[0m
+    [7m21[0m declare type MethodDecorator = <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) => TypedPropertyDescriptor<T> | void;
+    [7m  [0m [96m                                                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    An argument for 'descriptor' was not provided.
+[96msrc/auth/auth.controller.ts[0m:[93m55[0m:[93m4[0m - [91merror[0m[90m TS1270: [0mDecorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((dto: ForgotPasswordDto) => Promise<{ success: boolean; }>)'.
+  Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((dto: ForgotPasswordDto) => Promise<{ success: boolean; }>)'.
+
+[7m55[0m   @HttpCode(HttpStatus.OK)
+[7m  [0m [91m   ~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/auth/auth.controller.ts[0m:[93m56[0m:[93m3[0m - [91merror[0m[90m TS1241: [0mUnable to resolve signature of method decorator when called as an expression.
+  The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+
+[7m56[0m   @Post('forgot-password')
+[7m  [0m [91m  ~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+  [96mnode_modules/typescript/lib/lib.decorators.legacy.d.ts[0m:[93m21[0m:[93m82[0m
+    [7m21[0m declare type MethodDecorator = <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) => TypedPropertyDescriptor<T> | void;
+    [7m  [0m [96m                                                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    An argument for 'descriptor' was not provided.
+[96msrc/auth/auth.controller.ts[0m:[93m56[0m:[93m4[0m - [91merror[0m[90m TS1270: [0mDecorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((dto: ForgotPasswordDto) => Promise<{ success: boolean; }>)'.
+  Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((dto: ForgotPasswordDto) => Promise<{ success: boolean; }>)'.
+
+[7m56[0m   @Post('forgot-password')
+[7m  [0m [91m   ~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/auth/auth.controller.ts[0m:[93m57[0m:[93m18[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+
+[7m57[0m   forgotPassword(@Body() dto: ForgotPasswordDto) {
+[7m  [0m [91m                 ~[0m
+[96msrc/auth/auth.controller.ts[0m:[93m61[0m:[93m3[0m - [91merror[0m[90m TS1241: [0mUnable to resolve signature of method decorator when called as an expression.
+  The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+
+[7m61[0m   @HttpCode(HttpStatus.OK)
+[7m  [0m [91m  ~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+  [96mnode_modules/typescript/lib/lib.decorators.legacy.d.ts[0m:[93m21[0m:[93m82[0m
+    [7m21[0m declare type MethodDecorator = <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) => TypedPropertyDescriptor<T> | void;
+    [7m  [0m [96m                                                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    An argument for 'descriptor' was not provided.
+[96msrc/auth/auth.controller.ts[0m:[93m61[0m:[93m4[0m - [91merror[0m[90m TS1270: [0mDecorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((dto: ResetPasswordDto) => Promise<{ success: boolean; }>)'.
+  Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((dto: ResetPasswordDto) => Promise<{ success: boolean; }>)'.
+
+[7m61[0m   @HttpCode(HttpStatus.OK)
+[7m  [0m [91m   ~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/auth/auth.controller.ts[0m:[93m62[0m:[93m3[0m - [91merror[0m[90m TS1241: [0mUnable to resolve signature of method decorator when called as an expression.
+  The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+
+[7m62[0m   @Post('reset-password')
+[7m  [0m [91m  ~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+  [96mnode_modules/typescript/lib/lib.decorators.legacy.d.ts[0m:[93m21[0m:[93m82[0m
+    [7m21[0m declare type MethodDecorator = <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) => TypedPropertyDescriptor<T> | void;
+    [7m  [0m [96m                                                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    An argument for 'descriptor' was not provided.
+[96msrc/auth/auth.controller.ts[0m:[93m62[0m:[93m4[0m - [91merror[0m[90m TS1270: [0mDecorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((dto: ResetPasswordDto) => Promise<{ success: boolean; }>)'.
+  Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((dto: ResetPasswordDto) => Promise<{ success: boolean; }>)'.
+
+[7m62[0m   @Post('reset-password')
+[7m  [0m [91m   ~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/auth/auth.controller.ts[0m:[93m63[0m:[93m17[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+
+[7m63[0m   resetPassword(@Body() dto: ResetPasswordDto) {
+[7m  [0m [91m                ~[0m
+[96msrc/auth/dto/auth.dto.ts[0m:[93m2[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"@prisma/client"' has no exported member 'Role'.
+
+[7m2[0m import { Role, BusinessType } from '@prisma/client';
+[7m [0m [91m         ~~~~[0m
+[96msrc/auth/dto/auth.dto.ts[0m:[93m2[0m:[93m16[0m - [91merror[0m[90m TS2305: [0mModule '"@prisma/client"' has no exported member 'BusinessType'.
+
+[7m2[0m import { Role, BusinessType } from '@prisma/client';
+[7m [0m [91m               ~~~~~~~~~~~~[0m
+[96msrc/auth/dto/auth.dto.ts[0m:[93m5[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<LoginDto, string> & { name: "email"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m5[0m   @IsEmail()
+[7m [0m [91m   ~~~~~~~~~[0m
+[96msrc/auth/dto/auth.dto.ts[0m:[93m8[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<LoginDto, string> & { name: "password"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m8[0m   @IsString()
+[7m [0m [91m   ~~~~~~~~~~[0m
+[96msrc/auth/dto/auth.dto.ts[0m:[93m9[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<LoginDto, string> & { name: "password"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m9[0m   @MinLength(6)
+[7m [0m [91m   ~~~~~~~~~~~~[0m
+[96msrc/auth/dto/auth.dto.ts[0m:[93m14[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<RefreshDto, string> & { name: "refreshToken"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m14[0m   @IsString()
+[7m  [0m [91m   ~~~~~~~~~~[0m
+[96msrc/auth/dto/auth.dto.ts[0m:[93m19[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<RegisterBusinessDto, string> & { name: "businessName"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m19[0m   @IsString()
+[7m  [0m [91m   ~~~~~~~~~~[0m
+[96msrc/auth/dto/auth.dto.ts[0m:[93m22[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<RegisterBusinessDto, BusinessType> & { name: "businessType"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m22[0m   @IsEnum(BusinessType)
+[7m  [0m [91m   ~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/auth/dto/auth.dto.ts[0m:[93m25[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<RegisterBusinessDto, string> & { name: "ownerName"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m25[0m   @IsString()
+[7m  [0m [91m   ~~~~~~~~~~[0m
+[96msrc/auth/dto/auth.dto.ts[0m:[93m28[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<RegisterBusinessDto, string> & { name: "email"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m28[0m   @IsEmail()
+[7m  [0m [91m   ~~~~~~~~~[0m
+[96msrc/auth/dto/auth.dto.ts[0m:[93m31[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<RegisterBusinessDto, string> & { name: "password"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m31[0m   @IsString()
+[7m  [0m [91m   ~~~~~~~~~~[0m
+[96msrc/auth/dto/auth.dto.ts[0m:[93m32[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<RegisterBusinessDto, string> & { name: "password"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m32[0m   @MinLength(8)
+[7m  [0m [91m   ~~~~~~~~~~~~[0m
+[96msrc/auth/dto/auth.dto.ts[0m:[93m37[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<CreateStaffDto, string> & { name: "name"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m37[0m   @IsString()
+[7m  [0m [91m   ~~~~~~~~~~[0m
+[96msrc/auth/dto/auth.dto.ts[0m:[93m40[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<CreateStaffDto, string> & { name: "email"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m40[0m   @IsEmail()
+[7m  [0m [91m   ~~~~~~~~~[0m
+[96msrc/auth/dto/auth.dto.ts[0m:[93m43[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<CreateStaffDto, string> & { name: "password"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m43[0m   @IsString()
+[7m  [0m [91m   ~~~~~~~~~~[0m
+[96msrc/auth/dto/auth.dto.ts[0m:[93m44[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<CreateStaffDto, string> & { name: "password"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m44[0m   @MinLength(6)
+[7m  [0m [91m   ~~~~~~~~~~~~[0m
+[96msrc/auth/dto/auth.dto.ts[0m:[93m47[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<CreateStaffDto, Role> & { name: "role"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m47[0m   @IsEnum(Role)
+[7m  [0m [91m   ~~~~~~~~~~~~[0m
+[96msrc/auth/dto/auth.dto.ts[0m:[93m52[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<ForgotPasswordDto, string> & { name: "email"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m52[0m   @IsEmail()
+[7m  [0m [91m   ~~~~~~~~~[0m
+[96msrc/auth/dto/auth.dto.ts[0m:[93m57[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<ResetPasswordDto, string> & { name: "otp"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m57[0m   @IsString()
+[7m  [0m [91m   ~~~~~~~~~~[0m
+[96msrc/auth/dto/auth.dto.ts[0m:[93m60[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<ResetPasswordDto, string> & { name: "email"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m60[0m   @IsEmail()
+[7m  [0m [91m   ~~~~~~~~~[0m
+[96msrc/auth/dto/auth.dto.ts[0m:[93m63[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<ResetPasswordDto, string> & { name: "newPassword"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m63[0m   @IsString()
+[7m  [0m [91m   ~~~~~~~~~~[0m
+[96msrc/auth/dto/auth.dto.ts[0m:[93m64[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<ResetPasswordDto, string> & { name: "newPassword"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m64[0m   @MinLength(6)
+[7m  [0m [91m   ~~~~~~~~~~~~[0m
+[96msrc/auth/dto/auth.dto.ts[0m:[93m67[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<ResetPasswordDto, string> & { name: "reserved"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m67[0m   @IsOptional()
+[7m  [0m [91m   ~~~~~~~~~~~~[0m
+[96msrc/auth/dto/auth.dto.ts[0m:[93m68[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<ResetPasswordDto, string> & { name: "reserved"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m68[0m   @IsString()
+[7m  [0m [91m   ~~~~~~~~~~[0m
+[96msrc/billing/billing.controller.ts[0m:[93m7[0m:[93m23[0m - [91merror[0m[90m TS2305: [0mModule '"../common/decorators/current-user.decorator"' has no exported member 'AuthenticatedUser'.
+
+[7m7[0m import { CurrentUser, AuthenticatedUser } from '../common/decorators/current-user.decorator';
+[7m [0m [91m                      ~~~~~~~~~~~~~~~~~[0m
+[96msrc/billing/billing.controller.ts[0m:[93m15[0m:[93m3[0m - [91merror[0m[90m TS1241: [0mUnable to resolve signature of method decorator when called as an expression.
+  The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+
+[7m15[0m   @Post()
+[7m  [0m [91m  ~~~~~~~[0m
+
+  [96mnode_modules/typescript/lib/lib.decorators.legacy.d.ts[0m:[93m21[0m:[93m82[0m
+    [7m21[0m declare type MethodDecorator = <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) => TypedPropertyDescriptor<T> | void;
+    [7m  [0m [96m                                                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    An argument for 'descriptor' was not provided.
+[96msrc/billing/billing.controller.ts[0m:[93m15[0m:[93m4[0m - [91merror[0m[90m TS1270: [0mDecorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((user: AuthenticatedUser, dto: CreateInvoiceDto) => Promise<any>)'.
+  Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((user: AuthenticatedUser, dto: CreateInvoiceDto) => Promise<any>)'.
+
+[7m15[0m   @Post()
+[7m  [0m [91m   ~~~~~~[0m
+[96msrc/billing/billing.controller.ts[0m:[93m16[0m:[93m10[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+
+[7m16[0m   create(@CurrentUser() user: AuthenticatedUser, @Body() dto: CreateInvoiceDto) {
+[7m  [0m [91m         ~[0m
+[96msrc/billing/billing.controller.ts[0m:[93m16[0m:[93m50[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+
+[7m16[0m   create(@CurrentUser() user: AuthenticatedUser, @Body() dto: CreateInvoiceDto) {
+[7m  [0m [91m                                                 ~[0m
+[96msrc/billing/billing.controller.ts[0m:[93m20[0m:[93m3[0m - [91merror[0m[90m TS1241: [0mUnable to resolve signature of method decorator when called as an expression.
+  The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+
+[7m20[0m   @Get()
+[7m  [0m [91m  ~~~~~~[0m
+
+  [96mnode_modules/typescript/lib/lib.decorators.legacy.d.ts[0m:[93m21[0m:[93m82[0m
+    [7m21[0m declare type MethodDecorator = <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) => TypedPropertyDescriptor<T> | void;
+    [7m  [0m [96m                                                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    An argument for 'descriptor' was not provided.
+[96msrc/billing/billing.controller.ts[0m:[93m20[0m:[93m4[0m - [91merror[0m[90m TS1270: [0mDecorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((user: AuthenticatedUser, from?: string, to?: string) => Promise<any>)'.
+  Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((user: AuthenticatedUser, from?: string, to?: string) => Promise<any>)'.
+
+[7m20[0m   @Get()
+[7m  [0m [91m   ~~~~~[0m
+[96msrc/billing/billing.controller.ts[0m:[93m21[0m:[93m11[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+
+[7m21[0m   findAll(@CurrentUser() user: AuthenticatedUser, @Query('from') from?: string, @Query('to') to?: string) {
+[7m  [0m [91m          ~[0m
+[96msrc/billing/billing.controller.ts[0m:[93m21[0m:[93m51[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+
+[7m21[0m   findAll(@CurrentUser() user: AuthenticatedUser, @Query('from') from?: string, @Query('to') to?: string) {
+[7m  [0m [91m                                                  ~[0m
+[96msrc/billing/billing.controller.ts[0m:[93m21[0m:[93m81[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+
+[7m21[0m   findAll(@CurrentUser() user: AuthenticatedUser, @Query('from') from?: string, @Query('to') to?: string) {
+[7m  [0m [91m                                                                                ~[0m
+[96msrc/billing/billing.controller.ts[0m:[93m25[0m:[93m3[0m - [91merror[0m[90m TS1241: [0mUnable to resolve signature of method decorator when called as an expression.
+  The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+
+[7m25[0m   @Get('reports/daily')
+[7m  [0m [91m  ~~~~~~~~~~~~~~~~~~~~~[0m
+
+  [96mnode_modules/typescript/lib/lib.decorators.legacy.d.ts[0m:[93m21[0m:[93m82[0m
+    [7m21[0m declare type MethodDecorator = <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) => TypedPropertyDescriptor<T> | void;
+    [7m  [0m [96m                                                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    An argument for 'descriptor' was not provided.
+[96msrc/billing/billing.controller.ts[0m:[93m25[0m:[93m4[0m - [91merror[0m[90m TS1270: [0mDecorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((user: AuthenticatedUser, date?: string) => Promise<{ date: string; invoiceCount: any; totalSales: any; totalTax: any; }>)'.
+  Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((user: AuthenticatedUser, date?: string) => Promise<{ date: string; invoiceCount: any; totalSales: any; totalTax: any; }>)'.
+
+[7m25[0m   @Get('reports/daily')
+[7m  [0m [91m   ~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/billing/billing.controller.ts[0m:[93m26[0m:[93m16[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+
+[7m26[0m   dailySummary(@CurrentUser() user: AuthenticatedUser, @Query('date') date?: string) {
+[7m  [0m [91m               ~[0m
+[96msrc/billing/billing.controller.ts[0m:[93m26[0m:[93m56[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+
+[7m26[0m   dailySummary(@CurrentUser() user: AuthenticatedUser, @Query('date') date?: string) {
+[7m  [0m [91m                                                       ~[0m
+[96msrc/billing/billing.controller.ts[0m:[93m31[0m:[93m3[0m - [91merror[0m[90m TS1241: [0mUnable to resolve signature of method decorator when called as an expression.
+  The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+
+[7m31[0m   @Get(':id')
+[7m  [0m [91m  ~~~~~~~~~~~[0m
+
+  [96mnode_modules/typescript/lib/lib.decorators.legacy.d.ts[0m:[93m21[0m:[93m82[0m
+    [7m21[0m declare type MethodDecorator = <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) => TypedPropertyDescriptor<T> | void;
+    [7m  [0m [96m                                                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    An argument for 'descriptor' was not provided.
+[96msrc/billing/billing.controller.ts[0m:[93m31[0m:[93m4[0m - [91merror[0m[90m TS1270: [0mDecorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((user: AuthenticatedUser, id: string) => Promise<any>)'.
+  Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((user: AuthenticatedUser, id: string) => Promise<any>)'.
+
+[7m31[0m   @Get(':id')
+[7m  [0m [91m   ~~~~~~~~~~[0m
+[96msrc/billing/billing.controller.ts[0m:[93m32[0m:[93m11[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+
+[7m32[0m   findOne(@CurrentUser() user: AuthenticatedUser, @Param('id') id: string) {
+[7m  [0m [91m          ~[0m
+[96msrc/billing/billing.controller.ts[0m:[93m32[0m:[93m51[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+
+[7m32[0m   findOne(@CurrentUser() user: AuthenticatedUser, @Param('id') id: string) {
+[7m  [0m [91m                                                  ~[0m
+[96msrc/billing/billing.controller.ts[0m:[93m37[0m:[93m3[0m - [91merror[0m[90m TS1241: [0mUnable to resolve signature of method decorator when called as an expression.
+  The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+
+[7m37[0m   @Post(':id/payments')
+[7m  [0m [91m  ~~~~~~~~~~~~~~~~~~~~~[0m
+
+  [96mnode_modules/typescript/lib/lib.decorators.legacy.d.ts[0m:[93m21[0m:[93m82[0m
+    [7m21[0m declare type MethodDecorator = <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) => TypedPropertyDescriptor<T> | void;
+    [7m  [0m [96m                                                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    An argument for 'descriptor' was not provided.
+[96msrc/billing/billing.controller.ts[0m:[93m37[0m:[93m4[0m - [91merror[0m[90m TS1270: [0mDecorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((user: AuthenticatedUser, id: string, dto: RecordPaymentDto) => Promise<any>)'.
+  Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((user: AuthenticatedUser, id: string, dto: RecordPaymentDto) => Promise<any>)'.
+
+[7m37[0m   @Post(':id/payments')
+[7m  [0m [91m   ~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/billing/billing.controller.ts[0m:[93m39[0m:[93m5[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+
+[7m39[0m     @CurrentUser() user: AuthenticatedUser,
+[7m  [0m [91m    ~[0m
+[96msrc/billing/billing.controller.ts[0m:[93m40[0m:[93m5[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+
+[7m40[0m     @Param('id') id: string,
+[7m  [0m [91m    ~[0m
+[96msrc/billing/billing.controller.ts[0m:[93m41[0m:[93m5[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+
+[7m41[0m     @Body() dto: RecordPaymentDto,
+[7m  [0m [91m    ~[0m
+[96msrc/billing/billing.service.ts[0m:[93m2[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"@prisma/client"' has no exported member 'InvoiceStatus'.
+
+[7m2[0m import { InvoiceStatus, OrderStatus } from '@prisma/client';
+[7m [0m [91m         ~~~~~~~~~~~~~[0m
+[96msrc/billing/billing.service.ts[0m:[93m2[0m:[93m25[0m - [91merror[0m[90m TS2305: [0mModule '"@prisma/client"' has no exported member 'OrderStatus'.
+
+[7m2[0m import { InvoiceStatus, OrderStatus } from '@prisma/client';
+[7m [0m [91m                        ~~~~~~~~~~~[0m
+[96msrc/billing/dto/billing.dto.ts[0m:[93m2[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"@prisma/client"' has no exported member 'PaymentMethod'.
+
+[7m2[0m import { PaymentMethod } from '@prisma/client';
+[7m [0m [91m         ~~~~~~~~~~~~~[0m
+[96msrc/billing/dto/billing.dto.ts[0m:[93m5[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<CreateInvoiceDto, string> & { name: "orderId"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m5[0m   @IsOptional()
+[7m [0m [91m   ~~~~~~~~~~~~[0m
+[96msrc/billing/dto/billing.dto.ts[0m:[93m6[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<CreateInvoiceDto, string> & { name: "orderId"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m6[0m   @IsString()
+[7m [0m [91m   ~~~~~~~~~~[0m
+[96msrc/billing/dto/billing.dto.ts[0m:[93m9[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<CreateInvoiceDto, string> & { name: "customerId"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m9[0m   @IsOptional()
+[7m [0m [91m   ~~~~~~~~~~~~[0m
+[96msrc/billing/dto/billing.dto.ts[0m:[93m10[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<CreateInvoiceDto, string> & { name: "customerId"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m10[0m   @IsString()
+[7m  [0m [91m   ~~~~~~~~~~[0m
+[96msrc/billing/dto/billing.dto.ts[0m:[93m13[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<CreateInvoiceDto, number> & { name: "discount"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m13[0m   @IsOptional()
+[7m  [0m [91m   ~~~~~~~~~~~~[0m
+[96msrc/billing/dto/billing.dto.ts[0m:[93m14[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<CreateInvoiceDto, number> & { name: "discount"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m14[0m   @IsNumber()
+[7m  [0m [91m   ~~~~~~~~~~[0m
+[96msrc/billing/dto/billing.dto.ts[0m:[93m15[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<CreateInvoiceDto, number> & { name: "discount"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m15[0m   @Min(0)
+[7m  [0m [91m   ~~~~~~[0m
+[96msrc/billing/dto/billing.dto.ts[0m:[93m20[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<RecordPaymentDto, PaymentMethod> & { name: "method"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m20[0m   @IsEnum(PaymentMethod)
+[7m  [0m [91m   ~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/billing/dto/billing.dto.ts[0m:[93m23[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<RecordPaymentDto, number> & { name: "amount"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m23[0m   @IsNumber()
+[7m  [0m [91m   ~~~~~~~~~~[0m
+[96msrc/billing/dto/billing.dto.ts[0m:[93m24[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<RecordPaymentDto, number> & { name: "amount"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m24[0m   @Min(0.01)
+[7m  [0m [91m   ~~~~~~~~~[0m
+[96msrc/categories/categories.controller.ts[0m:[93m7[0m:[93m23[0m - [91merror[0m[90m TS2305: [0mModule '"../common/decorators/current-user.decorator"' has no exported member 'AuthenticatedUser'.
+
+[7m7[0m import { CurrentUser, AuthenticatedUser } from '../common/decorators/current-user.decorator';
+[7m [0m [91m                      ~~~~~~~~~~~~~~~~~[0m
+[96msrc/categories/categories.controller.ts[0m:[93m10[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<CategoryDto, string> & { name: "name"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m10[0m   @IsString()
+[7m  [0m [91m   ~~~~~~~~~~[0m
+[96msrc/categories/categories.controller.ts[0m:[93m20[0m:[93m3[0m - [91merror[0m[90m TS1241: [0mUnable to resolve signature of method decorator when called as an expression.
+  The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+
+[7m20[0m   @Post()
+[7m  [0m [91m  ~~~~~~~[0m
+
+  [96mnode_modules/typescript/lib/lib.decorators.legacy.d.ts[0m:[93m21[0m:[93m82[0m
+    [7m21[0m declare type MethodDecorator = <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) => TypedPropertyDescriptor<T> | void;
+    [7m  [0m [96m                                                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    An argument for 'descriptor' was not provided.
+[96msrc/categories/categories.controller.ts[0m:[93m20[0m:[93m4[0m - [91merror[0m[90m TS1270: [0mDecorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((user: AuthenticatedUser, dto: CategoryDto) => any)'.
+  Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((user: AuthenticatedUser, dto: CategoryDto) => any)'.
+
+[7m20[0m   @Post()
+[7m  [0m [91m   ~~~~~~[0m
+[96msrc/categories/categories.controller.ts[0m:[93m21[0m:[93m10[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+
+[7m21[0m   create(@CurrentUser() user: AuthenticatedUser, @Body() dto: CategoryDto) {
+[7m  [0m [91m         ~[0m
+[96msrc/categories/categories.controller.ts[0m:[93m21[0m:[93m50[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+
+[7m21[0m   create(@CurrentUser() user: AuthenticatedUser, @Body() dto: CategoryDto) {
+[7m  [0m [91m                                                 ~[0m
+[96msrc/categories/categories.controller.ts[0m:[93m25[0m:[93m3[0m - [91merror[0m[90m TS1241: [0mUnable to resolve signature of method decorator when called as an expression.
+  The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+
+[7m25[0m   @Get()
+[7m  [0m [91m  ~~~~~~[0m
+
+  [96mnode_modules/typescript/lib/lib.decorators.legacy.d.ts[0m:[93m21[0m:[93m82[0m
+    [7m21[0m declare type MethodDecorator = <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) => TypedPropertyDescriptor<T> | void;
+    [7m  [0m [96m                                                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    An argument for 'descriptor' was not provided.
+[96msrc/categories/categories.controller.ts[0m:[93m25[0m:[93m4[0m - [91merror[0m[90m TS1270: [0mDecorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((user: AuthenticatedUser) => any)'.
+  Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((user: AuthenticatedUser) => any)'.
+
+[7m25[0m   @Get()
+[7m  [0m [91m   ~~~~~[0m
+[96msrc/categories/categories.controller.ts[0m:[93m26[0m:[93m11[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+
+[7m26[0m   findAll(@CurrentUser() user: AuthenticatedUser) {
+[7m  [0m [91m          ~[0m
+[96msrc/categories/categories.controller.ts[0m:[93m31[0m:[93m3[0m - [91merror[0m[90m TS1241: [0mUnable to resolve signature of method decorator when called as an expression.
+  The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+
+[7m31[0m   @Patch(':id')
+[7m  [0m [91m  ~~~~~~~~~~~~~[0m
+
+  [96mnode_modules/typescript/lib/lib.decorators.legacy.d.ts[0m:[93m21[0m:[93m82[0m
+    [7m21[0m declare type MethodDecorator = <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) => TypedPropertyDescriptor<T> | void;
+    [7m  [0m [96m                                                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    An argument for 'descriptor' was not provided.
+[96msrc/categories/categories.controller.ts[0m:[93m31[0m:[93m4[0m - [91merror[0m[90m TS1270: [0mDecorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((user: AuthenticatedUser, id: string, dto: CategoryDto) => Promise<any>)'.
+  Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((user: AuthenticatedUser, id: string, dto: CategoryDto) => Promise<any>)'.
+
+[7m31[0m   @Patch(':id')
+[7m  [0m [91m   ~~~~~~~~~~~~[0m
+[96msrc/categories/categories.controller.ts[0m:[93m32[0m:[93m10[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+
+[7m32[0m   update(@CurrentUser() user: AuthenticatedUser, @Param('id') id: string, @Body() dto: CategoryDto) {
+[7m  [0m [91m         ~[0m
+[96msrc/categories/categories.controller.ts[0m:[93m32[0m:[93m50[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+
+[7m32[0m   update(@CurrentUser() user: AuthenticatedUser, @Param('id') id: string, @Body() dto: CategoryDto) {
+[7m  [0m [91m                                                 ~[0m
+[96msrc/categories/categories.controller.ts[0m:[93m32[0m:[93m75[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+
+[7m32[0m   update(@CurrentUser() user: AuthenticatedUser, @Param('id') id: string, @Body() dto: CategoryDto) {
+[7m  [0m [91m                                                                          ~[0m
+[96msrc/categories/categories.controller.ts[0m:[93m37[0m:[93m3[0m - [91merror[0m[90m TS1241: [0mUnable to resolve signature of method decorator when called as an expression.
+  The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+
+[7m37[0m   @Delete(':id')
+[7m  [0m [91m  ~~~~~~~~~~~~~~[0m
+
+  [96mnode_modules/typescript/lib/lib.decorators.legacy.d.ts[0m:[93m21[0m:[93m82[0m
+    [7m21[0m declare type MethodDecorator = <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) => TypedPropertyDescriptor<T> | void;
+    [7m  [0m [96m                                                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    An argument for 'descriptor' was not provided.
+[96msrc/categories/categories.controller.ts[0m:[93m37[0m:[93m4[0m - [91merror[0m[90m TS1270: [0mDecorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((user: AuthenticatedUser, id: string) => Promise<{ success: boolean; }>)'.
+  Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((user: AuthenticatedUser, id: string) => Promise<{ success: boolean; }>)'.
+
+[7m37[0m   @Delete(':id')
+[7m  [0m [91m   ~~~~~~~~~~~~~[0m
+[96msrc/categories/categories.controller.ts[0m:[93m38[0m:[93m10[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+
+[7m38[0m   remove(@CurrentUser() user: AuthenticatedUser, @Param('id') id: string) {
+[7m  [0m [91m         ~[0m
+[96msrc/categories/categories.controller.ts[0m:[93m38[0m:[93m50[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+
+[7m38[0m   remove(@CurrentUser() user: AuthenticatedUser, @Param('id') id: string) {
+[7m  [0m [91m                                                 ~[0m
+[96msrc/common/guards/jwt-auth.guard.ts[0m:[93m6[0m:[93m3[0m - [91merror[0m[90m TS2416: [0mProperty 'handleRequest' in type 'JwtAuthGuard' is not assignable to the same property in base type 'IAuthGuard'.
+  Type '(err: unknown, user: unknown) => unknown' is not assignable to type '<TUser = any>(err: any, user: any, info: any, context: ExecutionContext, status?: any) => TUser'.
+    Type 'unknown' is not assignable to type 'TUser'.
+      'TUser' could be instantiated with an arbitrary type which could be unrelated to 'unknown'.
+
+[7m6[0m   handleRequest(err: unknown, user: unknown) {
+[7m [0m [91m  ~~~~~~~~~~~~~[0m
+[96msrc/main.ts[0m:[93m4[0m:[93m48[0m - [91merror[0m[90m TS2307: [0mCannot find module '@nestjs/swagger' or its corresponding type declarations.
+
+[7m4[0m import { SwaggerModule, DocumentBuilder } from "@nestjs/swagger";
+[7m [0m [91m                                               ~~~~~~~~~~~~~~~~~[0m
+[96msrc/medical/medical.service.spec.ts[0m:[93m1[0m:[93m40[0m - [91merror[0m[90m TS2307: [0mCannot find module './medical.service' or its corresponding type declarations.
+
+[7m1[0m import { allocateBatchDeduction } from './medical.service';
+[7m [0m [91m                                       ~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/modules/auth/auth.controller.ts[0m:[93m18[0m:[93m3[0m - [91merror[0m[90m TS1241: [0mUnable to resolve signature of method decorator when called as an expression.
+  The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+
+[7m18[0m   @Post("register")
+[7m  [0m [91m  ~~~~~~~~~~~~~~~~~[0m
+
+  [96mnode_modules/typescript/lib/lib.decorators.legacy.d.ts[0m:[93m21[0m:[93m82[0m
+    [7m21[0m declare type MethodDecorator = <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) => TypedPropertyDescriptor<T> | void;
+    [7m  [0m [96m                                                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    An argument for 'descriptor' was not provided.
+[96msrc/modules/auth/auth.controller.ts[0m:[93m18[0m:[93m4[0m - [91merror[0m[90m TS1270: [0mDecorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((dto: RegisterBusinessDto) => Promise<{ accessToken: string; refreshToken: string; user: any; business: any; }>)'.
+  Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((dto: RegisterBusinessDto) => Promise<{ accessToken: string; refreshToken: string; user: any; business: any; }>)'.
+
+[7m18[0m   @Post("register")
+[7m  [0m [91m   ~~~~~~~~~~~~~~~~[0m
+[96msrc/modules/auth/auth.controller.ts[0m:[93m19[0m:[93m12[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+
+[7m19[0m   register(@Body() dto: RegisterBusinessDto) {
+[7m  [0m [91m           ~[0m
+[96msrc/modules/auth/auth.controller.ts[0m:[93m23[0m:[93m3[0m - [91merror[0m[90m TS1241: [0mUnable to resolve signature of method decorator when called as an expression.
+  The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+
+[7m23[0m   @HttpCode(HttpStatus.OK)
+[7m  [0m [91m  ~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+  [96mnode_modules/typescript/lib/lib.decorators.legacy.d.ts[0m:[93m21[0m:[93m82[0m
+    [7m21[0m declare type MethodDecorator = <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) => TypedPropertyDescriptor<T> | void;
+    [7m  [0m [96m                                                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    An argument for 'descriptor' was not provided.
+[96msrc/modules/auth/auth.controller.ts[0m:[93m23[0m:[93m4[0m - [91merror[0m[90m TS1270: [0mDecorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((dto: LoginDto) => Promise<{ accessToken: string; refreshToken: string; user: any; }>)'.
+  Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((dto: LoginDto) => Promise<{ accessToken: string; refreshToken: string; user: any; }>)'.
+
+[7m23[0m   @HttpCode(HttpStatus.OK)
+[7m  [0m [91m   ~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/modules/auth/auth.controller.ts[0m:[93m24[0m:[93m3[0m - [91merror[0m[90m TS1241: [0mUnable to resolve signature of method decorator when called as an expression.
+  The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+
+[7m24[0m   @Post("login")
+[7m  [0m [91m  ~~~~~~~~~~~~~~[0m
+
+  [96mnode_modules/typescript/lib/lib.decorators.legacy.d.ts[0m:[93m21[0m:[93m82[0m
+    [7m21[0m declare type MethodDecorator = <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) => TypedPropertyDescriptor<T> | void;
+    [7m  [0m [96m                                                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    An argument for 'descriptor' was not provided.
+[96msrc/modules/auth/auth.controller.ts[0m:[93m24[0m:[93m4[0m - [91merror[0m[90m TS1270: [0mDecorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((dto: LoginDto) => Promise<{ accessToken: string; refreshToken: string; user: any; }>)'.
+  Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((dto: LoginDto) => Promise<{ accessToken: string; refreshToken: string; user: any; }>)'.
+
+[7m24[0m   @Post("login")
+[7m  [0m [91m   ~~~~~~~~~~~~~[0m
+[96msrc/modules/auth/auth.controller.ts[0m:[93m25[0m:[93m9[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+
+[7m25[0m   login(@Body() dto: LoginDto) {
+[7m  [0m [91m        ~[0m
+[96msrc/modules/auth/auth.controller.ts[0m:[93m30[0m:[93m3[0m - [91merror[0m[90m TS1241: [0mUnable to resolve signature of method decorator when called as an expression.
+  The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+
+[7m30[0m   @HttpCode(HttpStatus.OK)
+[7m  [0m [91m  ~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+  [96mnode_modules/typescript/lib/lib.decorators.legacy.d.ts[0m:[93m21[0m:[93m82[0m
+    [7m21[0m declare type MethodDecorator = <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) => TypedPropertyDescriptor<T> | void;
+    [7m  [0m [96m                                                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    An argument for 'descriptor' was not provided.
+[96msrc/modules/auth/auth.controller.ts[0m:[93m30[0m:[93m4[0m - [91merror[0m[90m TS1270: [0mDecorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((req: any) => Promise<{ accessToken: string; refreshToken: string; }>)'.
+  Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((req: any) => Promise<{ accessToken: string; refreshToken: string; }>)'.
+
+[7m30[0m   @HttpCode(HttpStatus.OK)
+[7m  [0m [91m   ~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/modules/auth/auth.controller.ts[0m:[93m31[0m:[93m3[0m - [91merror[0m[90m TS1241: [0mUnable to resolve signature of method decorator when called as an expression.
+  The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+
+[7m31[0m   @Post("refresh")
+[7m  [0m [91m  ~~~~~~~~~~~~~~~~[0m
+
+  [96mnode_modules/typescript/lib/lib.decorators.legacy.d.ts[0m:[93m21[0m:[93m82[0m
+    [7m21[0m declare type MethodDecorator = <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) => TypedPropertyDescriptor<T> | void;
+    [7m  [0m [96m                                                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    An argument for 'descriptor' was not provided.
+[96msrc/modules/auth/auth.controller.ts[0m:[93m31[0m:[93m4[0m - [91merror[0m[90m TS1270: [0mDecorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((req: any) => Promise<{ accessToken: string; refreshToken: string; }>)'.
+  Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((req: any) => Promise<{ accessToken: string; refreshToken: string; }>)'.
+
+[7m31[0m   @Post("refresh")
+[7m  [0m [91m   ~~~~~~~~~~~~~~~[0m
+[96msrc/modules/auth/auth.controller.ts[0m:[93m32[0m:[93m11[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+
+[7m32[0m   refresh(@Req() req: any) {
+[7m  [0m [91m          ~[0m
+[96msrc/modules/auth/auth.controller.ts[0m:[93m39[0m:[93m3[0m - [91merror[0m[90m TS1241: [0mUnable to resolve signature of method decorator when called as an expression.
+  The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+
+[7m39[0m   @HttpCode(HttpStatus.OK)
+[7m  [0m [91m  ~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+  [96mnode_modules/typescript/lib/lib.decorators.legacy.d.ts[0m:[93m21[0m:[93m82[0m
+    [7m21[0m declare type MethodDecorator = <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) => TypedPropertyDescriptor<T> | void;
+    [7m  [0m [96m                                                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    An argument for 'descriptor' was not provided.
+[96msrc/modules/auth/auth.controller.ts[0m:[93m39[0m:[93m4[0m - [91merror[0m[90m TS1270: [0mDecorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((user: any) => Promise<{ success: boolean; }>)'.
+  Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((user: any) => Promise<{ success: boolean; }>)'.
+
+[7m39[0m   @HttpCode(HttpStatus.OK)
+[7m  [0m [91m   ~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/modules/auth/auth.controller.ts[0m:[93m40[0m:[93m3[0m - [91merror[0m[90m TS1241: [0mUnable to resolve signature of method decorator when called as an expression.
+  The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+
+[7m40[0m   @Post("logout")
+[7m  [0m [91m  ~~~~~~~~~~~~~~~[0m
+
+  [96mnode_modules/typescript/lib/lib.decorators.legacy.d.ts[0m:[93m21[0m:[93m82[0m
+    [7m21[0m declare type MethodDecorator = <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) => TypedPropertyDescriptor<T> | void;
+    [7m  [0m [96m                                                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    An argument for 'descriptor' was not provided.
+[96msrc/modules/auth/auth.controller.ts[0m:[93m40[0m:[93m4[0m - [91merror[0m[90m TS1270: [0mDecorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((user: any) => Promise<{ success: boolean; }>)'.
+  Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((user: any) => Promise<{ success: boolean; }>)'.
+
+[7m40[0m   @Post("logout")
+[7m  [0m [91m   ~~~~~~~~~~~~~~[0m
+[96msrc/modules/auth/auth.controller.ts[0m:[93m41[0m:[93m10[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+
+[7m41[0m   logout(@CurrentUser() user: any) {
+[7m  [0m [91m         ~[0m
+[96msrc/modules/auth/auth.controller.ts[0m:[93m47[0m:[93m3[0m - [91merror[0m[90m TS1241: [0mUnable to resolve signature of method decorator when called as an expression.
+  The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+
+[7m47[0m   @Post("staff")
+[7m  [0m [91m  ~~~~~~~~~~~~~~[0m
+
+  [96mnode_modules/typescript/lib/lib.decorators.legacy.d.ts[0m:[93m21[0m:[93m82[0m
+    [7m21[0m declare type MethodDecorator = <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) => TypedPropertyDescriptor<T> | void;
+    [7m  [0m [96m                                                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    An argument for 'descriptor' was not provided.
+[96msrc/modules/auth/auth.controller.ts[0m:[93m47[0m:[93m4[0m - [91merror[0m[90m TS1270: [0mDecorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((user: any, dto: CreateUserDto) => Promise<any>)'.
+  Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((user: any, dto: CreateUserDto) => Promise<any>)'.
+
+[7m47[0m   @Post("staff")
+[7m  [0m [91m   ~~~~~~~~~~~~~[0m
+[96msrc/modules/auth/auth.controller.ts[0m:[93m48[0m:[93m15[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+
+[7m48[0m   createStaff(@CurrentUser() user: any, @Body() dto: CreateUserDto) {
+[7m  [0m [91m              ~[0m
+[96msrc/modules/auth/auth.controller.ts[0m:[93m48[0m:[93m41[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+
+[7m48[0m   createStaff(@CurrentUser() user: any, @Body() dto: CreateUserDto) {
+[7m  [0m [91m                                        ~[0m
+[96msrc/modules/auth/auth.controller.ts[0m:[93m52[0m:[93m3[0m - [91merror[0m[90m TS1241: [0mUnable to resolve signature of method decorator when called as an expression.
+  The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+
+[7m52[0m   @HttpCode(HttpStatus.OK)
+[7m  [0m [91m  ~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+  [96mnode_modules/typescript/lib/lib.decorators.legacy.d.ts[0m:[93m21[0m:[93m82[0m
+    [7m21[0m declare type MethodDecorator = <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) => TypedPropertyDescriptor<T> | void;
+    [7m  [0m [96m                                                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    An argument for 'descriptor' was not provided.
+[96msrc/modules/auth/auth.controller.ts[0m:[93m52[0m:[93m4[0m - [91merror[0m[90m TS1270: [0mDecorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((dto: ForgotPasswordDto) => Promise<{ success: boolean; }>)'.
+  Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((dto: ForgotPasswordDto) => Promise<{ success: boolean; }>)'.
+
+[7m52[0m   @HttpCode(HttpStatus.OK)
+[7m  [0m [91m   ~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/modules/auth/auth.controller.ts[0m:[93m53[0m:[93m3[0m - [91merror[0m[90m TS1241: [0mUnable to resolve signature of method decorator when called as an expression.
+  The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+
+[7m53[0m   @Post("forgot-password")
+[7m  [0m [91m  ~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+  [96mnode_modules/typescript/lib/lib.decorators.legacy.d.ts[0m:[93m21[0m:[93m82[0m
+    [7m21[0m declare type MethodDecorator = <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) => TypedPropertyDescriptor<T> | void;
+    [7m  [0m [96m                                                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    An argument for 'descriptor' was not provided.
+[96msrc/modules/auth/auth.controller.ts[0m:[93m53[0m:[93m4[0m - [91merror[0m[90m TS1270: [0mDecorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((dto: ForgotPasswordDto) => Promise<{ success: boolean; }>)'.
+  Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((dto: ForgotPasswordDto) => Promise<{ success: boolean; }>)'.
+
+[7m53[0m   @Post("forgot-password")
+[7m  [0m [91m   ~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/modules/auth/auth.controller.ts[0m:[93m54[0m:[93m18[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+
+[7m54[0m   forgotPassword(@Body() dto: ForgotPasswordDto) {
+[7m  [0m [91m                 ~[0m
+[96msrc/modules/auth/auth.controller.ts[0m:[93m58[0m:[93m3[0m - [91merror[0m[90m TS1241: [0mUnable to resolve signature of method decorator when called as an expression.
+  The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+
+[7m58[0m   @HttpCode(HttpStatus.OK)
+[7m  [0m [91m  ~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+  [96mnode_modules/typescript/lib/lib.decorators.legacy.d.ts[0m:[93m21[0m:[93m82[0m
+    [7m21[0m declare type MethodDecorator = <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) => TypedPropertyDescriptor<T> | void;
+    [7m  [0m [96m                                                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    An argument for 'descriptor' was not provided.
+[96msrc/modules/auth/auth.controller.ts[0m:[93m58[0m:[93m4[0m - [91merror[0m[90m TS1270: [0mDecorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((dto: ResetPasswordDto) => Promise<{ success: boolean; }>)'.
+  Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((dto: ResetPasswordDto) => Promise<{ success: boolean; }>)'.
+
+[7m58[0m   @HttpCode(HttpStatus.OK)
+[7m  [0m [91m   ~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/modules/auth/auth.controller.ts[0m:[93m59[0m:[93m3[0m - [91merror[0m[90m TS1241: [0mUnable to resolve signature of method decorator when called as an expression.
+  The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+
+[7m59[0m   @Post("reset-password")
+[7m  [0m [91m  ~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+  [96mnode_modules/typescript/lib/lib.decorators.legacy.d.ts[0m:[93m21[0m:[93m82[0m
+    [7m21[0m declare type MethodDecorator = <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) => TypedPropertyDescriptor<T> | void;
+    [7m  [0m [96m                                                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    An argument for 'descriptor' was not provided.
+[96msrc/modules/auth/auth.controller.ts[0m:[93m59[0m:[93m4[0m - [91merror[0m[90m TS1270: [0mDecorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((dto: ResetPasswordDto) => Promise<{ success: boolean; }>)'.
+  Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((dto: ResetPasswordDto) => Promise<{ success: boolean; }>)'.
+
+[7m59[0m   @Post("reset-password")
+[7m  [0m [91m   ~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/modules/auth/auth.controller.ts[0m:[93m60[0m:[93m17[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+
+[7m60[0m   resetPassword(@Body() dto: ResetPasswordDto) {
+[7m  [0m [91m                ~[0m
+[96msrc/modules/auth/dto/forgot-password.dto.ts[0m:[93m4[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<ForgotPasswordDto, string> & { name: "email"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m4[0m   @IsEmail()
+[7m [0m [91m   ~~~~~~~~~[0m
+[96msrc/modules/auth/dto/login.dto.ts[0m:[93m4[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<LoginDto, string> & { name: "email"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m4[0m   @IsEmail()
+[7m [0m [91m   ~~~~~~~~~[0m
+[96msrc/modules/auth/dto/login.dto.ts[0m:[93m7[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<LoginDto, string> & { name: "password"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m7[0m   @IsString()
+[7m [0m [91m   ~~~~~~~~~~[0m
+[96msrc/modules/auth/dto/login.dto.ts[0m:[93m8[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<LoginDto, string> & { name: "password"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m8[0m   @MinLength(6)
+[7m [0m [91m   ~~~~~~~~~~~~[0m
+[96msrc/modules/auth/dto/register-business.dto.ts[0m:[93m2[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"@prisma/client"' has no exported member 'BusinessType'.
+
+[7m2[0m import { BusinessType, Role } from "@prisma/client";
+[7m [0m [91m         ~~~~~~~~~~~~[0m
+[96msrc/modules/auth/dto/register-business.dto.ts[0m:[93m2[0m:[93m24[0m - [91merror[0m[90m TS2305: [0mModule '"@prisma/client"' has no exported member 'Role'.
+
+[7m2[0m import { BusinessType, Role } from "@prisma/client";
+[7m [0m [91m                       ~~~~[0m
+[96msrc/modules/auth/dto/register-business.dto.ts[0m:[93m5[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<RegisterBusinessDto, string> & { name: "businessName"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m5[0m   @IsString()
+[7m [0m [91m   ~~~~~~~~~~[0m
+[96msrc/modules/auth/dto/register-business.dto.ts[0m:[93m8[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<RegisterBusinessDto, BusinessType> & { name: "businessType"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m8[0m   @IsEnum(BusinessType)
+[7m [0m [91m   ~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/modules/auth/dto/register-business.dto.ts[0m:[93m11[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<RegisterBusinessDto, string> & { name: "address"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m11[0m   @IsOptional()
+[7m  [0m [91m   ~~~~~~~~~~~~[0m
+[96msrc/modules/auth/dto/register-business.dto.ts[0m:[93m12[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<RegisterBusinessDto, string> & { name: "address"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m12[0m   @IsString()
+[7m  [0m [91m   ~~~~~~~~~~[0m
+[96msrc/modules/auth/dto/register-business.dto.ts[0m:[93m15[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<RegisterBusinessDto, string> & { name: "phone"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m15[0m   @IsOptional()
+[7m  [0m [91m   ~~~~~~~~~~~~[0m
+[96msrc/modules/auth/dto/register-business.dto.ts[0m:[93m16[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<RegisterBusinessDto, string> & { name: "phone"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m16[0m   @IsString()
+[7m  [0m [91m   ~~~~~~~~~~[0m
+[96msrc/modules/auth/dto/register-business.dto.ts[0m:[93m19[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<RegisterBusinessDto, string> & { name: "ownerName"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m19[0m   @IsString()
+[7m  [0m [91m   ~~~~~~~~~~[0m
+[96msrc/modules/auth/dto/register-business.dto.ts[0m:[93m22[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<RegisterBusinessDto, string> & { name: "email"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m22[0m   @IsEmail()
+[7m  [0m [91m   ~~~~~~~~~[0m
+[96msrc/modules/auth/dto/register-business.dto.ts[0m:[93m25[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<RegisterBusinessDto, string> & { name: "password"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m25[0m   @IsString()
+[7m  [0m [91m   ~~~~~~~~~~[0m
+[96msrc/modules/auth/dto/register-business.dto.ts[0m:[93m26[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<RegisterBusinessDto, string> & { name: "password"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m26[0m   @MinLength(8)
+[7m  [0m [91m   ~~~~~~~~~~~~[0m
+[96msrc/modules/auth/dto/register-business.dto.ts[0m:[93m29[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<RegisterBusinessDto, Role> & { name: "role"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m29[0m   @IsOptional()
+[7m  [0m [91m   ~~~~~~~~~~~~[0m
+[96msrc/modules/auth/dto/register-business.dto.ts[0m:[93m30[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<RegisterBusinessDto, Role> & { name: "role"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m30[0m   @IsEnum(Role)
+[7m  [0m [91m   ~~~~~~~~~~~~[0m
+[96msrc/modules/auth/dto/reset-password.dto.ts[0m:[93m4[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<ResetPasswordDto, string> & { name: "otp"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m4[0m   @IsString()
+[7m [0m [91m   ~~~~~~~~~~[0m
+[96msrc/modules/auth/dto/reset-password.dto.ts[0m:[93m7[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<ResetPasswordDto, string> & { name: "email"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m7[0m   @IsEmail()
+[7m [0m [91m   ~~~~~~~~~[0m
+[96msrc/modules/auth/dto/reset-password.dto.ts[0m:[93m10[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<ResetPasswordDto, string> & { name: "newPassword"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m10[0m   @IsString()
+[7m  [0m [91m   ~~~~~~~~~~[0m
+[96msrc/modules/auth/dto/reset-password.dto.ts[0m:[93m11[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<ResetPasswordDto, string> & { name: "newPassword"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m11[0m   @MinLength(8)
+[7m  [0m [91m   ~~~~~~~~~~~~[0m
+[96msrc/modules/auth/guards/jwt-refresh.guard.ts[0m:[93m6[0m:[93m3[0m - [91merror[0m[90m TS2416: [0mProperty 'handleRequest' in type 'JwtRefreshGuard' is not assignable to the same property in base type 'IAuthGuard'.
+  Type '(err: unknown, user: unknown) => unknown' is not assignable to type '<TUser = any>(err: any, user: any, info: any, context: ExecutionContext, status?: any) => TUser'.
+    Type 'unknown' is not assignable to type 'TUser'.
+      'TUser' could be instantiated with an arbitrary type which could be unrelated to 'unknown'.
+
+[7m6[0m   handleRequest(err: unknown, user: unknown) {
+[7m [0m [91m  ~~~~~~~~~~~~~[0m
+[96msrc/modules/branches/branches.controller.ts[0m:[93m12[0m:[93m3[0m - [91merror[0m[90m TS1241: [0mUnable to resolve signature of method decorator when called as an expression.
+  The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+
+[7m12[0m   @Post("")
+[7m  [0m [91m  ~~~~~~~~~[0m
+
+  [96mnode_modules/typescript/lib/lib.decorators.legacy.d.ts[0m:[93m21[0m:[93m82[0m
+    [7m21[0m declare type MethodDecorator = <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) => TypedPropertyDescriptor<T> | void;
+    [7m  [0m [96m                                                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    An argument for 'descriptor' was not provided.
+[96msrc/modules/branches/branches.controller.ts[0m:[93m12[0m:[93m4[0m - [91merror[0m[90m TS1270: [0mDecorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((dto: CreateBranchDto) => any)'.
+  Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((dto: CreateBranchDto) => any)'.
+
+[7m12[0m   @Post("")
+[7m  [0m [91m   ~~~~~~~~[0m
+[96msrc/modules/branches/branches.controller.ts[0m:[93m13[0m:[93m10[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+
+[7m13[0m   create(@Body() dto: CreateBranchDto) {
+[7m  [0m [91m         ~[0m
+[96msrc/modules/branches/branches.controller.ts[0m:[93m17[0m:[93m3[0m - [91merror[0m[90m TS1241: [0mUnable to resolve signature of method decorator when called as an expression.
+  The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+
+[7m17[0m   @Get("")
+[7m  [0m [91m  ~~~~~~~~[0m
+
+  [96mnode_modules/typescript/lib/lib.decorators.legacy.d.ts[0m:[93m21[0m:[93m82[0m
+    [7m21[0m declare type MethodDecorator = <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) => TypedPropertyDescriptor<T> | void;
+    [7m  [0m [96m                                                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    An argument for 'descriptor' was not provided.
+[96msrc/modules/branches/branches.controller.ts[0m:[93m17[0m:[93m4[0m - [91merror[0m[90m TS1270: [0mDecorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | (() => any)'.
+  Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | (() => any)'.
+
+[7m17[0m   @Get("")
+[7m  [0m [91m   ~~~~~~~[0m
+[96msrc/modules/branches/branches.controller.ts[0m:[93m22[0m:[93m3[0m - [91merror[0m[90m TS1241: [0mUnable to resolve signature of method decorator when called as an expression.
+  The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+
+[7m22[0m   @Get(":id")
+[7m  [0m [91m  ~~~~~~~~~~~[0m
+
+  [96mnode_modules/typescript/lib/lib.decorators.legacy.d.ts[0m:[93m21[0m:[93m82[0m
+    [7m21[0m declare type MethodDecorator = <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) => TypedPropertyDescriptor<T> | void;
+    [7m  [0m [96m                                                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    An argument for 'descriptor' was not provided.
+[96msrc/modules/branches/branches.controller.ts[0m:[93m22[0m:[93m4[0m - [91merror[0m[90m TS1270: [0mDecorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((id: string) => Promise<any>)'.
+  Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((id: string) => Promise<any>)'.
+
+[7m22[0m   @Get(":id")
+[7m  [0m [91m   ~~~~~~~~~~[0m
+[96msrc/modules/branches/branches.controller.ts[0m:[93m23[0m:[93m11[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+
+[7m23[0m   findOne(@Param("id") id: string) {
+[7m  [0m [91m          ~[0m
+[96msrc/modules/branches/branches.controller.ts[0m:[93m27[0m:[93m3[0m - [91merror[0m[90m TS1241: [0mUnable to resolve signature of method decorator when called as an expression.
+  The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+
+[7m27[0m   @Patch(":id")
+[7m  [0m [91m  ~~~~~~~~~~~~~[0m
+
+  [96mnode_modules/typescript/lib/lib.decorators.legacy.d.ts[0m:[93m21[0m:[93m82[0m
+    [7m21[0m declare type MethodDecorator = <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) => TypedPropertyDescriptor<T> | void;
+    [7m  [0m [96m                                                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    An argument for 'descriptor' was not provided.
+[96msrc/modules/branches/branches.controller.ts[0m:[93m27[0m:[93m4[0m - [91merror[0m[90m TS1270: [0mDecorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((id: string, dto: UpdateBranchDto) => Promise<any>)'.
+  Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((id: string, dto: UpdateBranchDto) => Promise<any>)'.
+
+[7m27[0m   @Patch(":id")
+[7m  [0m [91m   ~~~~~~~~~~~~[0m
+[96msrc/modules/branches/branches.controller.ts[0m:[93m28[0m:[93m10[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+
+[7m28[0m   update(@Param("id") id: string, @Body() dto: UpdateBranchDto) {
+[7m  [0m [91m         ~[0m
+[96msrc/modules/branches/branches.controller.ts[0m:[93m28[0m:[93m35[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+
+[7m28[0m   update(@Param("id") id: string, @Body() dto: UpdateBranchDto) {
+[7m  [0m [91m                                  ~[0m
+[96msrc/modules/branches/dto/create-branch.dto.ts[0m:[93m4[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<CreateBranchDto, string> & { name: "businessId"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m4[0m   @IsString()
+[7m [0m [91m   ~~~~~~~~~~[0m
+[96msrc/modules/branches/dto/create-branch.dto.ts[0m:[93m7[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<CreateBranchDto, string> & { name: "name"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m7[0m   @IsString()
+[7m [0m [91m   ~~~~~~~~~~[0m
+[96msrc/modules/branches/dto/create-branch.dto.ts[0m:[93m10[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<CreateBranchDto, string> & { name: "address"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m10[0m   @IsOptional()
+[7m  [0m [91m   ~~~~~~~~~~~~[0m
+[96msrc/modules/branches/dto/create-branch.dto.ts[0m:[93m11[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<CreateBranchDto, string> & { name: "address"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m11[0m   @IsString()
+[7m  [0m [91m   ~~~~~~~~~~[0m
+[96msrc/modules/branches/dto/create-branch.dto.ts[0m:[93m14[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<CreateBranchDto, string> & { name: "phone"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m14[0m   @IsOptional()
+[7m  [0m [91m   ~~~~~~~~~~~~[0m
+[96msrc/modules/branches/dto/create-branch.dto.ts[0m:[93m15[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<CreateBranchDto, string> & { name: "phone"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m15[0m   @IsString()
+[7m  [0m [91m   ~~~~~~~~~~[0m
+[96msrc/modules/branches/dto/update-branch.dto.ts[0m:[93m4[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<UpdateBranchDto, string> & { name: "name"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m4[0m   @IsOptional()
+[7m [0m [91m   ~~~~~~~~~~~~[0m
+[96msrc/modules/branches/dto/update-branch.dto.ts[0m:[93m5[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<UpdateBranchDto, string> & { name: "name"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m5[0m   @IsString()
+[7m [0m [91m   ~~~~~~~~~~[0m
+[96msrc/modules/branches/dto/update-branch.dto.ts[0m:[93m8[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<UpdateBranchDto, string> & { name: "address"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m8[0m   @IsOptional()
+[7m [0m [91m   ~~~~~~~~~~~~[0m
+[96msrc/modules/branches/dto/update-branch.dto.ts[0m:[93m9[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<UpdateBranchDto, string> & { name: "address"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m9[0m   @IsString()
+[7m [0m [91m   ~~~~~~~~~~[0m
+[96msrc/modules/branches/dto/update-branch.dto.ts[0m:[93m12[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<UpdateBranchDto, string> & { name: "phone"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m12[0m   @IsOptional()
+[7m  [0m [91m   ~~~~~~~~~~~~[0m
+[96msrc/modules/branches/dto/update-branch.dto.ts[0m:[93m13[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<UpdateBranchDto, string> & { name: "phone"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m13[0m   @IsString()
+[7m  [0m [91m   ~~~~~~~~~~[0m
+[96msrc/modules/businesses/businesses.controller.ts[0m:[93m12[0m:[93m3[0m - [91merror[0m[90m TS1241: [0mUnable to resolve signature of method decorator when called as an expression.
+  The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+
+[7m12[0m   @Post("")
+[7m  [0m [91m  ~~~~~~~~~[0m
+
+  [96mnode_modules/typescript/lib/lib.decorators.legacy.d.ts[0m:[93m21[0m:[93m82[0m
+    [7m21[0m declare type MethodDecorator = <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) => TypedPropertyDescriptor<T> | void;
+    [7m  [0m [96m                                                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    An argument for 'descriptor' was not provided.
+[96msrc/modules/businesses/businesses.controller.ts[0m:[93m12[0m:[93m4[0m - [91merror[0m[90m TS1270: [0mDecorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((dto: CreateBusinessDto) => any)'.
+  Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((dto: CreateBusinessDto) => any)'.
+
+[7m12[0m   @Post("")
+[7m  [0m [91m   ~~~~~~~~[0m
+[96msrc/modules/businesses/businesses.controller.ts[0m:[93m13[0m:[93m10[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+
+[7m13[0m   create(@Body() dto: CreateBusinessDto) {
+[7m  [0m [91m         ~[0m
+[96msrc/modules/businesses/businesses.controller.ts[0m:[93m17[0m:[93m3[0m - [91merror[0m[90m TS1241: [0mUnable to resolve signature of method decorator when called as an expression.
+  The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+
+[7m17[0m   @Get("")
+[7m  [0m [91m  ~~~~~~~~[0m
+
+  [96mnode_modules/typescript/lib/lib.decorators.legacy.d.ts[0m:[93m21[0m:[93m82[0m
+    [7m21[0m declare type MethodDecorator = <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) => TypedPropertyDescriptor<T> | void;
+    [7m  [0m [96m                                                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    An argument for 'descriptor' was not provided.
+[96msrc/modules/businesses/businesses.controller.ts[0m:[93m17[0m:[93m4[0m - [91merror[0m[90m TS1270: [0mDecorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | (() => any)'.
+  Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | (() => any)'.
+
+[7m17[0m   @Get("")
+[7m  [0m [91m   ~~~~~~~[0m
+[96msrc/modules/businesses/businesses.controller.ts[0m:[93m22[0m:[93m3[0m - [91merror[0m[90m TS1241: [0mUnable to resolve signature of method decorator when called as an expression.
+  The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+
+[7m22[0m   @Get(":id")
+[7m  [0m [91m  ~~~~~~~~~~~[0m
+
+  [96mnode_modules/typescript/lib/lib.decorators.legacy.d.ts[0m:[93m21[0m:[93m82[0m
+    [7m21[0m declare type MethodDecorator = <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) => TypedPropertyDescriptor<T> | void;
+    [7m  [0m [96m                                                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    An argument for 'descriptor' was not provided.
+[96msrc/modules/businesses/businesses.controller.ts[0m:[93m22[0m:[93m4[0m - [91merror[0m[90m TS1270: [0mDecorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((id: string) => Promise<any>)'.
+  Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((id: string) => Promise<any>)'.
+
+[7m22[0m   @Get(":id")
+[7m  [0m [91m   ~~~~~~~~~~[0m
+[96msrc/modules/businesses/businesses.controller.ts[0m:[93m23[0m:[93m11[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+
+[7m23[0m   findOne(@Param("id") id: string) {
+[7m  [0m [91m          ~[0m
+[96msrc/modules/businesses/businesses.controller.ts[0m:[93m27[0m:[93m3[0m - [91merror[0m[90m TS1241: [0mUnable to resolve signature of method decorator when called as an expression.
+  The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+
+[7m27[0m   @Patch(":id")
+[7m  [0m [91m  ~~~~~~~~~~~~~[0m
+
+  [96mnode_modules/typescript/lib/lib.decorators.legacy.d.ts[0m:[93m21[0m:[93m82[0m
+    [7m21[0m declare type MethodDecorator = <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) => TypedPropertyDescriptor<T> | void;
+    [7m  [0m [96m                                                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    An argument for 'descriptor' was not provided.
+[96msrc/modules/businesses/businesses.controller.ts[0m:[93m27[0m:[93m4[0m - [91merror[0m[90m TS1270: [0mDecorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((id: string, dto: UpdateBusinessDto) => Promise<any>)'.
+  Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((id: string, dto: UpdateBusinessDto) => Promise<any>)'.
+
+[7m27[0m   @Patch(":id")
+[7m  [0m [91m   ~~~~~~~~~~~~[0m
+[96msrc/modules/businesses/businesses.controller.ts[0m:[93m28[0m:[93m10[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+
+[7m28[0m   update(@Param("id") id: string, @Body() dto: UpdateBusinessDto) {
+[7m  [0m [91m         ~[0m
+[96msrc/modules/businesses/businesses.controller.ts[0m:[93m28[0m:[93m35[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+
+[7m28[0m   update(@Param("id") id: string, @Body() dto: UpdateBusinessDto) {
+[7m  [0m [91m                                  ~[0m
+[96msrc/modules/businesses/dto/create-business.dto.ts[0m:[93m2[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"@prisma/client"' has no exported member 'BusinessType'.
+
+[7m2[0m import { BusinessType } from "@prisma/client";
+[7m [0m [91m         ~~~~~~~~~~~~[0m
+[96msrc/modules/businesses/dto/create-business.dto.ts[0m:[93m5[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<CreateBusinessDto, string> & { name: "name"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m5[0m   @IsString()
+[7m [0m [91m   ~~~~~~~~~~[0m
+[96msrc/modules/businesses/dto/create-business.dto.ts[0m:[93m8[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<CreateBusinessDto, BusinessType> & { name: "type"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m8[0m   @IsEnum(BusinessType)
+[7m [0m [91m   ~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/modules/businesses/dto/create-business.dto.ts[0m:[93m11[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<CreateBusinessDto, string> & { name: "address"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m11[0m   @IsOptional()
+[7m  [0m [91m   ~~~~~~~~~~~~[0m
+[96msrc/modules/businesses/dto/create-business.dto.ts[0m:[93m12[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<CreateBusinessDto, string> & { name: "address"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m12[0m   @IsString()
+[7m  [0m [91m   ~~~~~~~~~~[0m
+[96msrc/modules/businesses/dto/create-business.dto.ts[0m:[93m15[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<CreateBusinessDto, string> & { name: "phone"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m15[0m   @IsOptional()
+[7m  [0m [91m   ~~~~~~~~~~~~[0m
+[96msrc/modules/businesses/dto/create-business.dto.ts[0m:[93m16[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<CreateBusinessDto, string> & { name: "phone"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m16[0m   @IsString()
+[7m  [0m [91m   ~~~~~~~~~~[0m
+[96msrc/modules/businesses/dto/create-business.dto.ts[0m:[93m19[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<CreateBusinessDto, string> & { name: "gstNumber"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m19[0m   @IsOptional()
+[7m  [0m [91m   ~~~~~~~~~~~~[0m
+[96msrc/modules/businesses/dto/create-business.dto.ts[0m:[93m20[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<CreateBusinessDto, string> & { name: "gstNumber"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m20[0m   @IsString()
+[7m  [0m [91m   ~~~~~~~~~~[0m
+[96msrc/modules/businesses/dto/update-business.dto.ts[0m:[93m2[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"@prisma/client"' has no exported member 'BusinessType'.
+
+[7m2[0m import { BusinessType } from "@prisma/client";
+[7m [0m [91m         ~~~~~~~~~~~~[0m
+[96msrc/modules/businesses/dto/update-business.dto.ts[0m:[93m5[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<UpdateBusinessDto, string> & { name: "name"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m5[0m   @IsOptional()
+[7m [0m [91m   ~~~~~~~~~~~~[0m
+[96msrc/modules/businesses/dto/update-business.dto.ts[0m:[93m6[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<UpdateBusinessDto, string> & { name: "name"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m6[0m   @IsString()
+[7m [0m [91m   ~~~~~~~~~~[0m
+[96msrc/modules/businesses/dto/update-business.dto.ts[0m:[93m9[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<UpdateBusinessDto, BusinessType> & { name: "type"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m9[0m   @IsOptional()
+[7m [0m [91m   ~~~~~~~~~~~~[0m
+[96msrc/modules/businesses/dto/update-business.dto.ts[0m:[93m10[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<UpdateBusinessDto, BusinessType> & { name: "type"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m10[0m   @IsEnum(BusinessType)
+[7m  [0m [91m   ~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/modules/businesses/dto/update-business.dto.ts[0m:[93m13[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<UpdateBusinessDto, string> & { name: "address"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m13[0m   @IsOptional()
+[7m  [0m [91m   ~~~~~~~~~~~~[0m
+[96msrc/modules/businesses/dto/update-business.dto.ts[0m:[93m14[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<UpdateBusinessDto, string> & { name: "address"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m14[0m   @IsString()
+[7m  [0m [91m   ~~~~~~~~~~[0m
+[96msrc/modules/businesses/dto/update-business.dto.ts[0m:[93m17[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<UpdateBusinessDto, string> & { name: "phone"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m17[0m   @IsOptional()
+[7m  [0m [91m   ~~~~~~~~~~~~[0m
+[96msrc/modules/businesses/dto/update-business.dto.ts[0m:[93m18[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<UpdateBusinessDto, string> & { name: "phone"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m18[0m   @IsString()
+[7m  [0m [91m   ~~~~~~~~~~[0m
+[96msrc/modules/businesses/dto/update-business.dto.ts[0m:[93m21[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<UpdateBusinessDto, string> & { name: "gstNumber"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m21[0m   @IsOptional()
+[7m  [0m [91m   ~~~~~~~~~~~~[0m
+[96msrc/modules/businesses/dto/update-business.dto.ts[0m:[93m22[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<UpdateBusinessDto, string> & { name: "gstNumber"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m22[0m   @IsString()
+[7m  [0m [91m   ~~~~~~~~~~[0m
+[96msrc/modules/health/health.controller.ts[0m:[93m8[0m:[93m3[0m - [91merror[0m[90m TS1241: [0mUnable to resolve signature of method decorator when called as an expression.
+  The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+
+[7m8[0m   @Get("")
+[7m [0m [91m  ~~~~~~~~[0m
+
+  [96mnode_modules/typescript/lib/lib.decorators.legacy.d.ts[0m:[93m21[0m:[93m82[0m
+    [7m21[0m declare type MethodDecorator = <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) => TypedPropertyDescriptor<T> | void;
+    [7m  [0m [96m                                                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    An argument for 'descriptor' was not provided.
+[96msrc/modules/health/health.controller.ts[0m:[93m8[0m:[93m4[0m - [91merror[0m[90m TS1270: [0mDecorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | (() => { status: string; timestamp: string; })'.
+  Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | (() => { status: string; timestamp: string; })'.
+
+[7m8[0m   @Get("")
+[7m [0m [91m   ~~~~~~~[0m
+[96msrc/modules/permissions/dto/create-permission.dto.ts[0m:[93m4[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<CreatePermissionDto, string> & { name: "name"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m4[0m   @IsString()
+[7m [0m [91m   ~~~~~~~~~~[0m
+[96msrc/modules/permissions/dto/create-permission.dto.ts[0m:[93m7[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<CreatePermissionDto, string> & { name: "description"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m7[0m   @IsOptional()
+[7m [0m [91m   ~~~~~~~~~~~~[0m
+[96msrc/modules/permissions/dto/create-permission.dto.ts[0m:[93m8[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<CreatePermissionDto, string> & { name: "description"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m8[0m   @IsString()
+[7m [0m [91m   ~~~~~~~~~~[0m
+[96msrc/modules/permissions/permissions.controller.ts[0m:[93m11[0m:[93m3[0m - [91merror[0m[90m TS1241: [0mUnable to resolve signature of method decorator when called as an expression.
+  The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+
+[7m11[0m   @Post("")
+[7m  [0m [91m  ~~~~~~~~~[0m
+
+  [96mnode_modules/typescript/lib/lib.decorators.legacy.d.ts[0m:[93m21[0m:[93m82[0m
+    [7m21[0m declare type MethodDecorator = <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) => TypedPropertyDescriptor<T> | void;
+    [7m  [0m [96m                                                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    An argument for 'descriptor' was not provided.
+[96msrc/modules/permissions/permissions.controller.ts[0m:[93m11[0m:[93m4[0m - [91merror[0m[90m TS1270: [0mDecorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((dto: CreatePermissionDto) => any)'.
+  Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((dto: CreatePermissionDto) => any)'.
+
+[7m11[0m   @Post("")
+[7m  [0m [91m   ~~~~~~~~[0m
+[96msrc/modules/permissions/permissions.controller.ts[0m:[93m12[0m:[93m10[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+
+[7m12[0m   create(@Body() dto: CreatePermissionDto) {
+[7m  [0m [91m         ~[0m
+[96msrc/modules/permissions/permissions.controller.ts[0m:[93m16[0m:[93m3[0m - [91merror[0m[90m TS1241: [0mUnable to resolve signature of method decorator when called as an expression.
+  The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+
+[7m16[0m   @Get("")
+[7m  [0m [91m  ~~~~~~~~[0m
+
+  [96mnode_modules/typescript/lib/lib.decorators.legacy.d.ts[0m:[93m21[0m:[93m82[0m
+    [7m21[0m declare type MethodDecorator = <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) => TypedPropertyDescriptor<T> | void;
+    [7m  [0m [96m                                                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    An argument for 'descriptor' was not provided.
+[96msrc/modules/permissions/permissions.controller.ts[0m:[93m16[0m:[93m4[0m - [91merror[0m[90m TS1270: [0mDecorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | (() => any)'.
+  Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | (() => any)'.
+
+[7m16[0m   @Get("")
+[7m  [0m [91m   ~~~~~~~[0m
+[96msrc/modules/permissions/permissions.controller.ts[0m:[93m21[0m:[93m3[0m - [91merror[0m[90m TS1241: [0mUnable to resolve signature of method decorator when called as an expression.
+  The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+
+[7m21[0m   @Get(":id")
+[7m  [0m [91m  ~~~~~~~~~~~[0m
+
+  [96mnode_modules/typescript/lib/lib.decorators.legacy.d.ts[0m:[93m21[0m:[93m82[0m
+    [7m21[0m declare type MethodDecorator = <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) => TypedPropertyDescriptor<T> | void;
+    [7m  [0m [96m                                                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    An argument for 'descriptor' was not provided.
+[96msrc/modules/permissions/permissions.controller.ts[0m:[93m21[0m:[93m4[0m - [91merror[0m[90m TS1270: [0mDecorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((id: string) => Promise<any>)'.
+  Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((id: string) => Promise<any>)'.
+
+[7m21[0m   @Get(":id")
+[7m  [0m [91m   ~~~~~~~~~~[0m
+[96msrc/modules/permissions/permissions.controller.ts[0m:[93m22[0m:[93m11[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+
+[7m22[0m   findOne(@Param("id") id: string) {
+[7m  [0m [91m          ~[0m
+[96msrc/modules/permissions/permissions.controller.ts[0m:[93m26[0m:[93m3[0m - [91merror[0m[90m TS1241: [0mUnable to resolve signature of method decorator when called as an expression.
+  The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+
+[7m26[0m   @Patch(":id")
+[7m  [0m [91m  ~~~~~~~~~~~~~[0m
+
+  [96mnode_modules/typescript/lib/lib.decorators.legacy.d.ts[0m:[93m21[0m:[93m82[0m
+    [7m21[0m declare type MethodDecorator = <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) => TypedPropertyDescriptor<T> | void;
+    [7m  [0m [96m                                                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    An argument for 'descriptor' was not provided.
+[96msrc/modules/permissions/permissions.controller.ts[0m:[93m26[0m:[93m4[0m - [91merror[0m[90m TS1270: [0mDecorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((id: string, dto: CreatePermissionDto) => Promise<any>)'.
+  Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((id: string, dto: CreatePermissionDto) => Promise<any>)'.
+
+[7m26[0m   @Patch(":id")
+[7m  [0m [91m   ~~~~~~~~~~~~[0m
+[96msrc/modules/permissions/permissions.controller.ts[0m:[93m27[0m:[93m10[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+
+[7m27[0m   update(@Param("id") id: string, @Body() dto: CreatePermissionDto) {
+[7m  [0m [91m         ~[0m
+[96msrc/modules/permissions/permissions.controller.ts[0m:[93m27[0m:[93m35[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+
+[7m27[0m   update(@Param("id") id: string, @Body() dto: CreatePermissionDto) {
+[7m  [0m [91m                                  ~[0m
+[96msrc/modules/roles/dto/create-role.dto.ts[0m:[93m4[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<CreateRoleDto, string> & { name: "name"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m4[0m   @IsString()
+[7m [0m [91m   ~~~~~~~~~~[0m
+[96msrc/modules/roles/dto/create-role.dto.ts[0m:[93m7[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<CreateRoleDto, string> & { name: "description"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m7[0m   @IsOptional()
+[7m [0m [91m   ~~~~~~~~~~~~[0m
+[96msrc/modules/roles/dto/create-role.dto.ts[0m:[93m8[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<CreateRoleDto, string> & { name: "description"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m8[0m   @IsString()
+[7m [0m [91m   ~~~~~~~~~~[0m
+[96msrc/modules/roles/dto/create-role.dto.ts[0m:[93m11[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<CreateRoleDto, string[]> & { name: "permissions"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m11[0m   @IsOptional()
+[7m  [0m [91m   ~~~~~~~~~~~~[0m
+[96msrc/modules/roles/dto/create-role.dto.ts[0m:[93m12[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<CreateRoleDto, string[]> & { name: "permissions"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m12[0m   @IsArray()
+[7m  [0m [91m   ~~~~~~~~~[0m
+[96msrc/modules/roles/roles.controller.ts[0m:[93m11[0m:[93m3[0m - [91merror[0m[90m TS1241: [0mUnable to resolve signature of method decorator when called as an expression.
+  The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+
+[7m11[0m   @Post("")
+[7m  [0m [91m  ~~~~~~~~~[0m
+
+  [96mnode_modules/typescript/lib/lib.decorators.legacy.d.ts[0m:[93m21[0m:[93m82[0m
+    [7m21[0m declare type MethodDecorator = <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) => TypedPropertyDescriptor<T> | void;
+    [7m  [0m [96m                                                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    An argument for 'descriptor' was not provided.
+[96msrc/modules/roles/roles.controller.ts[0m:[93m11[0m:[93m4[0m - [91merror[0m[90m TS1270: [0mDecorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((dto: CreateRoleDto) => any)'.
+  Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((dto: CreateRoleDto) => any)'.
+
+[7m11[0m   @Post("")
+[7m  [0m [91m   ~~~~~~~~[0m
+[96msrc/modules/roles/roles.controller.ts[0m:[93m12[0m:[93m10[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+
+[7m12[0m   create(@Body() dto: CreateRoleDto) {
+[7m  [0m [91m         ~[0m
+[96msrc/modules/roles/roles.controller.ts[0m:[93m16[0m:[93m3[0m - [91merror[0m[90m TS1241: [0mUnable to resolve signature of method decorator when called as an expression.
+  The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+
+[7m16[0m   @Get("")
+[7m  [0m [91m  ~~~~~~~~[0m
+
+  [96mnode_modules/typescript/lib/lib.decorators.legacy.d.ts[0m:[93m21[0m:[93m82[0m
+    [7m21[0m declare type MethodDecorator = <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) => TypedPropertyDescriptor<T> | void;
+    [7m  [0m [96m                                                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    An argument for 'descriptor' was not provided.
+[96msrc/modules/roles/roles.controller.ts[0m:[93m16[0m:[93m4[0m - [91merror[0m[90m TS1270: [0mDecorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | (() => any)'.
+  Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | (() => any)'.
+
+[7m16[0m   @Get("")
+[7m  [0m [91m   ~~~~~~~[0m
+[96msrc/modules/roles/roles.controller.ts[0m:[93m21[0m:[93m3[0m - [91merror[0m[90m TS1241: [0mUnable to resolve signature of method decorator when called as an expression.
+  The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+
+[7m21[0m   @Get(":id")
+[7m  [0m [91m  ~~~~~~~~~~~[0m
+
+  [96mnode_modules/typescript/lib/lib.decorators.legacy.d.ts[0m:[93m21[0m:[93m82[0m
+    [7m21[0m declare type MethodDecorator = <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) => TypedPropertyDescriptor<T> | void;
+    [7m  [0m [96m                                                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    An argument for 'descriptor' was not provided.
+[96msrc/modules/roles/roles.controller.ts[0m:[93m21[0m:[93m4[0m - [91merror[0m[90m TS1270: [0mDecorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((id: string) => Promise<any>)'.
+  Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((id: string) => Promise<any>)'.
+
+[7m21[0m   @Get(":id")
+[7m  [0m [91m   ~~~~~~~~~~[0m
+[96msrc/modules/roles/roles.controller.ts[0m:[93m22[0m:[93m11[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+
+[7m22[0m   findOne(@Param("id") id: string) {
+[7m  [0m [91m          ~[0m
+[96msrc/modules/roles/roles.controller.ts[0m:[93m26[0m:[93m3[0m - [91merror[0m[90m TS1241: [0mUnable to resolve signature of method decorator when called as an expression.
+  The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+
+[7m26[0m   @Patch(":id")
+[7m  [0m [91m  ~~~~~~~~~~~~~[0m
+
+  [96mnode_modules/typescript/lib/lib.decorators.legacy.d.ts[0m:[93m21[0m:[93m82[0m
+    [7m21[0m declare type MethodDecorator = <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) => TypedPropertyDescriptor<T> | void;
+    [7m  [0m [96m                                                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    An argument for 'descriptor' was not provided.
+[96msrc/modules/roles/roles.controller.ts[0m:[93m26[0m:[93m4[0m - [91merror[0m[90m TS1270: [0mDecorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((id: string, dto: CreateRoleDto) => Promise<any>)'.
+  Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((id: string, dto: CreateRoleDto) => Promise<any>)'.
+
+[7m26[0m   @Patch(":id")
+[7m  [0m [91m   ~~~~~~~~~~~~[0m
+[96msrc/modules/roles/roles.controller.ts[0m:[93m27[0m:[93m10[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+
+[7m27[0m   update(@Param("id") id: string, @Body() dto: CreateRoleDto) {
+[7m  [0m [91m         ~[0m
+[96msrc/modules/roles/roles.controller.ts[0m:[93m27[0m:[93m35[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+
+[7m27[0m   update(@Param("id") id: string, @Body() dto: CreateRoleDto) {
+[7m  [0m [91m                                  ~[0m
+[96msrc/modules/users/dto/create-user.dto.ts[0m:[93m2[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"@prisma/client"' has no exported member 'Role'.
+
+[7m2[0m import { Role } from "@prisma/client";
+[7m [0m [91m         ~~~~[0m
+[96msrc/modules/users/dto/create-user.dto.ts[0m:[93m5[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<CreateUserDto, string> & { name: "name"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m5[0m   @IsString()
+[7m [0m [91m   ~~~~~~~~~~[0m
+[96msrc/modules/users/dto/create-user.dto.ts[0m:[93m8[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<CreateUserDto, string> & { name: "email"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m8[0m   @IsEmail()
+[7m [0m [91m   ~~~~~~~~~[0m
+[96msrc/modules/users/dto/create-user.dto.ts[0m:[93m11[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<CreateUserDto, string> & { name: "password"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m11[0m   @IsString()
+[7m  [0m [91m   ~~~~~~~~~~[0m
+[96msrc/modules/users/dto/create-user.dto.ts[0m:[93m12[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<CreateUserDto, string> & { name: "password"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m12[0m   @MinLength(8)
+[7m  [0m [91m   ~~~~~~~~~~~~[0m
+[96msrc/modules/users/dto/create-user.dto.ts[0m:[93m15[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<CreateUserDto, Role> & { name: "role"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m15[0m   @IsEnum(Role)
+[7m  [0m [91m   ~~~~~~~~~~~~[0m
+[96msrc/modules/users/dto/create-user.dto.ts[0m:[93m18[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<CreateUserDto, string> & { name: "phone"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m18[0m   @IsOptional()
+[7m  [0m [91m   ~~~~~~~~~~~~[0m
+[96msrc/modules/users/dto/create-user.dto.ts[0m:[93m19[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<CreateUserDto, string> & { name: "phone"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m19[0m   @IsString()
+[7m  [0m [91m   ~~~~~~~~~~[0m
+[96msrc/modules/users/dto/update-user.dto.ts[0m:[93m2[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"@prisma/client"' has no exported member 'Role'.
+
+[7m2[0m import { Role } from "@prisma/client";
+[7m [0m [91m         ~~~~[0m
+[96msrc/modules/users/dto/update-user.dto.ts[0m:[93m5[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<UpdateUserDto, string> & { name: "name"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m5[0m   @IsOptional()
+[7m [0m [91m   ~~~~~~~~~~~~[0m
+[96msrc/modules/users/dto/update-user.dto.ts[0m:[93m6[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<UpdateUserDto, string> & { name: "name"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m6[0m   @IsString()
+[7m [0m [91m   ~~~~~~~~~~[0m
+[96msrc/modules/users/dto/update-user.dto.ts[0m:[93m9[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<UpdateUserDto, string> & { name: "email"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m9[0m   @IsOptional()
+[7m [0m [91m   ~~~~~~~~~~~~[0m
+[96msrc/modules/users/dto/update-user.dto.ts[0m:[93m10[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<UpdateUserDto, string> & { name: "email"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m10[0m   @IsEmail()
+[7m  [0m [91m   ~~~~~~~~~[0m
+[96msrc/modules/users/dto/update-user.dto.ts[0m:[93m13[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<UpdateUserDto, Role> & { name: "role"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m13[0m   @IsOptional()
+[7m  [0m [91m   ~~~~~~~~~~~~[0m
+[96msrc/modules/users/dto/update-user.dto.ts[0m:[93m14[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<UpdateUserDto, Role> & { name: "role"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m14[0m   @IsEnum(Role)
+[7m  [0m [91m   ~~~~~~~~~~~~[0m
+[96msrc/modules/users/dto/update-user.dto.ts[0m:[93m17[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<UpdateUserDto, string> & { name: "phone"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m17[0m   @IsOptional()
+[7m  [0m [91m   ~~~~~~~~~~~~[0m
+[96msrc/modules/users/dto/update-user.dto.ts[0m:[93m18[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<UpdateUserDto, string> & { name: "phone"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m18[0m   @IsString()
+[7m  [0m [91m   ~~~~~~~~~~[0m
+[96msrc/modules/users/users.controller.ts[0m:[93m11[0m:[93m3[0m - [91merror[0m[90m TS1241: [0mUnable to resolve signature of method decorator when called as an expression.
+  The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+
+[7m11[0m   @Get("")
+[7m  [0m [91m  ~~~~~~~~[0m
+
+  [96mnode_modules/typescript/lib/lib.decorators.legacy.d.ts[0m:[93m21[0m:[93m82[0m
+    [7m21[0m declare type MethodDecorator = <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) => TypedPropertyDescriptor<T> | void;
+    [7m  [0m [96m                                                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    An argument for 'descriptor' was not provided.
+[96msrc/modules/users/users.controller.ts[0m:[93m11[0m:[93m4[0m - [91merror[0m[90m TS1270: [0mDecorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | (() => Promise<any>)'.
+  Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | (() => Promise<any>)'.
+
+[7m11[0m   @Get("")
+[7m  [0m [91m   ~~~~~~~[0m
+[96msrc/modules/users/users.controller.ts[0m:[93m16[0m:[93m3[0m - [91merror[0m[90m TS1241: [0mUnable to resolve signature of method decorator when called as an expression.
+  The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+
+[7m16[0m   @Get(":id")
+[7m  [0m [91m  ~~~~~~~~~~~[0m
+
+  [96mnode_modules/typescript/lib/lib.decorators.legacy.d.ts[0m:[93m21[0m:[93m82[0m
+    [7m21[0m declare type MethodDecorator = <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) => TypedPropertyDescriptor<T> | void;
+    [7m  [0m [96m                                                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    An argument for 'descriptor' was not provided.
+[96msrc/modules/users/users.controller.ts[0m:[93m16[0m:[93m4[0m - [91merror[0m[90m TS1270: [0mDecorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((id: string) => Promise<any>)'.
+  Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((id: string) => Promise<any>)'.
+
+[7m16[0m   @Get(":id")
+[7m  [0m [91m   ~~~~~~~~~~[0m
+[96msrc/modules/users/users.controller.ts[0m:[93m17[0m:[93m11[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+
+[7m17[0m   findOne(@Param("id") id: string) {
+[7m  [0m [91m          ~[0m
+[96msrc/modules/users/users.controller.ts[0m:[93m21[0m:[93m3[0m - [91merror[0m[90m TS1241: [0mUnable to resolve signature of method decorator when called as an expression.
+  The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+
+[7m21[0m   @Patch(":id")
+[7m  [0m [91m  ~~~~~~~~~~~~~[0m
+
+  [96mnode_modules/typescript/lib/lib.decorators.legacy.d.ts[0m:[93m21[0m:[93m82[0m
+    [7m21[0m declare type MethodDecorator = <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) => TypedPropertyDescriptor<T> | void;
+    [7m  [0m [96m                                                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    An argument for 'descriptor' was not provided.
+[96msrc/modules/users/users.controller.ts[0m:[93m21[0m:[93m4[0m - [91merror[0m[90m TS1270: [0mDecorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((id: string, dto: UpdateUserDto) => Promise<any>)'.
+  Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((id: string, dto: UpdateUserDto) => Promise<any>)'.
+
+[7m21[0m   @Patch(":id")
+[7m  [0m [91m   ~~~~~~~~~~~~[0m
+[96msrc/modules/users/users.controller.ts[0m:[93m22[0m:[93m10[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+
+[7m22[0m   update(@Param("id") id: string, @Body() dto: UpdateUserDto) {
+[7m  [0m [91m         ~[0m
+[96msrc/modules/users/users.controller.ts[0m:[93m22[0m:[93m35[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+
+[7m22[0m   update(@Param("id") id: string, @Body() dto: UpdateUserDto) {
+[7m  [0m [91m                                  ~[0m
+[96msrc/orders/dto/order.dto.ts[0m:[93m11[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"@prisma/client"' has no exported member 'OrderType'.
+
+[7m11[0m import { OrderType, KotStatus } from '@prisma/client';
+[7m  [0m [91m         ~~~~~~~~~[0m
+[96msrc/orders/dto/order.dto.ts[0m:[93m11[0m:[93m21[0m - [91merror[0m[90m TS2305: [0mModule '"@prisma/client"' has no exported member 'KotStatus'.
+
+[7m11[0m import { OrderType, KotStatus } from '@prisma/client';
+[7m  [0m [91m                    ~~~~~~~~~[0m
+[96msrc/orders/dto/order.dto.ts[0m:[93m14[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<OrderItemInputDto, string> & { name: "productId"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m14[0m   @IsString()
+[7m  [0m [91m   ~~~~~~~~~~[0m
+[96msrc/orders/dto/order.dto.ts[0m:[93m17[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<OrderItemInputDto, number> & { name: "quantity"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m17[0m   @IsInt()
+[7m  [0m [91m   ~~~~~~~[0m
+[96msrc/orders/dto/order.dto.ts[0m:[93m18[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<OrderItemInputDto, number> & { name: "quantity"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m18[0m   @Min(1)
+[7m  [0m [91m   ~~~~~~[0m
+[96msrc/orders/dto/order.dto.ts[0m:[93m21[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<OrderItemInputDto, Record<string, unknown>> & { name: "modifiers"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m21[0m   @IsOptional()
+[7m  [0m [91m   ~~~~~~~~~~~~[0m
+[96msrc/orders/dto/order.dto.ts[0m:[93m26[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<CreateOrderDto, string> & { name: "tableId"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m26[0m   @IsOptional()
+[7m  [0m [91m   ~~~~~~~~~~~~[0m
+[96msrc/orders/dto/order.dto.ts[0m:[93m27[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<CreateOrderDto, string> & { name: "tableId"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m27[0m   @IsString()
+[7m  [0m [91m   ~~~~~~~~~~[0m
+[96msrc/orders/dto/order.dto.ts[0m:[93m30[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<CreateOrderDto, string> & { name: "customerId"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m30[0m   @IsOptional()
+[7m  [0m [91m   ~~~~~~~~~~~~[0m
+[96msrc/orders/dto/order.dto.ts[0m:[93m31[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<CreateOrderDto, string> & { name: "customerId"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m31[0m   @IsString()
+[7m  [0m [91m   ~~~~~~~~~~[0m
+[96msrc/orders/dto/order.dto.ts[0m:[93m34[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<CreateOrderDto, OrderType> & { name: "type"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m34[0m   @IsEnum(OrderType)
+[7m  [0m [91m   ~~~~~~~~~~~~~~~~~[0m
+[96msrc/orders/dto/order.dto.ts[0m:[93m37[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<CreateOrderDto, string> & { name: "notes"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m37[0m   @IsOptional()
+[7m  [0m [91m   ~~~~~~~~~~~~[0m
+[96msrc/orders/dto/order.dto.ts[0m:[93m38[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<CreateOrderDto, string> & { name: "notes"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m38[0m   @IsString()
+[7m  [0m [91m   ~~~~~~~~~~[0m
+[96msrc/orders/dto/order.dto.ts[0m:[93m41[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<CreateOrderDto, OrderItemInputDto[]> & { name: "items"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m41[0m   @IsArray()
+[7m  [0m [91m   ~~~~~~~~~[0m
+[96msrc/orders/dto/order.dto.ts[0m:[93m42[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<CreateOrderDto, OrderItemInputDto[]> & { name: "items"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m42[0m   @ValidateNested({ each: true })
+[7m  [0m [91m   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/orders/dto/order.dto.ts[0m:[93m43[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<CreateOrderDto, OrderItemInputDto[]> & { name: "items"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m43[0m   @Type(() => OrderItemInputDto)
+[7m  [0m [91m   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/orders/dto/order.dto.ts[0m:[93m48[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<AddOrderItemsDto, OrderItemInputDto[]> & { name: "items"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m48[0m   @IsArray()
+[7m  [0m [91m   ~~~~~~~~~[0m
+[96msrc/orders/dto/order.dto.ts[0m:[93m49[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<AddOrderItemsDto, OrderItemInputDto[]> & { name: "items"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m49[0m   @ValidateNested({ each: true })
+[7m  [0m [91m   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/orders/dto/order.dto.ts[0m:[93m50[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<AddOrderItemsDto, OrderItemInputDto[]> & { name: "items"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m50[0m   @Type(() => OrderItemInputDto)
+[7m  [0m [91m   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/orders/dto/order.dto.ts[0m:[93m55[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<UpdateKotStatusDto, KotStatus> & { name: "status"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m55[0m   @IsEnum(KotStatus)
+[7m  [0m [91m   ~~~~~~~~~~~~~~~~~[0m
+[96msrc/orders/kitchen.gateway.ts[0m:[93m14[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<KitchenGateway, Server<DefaultEventsMap, DefaultEventsMap, DefaultEventsMap, any>> & { ...; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m14[0m   @WebSocketServer()
+[7m  [0m [91m   ~~~~~~~~~~~~~~~~~[0m
+[96msrc/orders/kitchen.gateway.ts[0m:[93m17[0m:[93m3[0m - [91merror[0m[90m TS1241: [0mUnable to resolve signature of method decorator when called as an expression.
+  The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+
+[7m17[0m   @SubscribeMessage('join-business')
+[7m  [0m [91m  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+  [96mnode_modules/typescript/lib/lib.decorators.legacy.d.ts[0m:[93m21[0m:[93m82[0m
+    [7m21[0m declare type MethodDecorator = <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) => TypedPropertyDescriptor<T> | void;
+    [7m  [0m [96m                                                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    An argument for 'descriptor' was not provided.
+[96msrc/orders/kitchen.gateway.ts[0m:[93m17[0m:[93m4[0m - [91merror[0m[90m TS1270: [0mDecorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((businessId: string, client: Socket<DefaultEventsMap, DefaultEventsMap, DefaultEventsMap, any>) => { ...; })'.
+  Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((businessId: string, client: Socket<DefaultEventsMap, DefaultEventsMap, DefaultEventsMap, any>) => { ...; })'.
+
+[7m17[0m   @SubscribeMessage('join-business')
+[7m  [0m [91m   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/orders/kitchen.gateway.ts[0m:[93m18[0m:[93m14[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+
+[7m18[0m   handleJoin(@MessageBody() businessId: string, @ConnectedSocket() client: Socket) {
+[7m  [0m [91m             ~[0m
+[96msrc/orders/kitchen.gateway.ts[0m:[93m18[0m:[93m49[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+
+[7m18[0m   handleJoin(@MessageBody() businessId: string, @ConnectedSocket() client: Socket) {
+[7m  [0m [91m                                                ~[0m
+[96msrc/orders/orders.controller.ts[0m:[93m3[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"@prisma/client"' has no exported member 'OrderStatus'.
+
+[7m3[0m import { OrderStatus } from '@prisma/client';
+[7m [0m [91m         ~~~~~~~~~~~[0m
+[96msrc/orders/orders.controller.ts[0m:[93m9[0m:[93m23[0m - [91merror[0m[90m TS2305: [0mModule '"../common/decorators/current-user.decorator"' has no exported member 'AuthenticatedUser'.
+
+[7m9[0m import { CurrentUser, AuthenticatedUser } from '../common/decorators/current-user.decorator';
+[7m [0m [91m                      ~~~~~~~~~~~~~~~~~[0m
+[96msrc/orders/orders.controller.ts[0m:[93m12[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<UpdateOrderStatusDto, OrderStatus> & { name: "status"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m12[0m   @IsEnum(OrderStatus)
+[7m  [0m [91m   ~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/orders/orders.controller.ts[0m:[93m22[0m:[93m3[0m - [91merror[0m[90m TS1241: [0mUnable to resolve signature of method decorator when called as an expression.
+  The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+
+[7m22[0m   @Post()
+[7m  [0m [91m  ~~~~~~~[0m
+
+  [96mnode_modules/typescript/lib/lib.decorators.legacy.d.ts[0m:[93m21[0m:[93m82[0m
+    [7m21[0m declare type MethodDecorator = <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) => TypedPropertyDescriptor<T> | void;
+    [7m  [0m [96m                                                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    An argument for 'descriptor' was not provided.
+[96msrc/orders/orders.controller.ts[0m:[93m22[0m:[93m4[0m - [91merror[0m[90m TS1270: [0mDecorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((user: AuthenticatedUser, dto: CreateOrderDto) => Promise<any>)'.
+  Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((user: AuthenticatedUser, dto: CreateOrderDto) => Promise<any>)'.
+
+[7m22[0m   @Post()
+[7m  [0m [91m   ~~~~~~[0m
+[96msrc/orders/orders.controller.ts[0m:[93m23[0m:[93m10[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+
+[7m23[0m   create(@CurrentUser() user: AuthenticatedUser, @Body() dto: CreateOrderDto) {
+[7m  [0m [91m         ~[0m
+[96msrc/orders/orders.controller.ts[0m:[93m23[0m:[93m50[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+
+[7m23[0m   create(@CurrentUser() user: AuthenticatedUser, @Body() dto: CreateOrderDto) {
+[7m  [0m [91m                                                 ~[0m
+[96msrc/orders/orders.controller.ts[0m:[93m27[0m:[93m3[0m - [91merror[0m[90m TS1241: [0mUnable to resolve signature of method decorator when called as an expression.
+  The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+
+[7m27[0m   @Get()
+[7m  [0m [91m  ~~~~~~[0m
+
+  [96mnode_modules/typescript/lib/lib.decorators.legacy.d.ts[0m:[93m21[0m:[93m82[0m
+    [7m21[0m declare type MethodDecorator = <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) => TypedPropertyDescriptor<T> | void;
+    [7m  [0m [96m                                                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    An argument for 'descriptor' was not provided.
+[96msrc/orders/orders.controller.ts[0m:[93m27[0m:[93m4[0m - [91merror[0m[90m TS1270: [0mDecorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((user: AuthenticatedUser, status?: OrderStatus) => Promise<any>)'.
+  Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((user: AuthenticatedUser, status?: OrderStatus) => Promise<any>)'.
+
+[7m27[0m   @Get()
+[7m  [0m [91m   ~~~~~[0m
+[96msrc/orders/orders.controller.ts[0m:[93m28[0m:[93m11[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+
+[7m28[0m   findAll(@CurrentUser() user: AuthenticatedUser, @Query('status') status?: OrderStatus) {
+[7m  [0m [91m          ~[0m
+[96msrc/orders/orders.controller.ts[0m:[93m28[0m:[93m51[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+
+[7m28[0m   findAll(@CurrentUser() user: AuthenticatedUser, @Query('status') status?: OrderStatus) {
+[7m  [0m [91m                                                  ~[0m
+[96msrc/orders/orders.controller.ts[0m:[93m32[0m:[93m3[0m - [91merror[0m[90m TS1241: [0mUnable to resolve signature of method decorator when called as an expression.
+  The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+
+[7m32[0m   @Get(':id')
+[7m  [0m [91m  ~~~~~~~~~~~[0m
+
+  [96mnode_modules/typescript/lib/lib.decorators.legacy.d.ts[0m:[93m21[0m:[93m82[0m
+    [7m21[0m declare type MethodDecorator = <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) => TypedPropertyDescriptor<T> | void;
+    [7m  [0m [96m                                                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    An argument for 'descriptor' was not provided.
+[96msrc/orders/orders.controller.ts[0m:[93m32[0m:[93m4[0m - [91merror[0m[90m TS1270: [0mDecorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((user: AuthenticatedUser, id: string) => Promise<any>)'.
+  Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((user: AuthenticatedUser, id: string) => Promise<any>)'.
+
+[7m32[0m   @Get(':id')
+[7m  [0m [91m   ~~~~~~~~~~[0m
+[96msrc/orders/orders.controller.ts[0m:[93m33[0m:[93m11[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+
+[7m33[0m   findOne(@CurrentUser() user: AuthenticatedUser, @Param('id') id: string) {
+[7m  [0m [91m          ~[0m
+[96msrc/orders/orders.controller.ts[0m:[93m33[0m:[93m51[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+
+[7m33[0m   findOne(@CurrentUser() user: AuthenticatedUser, @Param('id') id: string) {
+[7m  [0m [91m                                                  ~[0m
+[96msrc/orders/orders.controller.ts[0m:[93m38[0m:[93m3[0m - [91merror[0m[90m TS1241: [0mUnable to resolve signature of method decorator when called as an expression.
+  The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+
+[7m38[0m   @Post(':id/items')
+[7m  [0m [91m  ~~~~~~~~~~~~~~~~~~[0m
+
+  [96mnode_modules/typescript/lib/lib.decorators.legacy.d.ts[0m:[93m21[0m:[93m82[0m
+    [7m21[0m declare type MethodDecorator = <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) => TypedPropertyDescriptor<T> | void;
+    [7m  [0m [96m                                                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    An argument for 'descriptor' was not provided.
+[96msrc/orders/orders.controller.ts[0m:[93m38[0m:[93m4[0m - [91merror[0m[90m TS1270: [0mDecorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((user: AuthenticatedUser, id: string, dto: AddOrderItemsDto) => Promise<any>)'.
+  Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((user: AuthenticatedUser, id: string, dto: AddOrderItemsDto) => Promise<any>)'.
+
+[7m38[0m   @Post(':id/items')
+[7m  [0m [91m   ~~~~~~~~~~~~~~~~~[0m
+[96msrc/orders/orders.controller.ts[0m:[93m39[0m:[93m12[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+
+[7m39[0m   addItems(@CurrentUser() user: AuthenticatedUser, @Param('id') id: string, @Body() dto: AddOrderItemsDto) {
+[7m  [0m [91m           ~[0m
+[96msrc/orders/orders.controller.ts[0m:[93m39[0m:[93m52[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+
+[7m39[0m   addItems(@CurrentUser() user: AuthenticatedUser, @Param('id') id: string, @Body() dto: AddOrderItemsDto) {
+[7m  [0m [91m                                                   ~[0m
+[96msrc/orders/orders.controller.ts[0m:[93m39[0m:[93m77[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+
+[7m39[0m   addItems(@CurrentUser() user: AuthenticatedUser, @Param('id') id: string, @Body() dto: AddOrderItemsDto) {
+[7m  [0m [91m                                                                            ~[0m
+[96msrc/orders/orders.controller.ts[0m:[93m44[0m:[93m3[0m - [91merror[0m[90m TS1241: [0mUnable to resolve signature of method decorator when called as an expression.
+  The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+
+[7m44[0m   @Patch('items/:orderItemId/kot-status')
+[7m  [0m [91m  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+  [96mnode_modules/typescript/lib/lib.decorators.legacy.d.ts[0m:[93m21[0m:[93m82[0m
+    [7m21[0m declare type MethodDecorator = <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) => TypedPropertyDescriptor<T> | void;
+    [7m  [0m [96m                                                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    An argument for 'descriptor' was not provided.
+[96msrc/orders/orders.controller.ts[0m:[93m44[0m:[93m4[0m - [91merror[0m[90m TS1270: [0mDecorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((user: AuthenticatedUser, orderItemId: string, dto: UpdateKotStatusDto) => Promise<any>)'.
+  Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((user: AuthenticatedUser, orderItemId: string, dto: UpdateKotStatusDto) => Promise<any>)'.
+
+[7m44[0m   @Patch('items/:orderItemId/kot-status')
+[7m  [0m [91m   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/orders/orders.controller.ts[0m:[93m46[0m:[93m5[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+
+[7m46[0m     @CurrentUser() user: AuthenticatedUser,
+[7m  [0m [91m    ~[0m
+[96msrc/orders/orders.controller.ts[0m:[93m47[0m:[93m5[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+
+[7m47[0m     @Param('orderItemId') orderItemId: string,
+[7m  [0m [91m    ~[0m
+[96msrc/orders/orders.controller.ts[0m:[93m48[0m:[93m5[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+
+[7m48[0m     @Body() dto: UpdateKotStatusDto,
+[7m  [0m [91m    ~[0m
+[96msrc/orders/orders.controller.ts[0m:[93m54[0m:[93m3[0m - [91merror[0m[90m TS1241: [0mUnable to resolve signature of method decorator when called as an expression.
+  The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+
+[7m54[0m   @Patch(':id/status')
+[7m  [0m [91m  ~~~~~~~~~~~~~~~~~~~~[0m
+
+  [96mnode_modules/typescript/lib/lib.decorators.legacy.d.ts[0m:[93m21[0m:[93m82[0m
+    [7m21[0m declare type MethodDecorator = <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) => TypedPropertyDescriptor<T> | void;
+    [7m  [0m [96m                                                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    An argument for 'descriptor' was not provided.
+[96msrc/orders/orders.controller.ts[0m:[93m54[0m:[93m4[0m - [91merror[0m[90m TS1270: [0mDecorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((user: AuthenticatedUser, id: string, dto: UpdateOrderStatusDto) => Promise<any>)'.
+  Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((user: AuthenticatedUser, id: string, dto: UpdateOrderStatusDto) => Promise<any>)'.
+
+[7m54[0m   @Patch(':id/status')
+[7m  [0m [91m   ~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/orders/orders.controller.ts[0m:[93m56[0m:[93m5[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+
+[7m56[0m     @CurrentUser() user: AuthenticatedUser,
+[7m  [0m [91m    ~[0m
+[96msrc/orders/orders.controller.ts[0m:[93m57[0m:[93m5[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+
+[7m57[0m     @Param('id') id: string,
+[7m  [0m [91m    ~[0m
+[96msrc/orders/orders.controller.ts[0m:[93m58[0m:[93m5[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+
+[7m58[0m     @Body() dto: UpdateOrderStatusDto,
+[7m  [0m [91m    ~[0m
+[96msrc/orders/orders.controller.ts[0m:[93m64[0m:[93m3[0m - [91merror[0m[90m TS1241: [0mUnable to resolve signature of method decorator when called as an expression.
+  The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+
+[7m64[0m   @Patch(':id/cancel')
+[7m  [0m [91m  ~~~~~~~~~~~~~~~~~~~~[0m
+
+  [96mnode_modules/typescript/lib/lib.decorators.legacy.d.ts[0m:[93m21[0m:[93m82[0m
+    [7m21[0m declare type MethodDecorator = <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) => TypedPropertyDescriptor<T> | void;
+    [7m  [0m [96m                                                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    An argument for 'descriptor' was not provided.
+[96msrc/orders/orders.controller.ts[0m:[93m64[0m:[93m4[0m - [91merror[0m[90m TS1270: [0mDecorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((user: AuthenticatedUser, id: string) => Promise<{ success: boolean; }>)'.
+  Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((user: AuthenticatedUser, id: string) => Promise<{ success: boolean; }>)'.
+
+[7m64[0m   @Patch(':id/cancel')
+[7m  [0m [91m   ~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/orders/orders.controller.ts[0m:[93m65[0m:[93m10[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+
+[7m65[0m   cancel(@CurrentUser() user: AuthenticatedUser, @Param('id') id: string) {
+[7m  [0m [91m         ~[0m
+[96msrc/orders/orders.controller.ts[0m:[93m65[0m:[93m50[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+
+[7m65[0m   cancel(@CurrentUser() user: AuthenticatedUser, @Param('id') id: string) {
+[7m  [0m [91m                                                 ~[0m
+[96msrc/orders/orders.service.ts[0m:[93m2[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"@prisma/client"' has no exported member 'KotStatus'.
+
+[7m2[0m import { KotStatus, OrderStatus } from '@prisma/client';
+[7m [0m [91m         ~~~~~~~~~[0m
+[96msrc/orders/orders.service.ts[0m:[93m2[0m:[93m21[0m - [91merror[0m[90m TS2305: [0mModule '"@prisma/client"' has no exported member 'OrderStatus'.
+
+[7m2[0m import { KotStatus, OrderStatus } from '@prisma/client';
+[7m [0m [91m                    ~~~~~~~~~~~[0m
+[96msrc/orders/orders.service.ts[0m:[93m24[0m:[93m20[0m - [91merror[0m[90m TS2339: [0mProperty 'isAvailable' does not exist on type 'unknown'.
+
+[7m24[0m       if (!product.isAvailable) throw new BadRequestException(`${product.name} is currently unavailable`);
+[7m  [0m [91m                   ~~~~~~~~~~~[0m
+[96msrc/orders/orders.service.ts[0m:[93m24[0m:[93m74[0m - [91merror[0m[90m TS2339: [0mProperty 'name' does not exist on type 'unknown'.
+
+[7m24[0m       if (!product.isAvailable) throw new BadRequestException(`${product.name} is currently unavailable`);
+[7m  [0m [91m                                                                         ~~~~[0m
+[96msrc/orders/orders.service.ts[0m:[93m26[0m:[93m28[0m - [91merror[0m[90m TS2339: [0mProperty 'id' does not exist on type 'unknown'.
+
+[7m26[0m         productId: product.id,
+[7m  [0m [91m                           ~~[0m
+[96msrc/orders/orders.service.ts[0m:[93m28[0m:[93m28[0m - [91merror[0m[90m TS2339: [0mProperty 'price' does not exist on type 'unknown'.
+
+[7m28[0m         unitPrice: product.price,
+[7m  [0m [91m                           ~~~~~[0m
+[96msrc/products/dto/product.dto.ts[0m:[93m4[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<CreateProductDto, string> & { name: "name"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m4[0m   @IsString()
+[7m [0m [91m   ~~~~~~~~~~[0m
+[96msrc/products/dto/product.dto.ts[0m:[93m7[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<CreateProductDto, string> & { name: "description"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m7[0m   @IsOptional()
+[7m [0m [91m   ~~~~~~~~~~~~[0m
+[96msrc/products/dto/product.dto.ts[0m:[93m8[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<CreateProductDto, string> & { name: "description"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m8[0m   @IsString()
+[7m [0m [91m   ~~~~~~~~~~[0m
+[96msrc/products/dto/product.dto.ts[0m:[93m11[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<CreateProductDto, string> & { name: "categoryId"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m11[0m   @IsOptional()
+[7m  [0m [91m   ~~~~~~~~~~~~[0m
+[96msrc/products/dto/product.dto.ts[0m:[93m12[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<CreateProductDto, string> & { name: "categoryId"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m12[0m   @IsString()
+[7m  [0m [91m   ~~~~~~~~~~[0m
+[96msrc/products/dto/product.dto.ts[0m:[93m15[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<CreateProductDto, string> & { name: "sku"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m15[0m   @IsOptional()
+[7m  [0m [91m   ~~~~~~~~~~~~[0m
+[96msrc/products/dto/product.dto.ts[0m:[93m16[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<CreateProductDto, string> & { name: "sku"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m16[0m   @IsString()
+[7m  [0m [91m   ~~~~~~~~~~[0m
+[96msrc/products/dto/product.dto.ts[0m:[93m19[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<CreateProductDto, number> & { name: "price"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m19[0m   @IsNumber()
+[7m  [0m [91m   ~~~~~~~~~~[0m
+[96msrc/products/dto/product.dto.ts[0m:[93m20[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<CreateProductDto, number> & { name: "price"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m20[0m   @Min(0)
+[7m  [0m [91m   ~~~~~~[0m
+[96msrc/products/dto/product.dto.ts[0m:[93m23[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<CreateProductDto, number> & { name: "taxPercent"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m23[0m   @IsOptional()
+[7m  [0m [91m   ~~~~~~~~~~~~[0m
+[96msrc/products/dto/product.dto.ts[0m:[93m24[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<CreateProductDto, number> & { name: "taxPercent"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m24[0m   @IsNumber()
+[7m  [0m [91m   ~~~~~~~~~~[0m
+[96msrc/products/dto/product.dto.ts[0m:[93m25[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<CreateProductDto, number> & { name: "taxPercent"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m25[0m   @Min(0)
+[7m  [0m [91m   ~~~~~~[0m
+[96msrc/products/dto/product.dto.ts[0m:[93m28[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<CreateProductDto, boolean> & { name: "trackStock"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m28[0m   @IsOptional()
+[7m  [0m [91m   ~~~~~~~~~~~~[0m
+[96msrc/products/dto/product.dto.ts[0m:[93m29[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<CreateProductDto, boolean> & { name: "trackStock"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m29[0m   @IsBoolean()
+[7m  [0m [91m   ~~~~~~~~~~~[0m
+[96msrc/products/dto/product.dto.ts[0m:[93m32[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<CreateProductDto, number> & { name: "stockQty"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m32[0m   @IsOptional()
+[7m  [0m [91m   ~~~~~~~~~~~~[0m
+[96msrc/products/dto/product.dto.ts[0m:[93m33[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<CreateProductDto, number> & { name: "stockQty"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m33[0m   @IsNumber()
+[7m  [0m [91m   ~~~~~~~~~~[0m
+[96msrc/products/dto/product.dto.ts[0m:[93m34[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<CreateProductDto, number> & { name: "stockQty"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m34[0m   @Min(0)
+[7m  [0m [91m   ~~~~~~[0m
+[96msrc/products/dto/product.dto.ts[0m:[93m37[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<CreateProductDto, string> & { name: "imageUrl"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m37[0m   @IsOptional()
+[7m  [0m [91m   ~~~~~~~~~~~~[0m
+[96msrc/products/dto/product.dto.ts[0m:[93m38[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<CreateProductDto, string> & { name: "imageUrl"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m38[0m   @IsString()
+[7m  [0m [91m   ~~~~~~~~~~[0m
+[96msrc/products/dto/product.dto.ts[0m:[93m43[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<UpdateProductDto, string> & { name: "name"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m43[0m   @IsOptional() @IsString() name?: string;
+[7m  [0m [91m   ~~~~~~~~~~~~[0m
+[96msrc/products/dto/product.dto.ts[0m:[93m43[0m:[93m18[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<UpdateProductDto, string> & { name: "name"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m43[0m   @IsOptional() @IsString() name?: string;
+[7m  [0m [91m                 ~~~~~~~~~~[0m
+[96msrc/products/dto/product.dto.ts[0m:[93m44[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<UpdateProductDto, string> & { name: "description"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m44[0m   @IsOptional() @IsString() description?: string;
+[7m  [0m [91m   ~~~~~~~~~~~~[0m
+[96msrc/products/dto/product.dto.ts[0m:[93m44[0m:[93m18[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<UpdateProductDto, string> & { name: "description"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m44[0m   @IsOptional() @IsString() description?: string;
+[7m  [0m [91m                 ~~~~~~~~~~[0m
+[96msrc/products/dto/product.dto.ts[0m:[93m45[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<UpdateProductDto, string> & { name: "categoryId"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m45[0m   @IsOptional() @IsString() categoryId?: string;
+[7m  [0m [91m   ~~~~~~~~~~~~[0m
+[96msrc/products/dto/product.dto.ts[0m:[93m45[0m:[93m18[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<UpdateProductDto, string> & { name: "categoryId"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m45[0m   @IsOptional() @IsString() categoryId?: string;
+[7m  [0m [91m                 ~~~~~~~~~~[0m
+[96msrc/products/dto/product.dto.ts[0m:[93m46[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<UpdateProductDto, number> & { name: "price"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m46[0m   @IsOptional() @IsNumber() @Min(0) price?: number;
+[7m  [0m [91m   ~~~~~~~~~~~~[0m
+[96msrc/products/dto/product.dto.ts[0m:[93m46[0m:[93m18[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<UpdateProductDto, number> & { name: "price"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m46[0m   @IsOptional() @IsNumber() @Min(0) price?: number;
+[7m  [0m [91m                 ~~~~~~~~~~[0m
+[96msrc/products/dto/product.dto.ts[0m:[93m46[0m:[93m30[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<UpdateProductDto, number> & { name: "price"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m46[0m   @IsOptional() @IsNumber() @Min(0) price?: number;
+[7m  [0m [91m                             ~~~~~~[0m
+[96msrc/products/dto/product.dto.ts[0m:[93m47[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<UpdateProductDto, number> & { name: "taxPercent"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m47[0m   @IsOptional() @IsNumber() @Min(0) taxPercent?: number;
+[7m  [0m [91m   ~~~~~~~~~~~~[0m
+[96msrc/products/dto/product.dto.ts[0m:[93m47[0m:[93m18[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<UpdateProductDto, number> & { name: "taxPercent"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m47[0m   @IsOptional() @IsNumber() @Min(0) taxPercent?: number;
+[7m  [0m [91m                 ~~~~~~~~~~[0m
+[96msrc/products/dto/product.dto.ts[0m:[93m47[0m:[93m30[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<UpdateProductDto, number> & { name: "taxPercent"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m47[0m   @IsOptional() @IsNumber() @Min(0) taxPercent?: number;
+[7m  [0m [91m                             ~~~~~~[0m
+[96msrc/products/dto/product.dto.ts[0m:[93m48[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<UpdateProductDto, boolean> & { name: "trackStock"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m48[0m   @IsOptional() @IsBoolean() trackStock?: boolean;
+[7m  [0m [91m   ~~~~~~~~~~~~[0m
+[96msrc/products/dto/product.dto.ts[0m:[93m48[0m:[93m18[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<UpdateProductDto, boolean> & { name: "trackStock"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m48[0m   @IsOptional() @IsBoolean() trackStock?: boolean;
+[7m  [0m [91m                 ~~~~~~~~~~~[0m
+[96msrc/products/dto/product.dto.ts[0m:[93m49[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<UpdateProductDto, number> & { name: "stockQty"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m49[0m   @IsOptional() @IsNumber() @Min(0) stockQty?: number;
+[7m  [0m [91m   ~~~~~~~~~~~~[0m
+[96msrc/products/dto/product.dto.ts[0m:[93m49[0m:[93m18[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<UpdateProductDto, number> & { name: "stockQty"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m49[0m   @IsOptional() @IsNumber() @Min(0) stockQty?: number;
+[7m  [0m [91m                 ~~~~~~~~~~[0m
+[96msrc/products/dto/product.dto.ts[0m:[93m49[0m:[93m30[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<UpdateProductDto, number> & { name: "stockQty"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m49[0m   @IsOptional() @IsNumber() @Min(0) stockQty?: number;
+[7m  [0m [91m                             ~~~~~~[0m
+[96msrc/products/dto/product.dto.ts[0m:[93m50[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<UpdateProductDto, boolean> & { name: "isAvailable"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m50[0m   @IsOptional() @IsBoolean() isAvailable?: boolean;
+[7m  [0m [91m   ~~~~~~~~~~~~[0m
+[96msrc/products/dto/product.dto.ts[0m:[93m50[0m:[93m18[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<UpdateProductDto, boolean> & { name: "isAvailable"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m50[0m   @IsOptional() @IsBoolean() isAvailable?: boolean;
+[7m  [0m [91m                 ~~~~~~~~~~~[0m
+[96msrc/products/dto/product.dto.ts[0m:[93m51[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<UpdateProductDto, string> & { name: "imageUrl"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m51[0m   @IsOptional() @IsString() imageUrl?: string;
+[7m  [0m [91m   ~~~~~~~~~~~~[0m
+[96msrc/products/dto/product.dto.ts[0m:[93m51[0m:[93m18[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<UpdateProductDto, string> & { name: "imageUrl"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m51[0m   @IsOptional() @IsString() imageUrl?: string;
+[7m  [0m [91m                 ~~~~~~~~~~[0m
+[96msrc/products/products.controller.ts[0m:[93m17[0m:[93m23[0m - [91merror[0m[90m TS2305: [0mModule '"../common/decorators/current-user.decorator"' has no exported member 'AuthenticatedUser'.
+
+[7m17[0m import { CurrentUser, AuthenticatedUser } from '../common/decorators/current-user.decorator';
+[7m  [0m [91m                      ~~~~~~~~~~~~~~~~~[0m
+[96msrc/products/products.controller.ts[0m:[93m25[0m:[93m3[0m - [91merror[0m[90m TS1241: [0mUnable to resolve signature of method decorator when called as an expression.
+  The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+
+[7m25[0m   @Post()
+[7m  [0m [91m  ~~~~~~~[0m
+
+  [96mnode_modules/typescript/lib/lib.decorators.legacy.d.ts[0m:[93m21[0m:[93m82[0m
+    [7m21[0m declare type MethodDecorator = <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) => TypedPropertyDescriptor<T> | void;
+    [7m  [0m [96m                                                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    An argument for 'descriptor' was not provided.
+[96msrc/products/products.controller.ts[0m:[93m25[0m:[93m4[0m - [91merror[0m[90m TS1270: [0mDecorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((user: AuthenticatedUser, dto: CreateProductDto) => any)'.
+  Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((user: AuthenticatedUser, dto: CreateProductDto) => any)'.
+
+[7m25[0m   @Post()
+[7m  [0m [91m   ~~~~~~[0m
+[96msrc/products/products.controller.ts[0m:[93m26[0m:[93m10[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+
+[7m26[0m   create(@CurrentUser() user: AuthenticatedUser, @Body() dto: CreateProductDto) {
+[7m  [0m [91m         ~[0m
+[96msrc/products/products.controller.ts[0m:[93m26[0m:[93m50[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+
+[7m26[0m   create(@CurrentUser() user: AuthenticatedUser, @Body() dto: CreateProductDto) {
+[7m  [0m [91m                                                 ~[0m
+[96msrc/products/products.controller.ts[0m:[93m30[0m:[93m3[0m - [91merror[0m[90m TS1241: [0mUnable to resolve signature of method decorator when called as an expression.
+  The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+
+[7m30[0m   @Get()
+[7m  [0m [91m  ~~~~~~[0m
+
+  [96mnode_modules/typescript/lib/lib.decorators.legacy.d.ts[0m:[93m21[0m:[93m82[0m
+    [7m21[0m declare type MethodDecorator = <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) => TypedPropertyDescriptor<T> | void;
+    [7m  [0m [96m                                                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    An argument for 'descriptor' was not provided.
+[96msrc/products/products.controller.ts[0m:[93m30[0m:[93m4[0m - [91merror[0m[90m TS1270: [0mDecorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((user: AuthenticatedUser, search?: string, categoryId?: string, page?: string, pageSize?: string) => Promise<{ items: any; total: any; page: number; pageSize: number; totalPages: number; }>)'.
+  Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((user: AuthenticatedUser, search?: string, categoryId?: string, page?: string, pageSize?: string) => Promise<{ items: any; total: any; page: number; pageSize: number; totalPages: number; }>)'.
+
+[7m30[0m   @Get()
+[7m  [0m [91m   ~~~~~[0m
+[96msrc/products/products.controller.ts[0m:[93m32[0m:[93m5[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+
+[7m32[0m     @CurrentUser() user: AuthenticatedUser,
+[7m  [0m [91m    ~[0m
+[96msrc/products/products.controller.ts[0m:[93m33[0m:[93m5[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+
+[7m33[0m     @Query('search') search?: string,
+[7m  [0m [91m    ~[0m
+[96msrc/products/products.controller.ts[0m:[93m34[0m:[93m5[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+
+[7m34[0m     @Query('categoryId') categoryId?: string,
+[7m  [0m [91m    ~[0m
+[96msrc/products/products.controller.ts[0m:[93m35[0m:[93m5[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+
+[7m35[0m     @Query('page') page?: string,
+[7m  [0m [91m    ~[0m
+[96msrc/products/products.controller.ts[0m:[93m36[0m:[93m5[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+
+[7m36[0m     @Query('pageSize') pageSize?: string,
+[7m  [0m [91m    ~[0m
+[96msrc/products/products.controller.ts[0m:[93m46[0m:[93m3[0m - [91merror[0m[90m TS1241: [0mUnable to resolve signature of method decorator when called as an expression.
+  The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+
+[7m46[0m   @Get(':id')
+[7m  [0m [91m  ~~~~~~~~~~~[0m
+
+  [96mnode_modules/typescript/lib/lib.decorators.legacy.d.ts[0m:[93m21[0m:[93m82[0m
+    [7m21[0m declare type MethodDecorator = <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) => TypedPropertyDescriptor<T> | void;
+    [7m  [0m [96m                                                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    An argument for 'descriptor' was not provided.
+[96msrc/products/products.controller.ts[0m:[93m46[0m:[93m4[0m - [91merror[0m[90m TS1270: [0mDecorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((user: AuthenticatedUser, id: string) => Promise<any>)'.
+  Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((user: AuthenticatedUser, id: string) => Promise<any>)'.
+
+[7m46[0m   @Get(':id')
+[7m  [0m [91m   ~~~~~~~~~~[0m
+[96msrc/products/products.controller.ts[0m:[93m47[0m:[93m11[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+
+[7m47[0m   findOne(@CurrentUser() user: AuthenticatedUser, @Param('id') id: string) {
+[7m  [0m [91m          ~[0m
+[96msrc/products/products.controller.ts[0m:[93m47[0m:[93m51[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+
+[7m47[0m   findOne(@CurrentUser() user: AuthenticatedUser, @Param('id') id: string) {
+[7m  [0m [91m                                                  ~[0m
+[96msrc/products/products.controller.ts[0m:[93m52[0m:[93m3[0m - [91merror[0m[90m TS1241: [0mUnable to resolve signature of method decorator when called as an expression.
+  The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+
+[7m52[0m   @Patch(':id')
+[7m  [0m [91m  ~~~~~~~~~~~~~[0m
+
+  [96mnode_modules/typescript/lib/lib.decorators.legacy.d.ts[0m:[93m21[0m:[93m82[0m
+    [7m21[0m declare type MethodDecorator = <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) => TypedPropertyDescriptor<T> | void;
+    [7m  [0m [96m                                                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    An argument for 'descriptor' was not provided.
+[96msrc/products/products.controller.ts[0m:[93m52[0m:[93m4[0m - [91merror[0m[90m TS1270: [0mDecorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((user: AuthenticatedUser, id: string, dto: UpdateProductDto) => Promise<any>)'.
+  Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((user: AuthenticatedUser, id: string, dto: UpdateProductDto) => Promise<any>)'.
+
+[7m52[0m   @Patch(':id')
+[7m  [0m [91m   ~~~~~~~~~~~~[0m
+[96msrc/products/products.controller.ts[0m:[93m53[0m:[93m10[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+
+[7m53[0m   update(@CurrentUser() user: AuthenticatedUser, @Param('id') id: string, @Body() dto: UpdateProductDto) {
+[7m  [0m [91m         ~[0m
+[96msrc/products/products.controller.ts[0m:[93m53[0m:[93m50[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+
+[7m53[0m   update(@CurrentUser() user: AuthenticatedUser, @Param('id') id: string, @Body() dto: UpdateProductDto) {
+[7m  [0m [91m                                                 ~[0m
+[96msrc/products/products.controller.ts[0m:[93m53[0m:[93m75[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+
+[7m53[0m   update(@CurrentUser() user: AuthenticatedUser, @Param('id') id: string, @Body() dto: UpdateProductDto) {
+[7m  [0m [91m                                                                          ~[0m
+[96msrc/products/products.controller.ts[0m:[93m58[0m:[93m3[0m - [91merror[0m[90m TS1241: [0mUnable to resolve signature of method decorator when called as an expression.
+  The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+
+[7m58[0m   @Delete(':id')
+[7m  [0m [91m  ~~~~~~~~~~~~~~[0m
+
+  [96mnode_modules/typescript/lib/lib.decorators.legacy.d.ts[0m:[93m21[0m:[93m82[0m
+    [7m21[0m declare type MethodDecorator = <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) => TypedPropertyDescriptor<T> | void;
+    [7m  [0m [96m                                                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    An argument for 'descriptor' was not provided.
+[96msrc/products/products.controller.ts[0m:[93m58[0m:[93m4[0m - [91merror[0m[90m TS1270: [0mDecorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((user: AuthenticatedUser, id: string) => Promise<{ success: boolean; }>)'.
+  Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((user: AuthenticatedUser, id: string) => Promise<{ success: boolean; }>)'.
+
+[7m58[0m   @Delete(':id')
+[7m  [0m [91m   ~~~~~~~~~~~~~[0m
+[96msrc/products/products.controller.ts[0m:[93m59[0m:[93m10[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+
+[7m59[0m   remove(@CurrentUser() user: AuthenticatedUser, @Param('id') id: string) {
+[7m  [0m [91m         ~[0m
+[96msrc/products/products.controller.ts[0m:[93m59[0m:[93m50[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+
+[7m59[0m   remove(@CurrentUser() user: AuthenticatedUser, @Param('id') id: string) {
+[7m  [0m [91m                                                 ~[0m
+[96msrc/tables/tables.controller.ts[0m:[93m3[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"@prisma/client"' has no exported member 'TableStatus'.
+
+[7m3[0m import { TableStatus } from '@prisma/client';
+[7m [0m [91m         ~~~~~~~~~~~[0m
+[96msrc/tables/tables.controller.ts[0m:[93m8[0m:[93m23[0m - [91merror[0m[90m TS2305: [0mModule '"../common/decorators/current-user.decorator"' has no exported member 'AuthenticatedUser'.
+
+[7m8[0m import { CurrentUser, AuthenticatedUser } from '../common/decorators/current-user.decorator';
+[7m [0m [91m                      ~~~~~~~~~~~~~~~~~[0m
+[96msrc/tables/tables.controller.ts[0m:[93m11[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<CreateTableDto, string> & { name: "label"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m11[0m   @IsString()
+[7m  [0m [91m   ~~~~~~~~~~[0m
+[96msrc/tables/tables.controller.ts[0m:[93m14[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<CreateTableDto, number> & { name: "capacity"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m14[0m   @IsInt()
+[7m  [0m [91m   ~~~~~~~[0m
+[96msrc/tables/tables.controller.ts[0m:[93m15[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<CreateTableDto, number> & { name: "capacity"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m15[0m   @Min(1)
+[7m  [0m [91m   ~~~~~~[0m
+[96msrc/tables/tables.controller.ts[0m:[93m20[0m:[93m4[0m - [91merror[0m[90m TS1240: [0mUnable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<UpdateTableStatusDto, TableStatus> & { name: "status"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+[7m20[0m   @IsEnum(TableStatus)
+[7m  [0m [91m   ~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/tables/tables.controller.ts[0m:[93m30[0m:[93m3[0m - [91merror[0m[90m TS1241: [0mUnable to resolve signature of method decorator when called as an expression.
+  The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+
+[7m30[0m   @Post()
+[7m  [0m [91m  ~~~~~~~[0m
+
+  [96mnode_modules/typescript/lib/lib.decorators.legacy.d.ts[0m:[93m21[0m:[93m82[0m
+    [7m21[0m declare type MethodDecorator = <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) => TypedPropertyDescriptor<T> | void;
+    [7m  [0m [96m                                                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    An argument for 'descriptor' was not provided.
+[96msrc/tables/tables.controller.ts[0m:[93m30[0m:[93m4[0m - [91merror[0m[90m TS1270: [0mDecorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((user: AuthenticatedUser, dto: CreateTableDto) => any)'.
+  Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((user: AuthenticatedUser, dto: CreateTableDto) => any)'.
+
+[7m30[0m   @Post()
+[7m  [0m [91m   ~~~~~~[0m
+[96msrc/tables/tables.controller.ts[0m:[93m31[0m:[93m10[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+
+[7m31[0m   create(@CurrentUser() user: AuthenticatedUser, @Body() dto: CreateTableDto) {
+[7m  [0m [91m         ~[0m
+[96msrc/tables/tables.controller.ts[0m:[93m31[0m:[93m50[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+
+[7m31[0m   create(@CurrentUser() user: AuthenticatedUser, @Body() dto: CreateTableDto) {
+[7m  [0m [91m                                                 ~[0m
+[96msrc/tables/tables.controller.ts[0m:[93m35[0m:[93m3[0m - [91merror[0m[90m TS1241: [0mUnable to resolve signature of method decorator when called as an expression.
+  The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+
+[7m35[0m   @Get()
+[7m  [0m [91m  ~~~~~~[0m
+
+  [96mnode_modules/typescript/lib/lib.decorators.legacy.d.ts[0m:[93m21[0m:[93m82[0m
+    [7m21[0m declare type MethodDecorator = <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) => TypedPropertyDescriptor<T> | void;
+    [7m  [0m [96m                                                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    An argument for 'descriptor' was not provided.
+[96msrc/tables/tables.controller.ts[0m:[93m35[0m:[93m4[0m - [91merror[0m[90m TS1270: [0mDecorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((user: AuthenticatedUser) => any)'.
+  Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((user: AuthenticatedUser) => any)'.
+
+[7m35[0m   @Get()
+[7m  [0m [91m   ~~~~~[0m
+[96msrc/tables/tables.controller.ts[0m:[93m36[0m:[93m11[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+
+[7m36[0m   findAll(@CurrentUser() user: AuthenticatedUser) {
+[7m  [0m [91m          ~[0m
+[96msrc/tables/tables.controller.ts[0m:[93m40[0m:[93m3[0m - [91merror[0m[90m TS1241: [0mUnable to resolve signature of method decorator when called as an expression.
+  The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+
+[7m40[0m   @Patch(':id/status')
+[7m  [0m [91m  ~~~~~~~~~~~~~~~~~~~~[0m
+
+  [96mnode_modules/typescript/lib/lib.decorators.legacy.d.ts[0m:[93m21[0m:[93m82[0m
+    [7m21[0m declare type MethodDecorator = <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) => TypedPropertyDescriptor<T> | void;
+    [7m  [0m [96m                                                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    An argument for 'descriptor' was not provided.
+[96msrc/tables/tables.controller.ts[0m:[93m40[0m:[93m4[0m - [91merror[0m[90m TS1270: [0mDecorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((user: AuthenticatedUser, id: string, dto: UpdateTableStatusDto) => Promise<any>)'.
+  Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((user: AuthenticatedUser, id: string, dto: UpdateTableStatusDto) => Promise<any>)'.
+
+[7m40[0m   @Patch(':id/status')
+[7m  [0m [91m   ~~~~~~~~~~~~~~~~~~~[0m
+[96msrc/tables/tables.controller.ts[0m:[93m42[0m:[93m5[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+
+[7m42[0m     @CurrentUser() user: AuthenticatedUser,
+[7m  [0m [91m    ~[0m
+[96msrc/tables/tables.controller.ts[0m:[93m43[0m:[93m5[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+
+[7m43[0m     @Param('id') id: string,
+[7m  [0m [91m    ~[0m
+[96msrc/tables/tables.controller.ts[0m:[93m44[0m:[93m5[0m - [91merror[0m[90m TS1206: [0mDecorators are not valid here.
+
+[7m44[0m     @Body() dto: UpdateTableStatusDto,
+[7m  [0m [91m    ~[0m
+[96msrc/tables/tables.service.ts[0m:[93m2[0m:[93m10[0m - [91merror[0m[90m TS2305: [0mModule '"@prisma/client"' has no exported member 'TableStatus'.
+
+[7m2[0m import { TableStatus } from '@prisma/client';
+[7m [0m [91m         ~~~~~~~~~~~[0m
+
+Found 435 error(s).
+
