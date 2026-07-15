@@ -33,7 +33,7 @@ with more verticals and features — see "Roadmap" below.
 - Billing: invoice generation from a served order, GST-style tax calc,
   multiple payment methods, partial payments, daily sales report
 - Audit log on login (extend to other actions as needed)
-- Seed script with a demo business, 5 staff accounts, menu, and tables
+- Seed script for environment-configured bootstrap data
 
 ## Quick start (Docker)
 
@@ -42,7 +42,7 @@ cp backend/.env.example backend/.env
 docker compose up --build
 ```
 
-Then, once the backend container is healthy, seed demo data:
+Then, once the backend container is healthy, seed bootstrap data:
 
 ```bash
 docker compose exec backend npx prisma migrate dev --name init
@@ -51,13 +51,6 @@ docker compose exec backend npm run prisma:seed
 
 - Frontend: http://localhost:5173
 - Backend API: http://localhost:3000/api/v1
-
-**Demo logins** (password `Password@123` for all):
-- `owner@demobistro.test` — full access
-- `manager@demobistro.test`
-- `cashier@demobistro.test` — Billing screen
-- `kitchen@demobistro.test` — Kitchen Display
-- `waiter@demobistro.test` — Tables screen
 
 ## Local development (without Docker)
 
@@ -83,7 +76,7 @@ npm run dev
 vyaparam/
 ├── backend/
 │   ├── prisma/schema.prisma      # multi-tenant data model
-│   ├── prisma/seed.ts            # demo data
+│   ├── prisma/seed.ts            # bootstrap seed data
 │   └── src/
 │       ├── auth/                 # JWT, refresh, RBAC, OTP reset
 │       ├── products/ categories/ # shared catalog engine

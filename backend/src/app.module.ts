@@ -12,6 +12,15 @@ import { BranchesModule } from "./modules/branches/branches.module";
 import { RolesModule } from "./modules/roles/roles.module";
 import { PermissionsModule } from "./modules/permissions/permissions.module";
 import { HealthModule } from "./modules/health/health.module";
+import { CategoriesModule } from "./modules/categories/categories.module";
+import { BrandsModule } from "./modules/brands/brands.module";
+import { UnitsModule } from "./modules/units/units.module";
+import { ProductsModule } from "./modules/products/products.module";
+import { WarehousesModule } from "./modules/warehouses/warehouses.module";
+import { InventoryModule } from "./modules/inventory/inventory.module";
+import { CustomersModule } from "./modules/customers/customers.module";
+import { SuppliersModule } from "./modules/suppliers/suppliers.module";
+import { BillingPosModule } from "./modules/billing-pos/billing-pos.module";
 import appConfig from "./config/app.config";
 import databaseConfig from "./config/database.config";
 import jwtConfig from "./config/jwt.config";
@@ -38,6 +47,15 @@ import { TransformInterceptor } from "./common/interceptors/transform.intercepto
     RolesModule,
     PermissionsModule,
     HealthModule,
+    CategoriesModule,
+    BrandsModule,
+    UnitsModule,
+    ProductsModule,
+    WarehousesModule,
+    InventoryModule,
+    CustomersModule,
+    SuppliersModule,
+    BillingPosModule,
   ],
   providers: [
     { provide: APP_GUARD, useClass: ThrottlerGuard },

@@ -9,6 +9,11 @@ export class HttpExceptionFilter implements ExceptionFilter {
     const request = ctx.getRequest<Request>();
     const status = exception instanceof HttpException ? exception.getStatus() : HttpStatus.INTERNAL_SERVER_ERROR;
     const message = exception instanceof HttpException ? exception.getResponse() : "Internal server error";
+    if (!(exception instanceof HttpException)) {
+      // Surface unexpected runtime errors for server-side diagnostics.
+      // eslint-disable-next-line no-console
+      console.error(exception);
+    }
     response.status(status).json({
       statusCode: status,
       timestamp: new Date().toISOString(),

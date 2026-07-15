@@ -67,6 +67,42 @@ enum PaymentMethod {
   UPI
   BANK_TRANSFER
   WALLET
+  NET_BANKING
+  GIFT_CARD
+  STORE_CREDIT
+  MIXED
+}
+
+enum BillingDocumentType {
+  SALES_INVOICE
+  PURCHASE_INVOICE
+  QUOTATION
+  ESTIMATE
+  SALES_ORDER
+  PURCHASE_ORDER
+  DELIVERY_CHALLAN
+  GOODS_RECEIPT_NOTE
+  SALES_RETURN
+  PURCHASE_RETURN
+  CREDIT_NOTE
+  DEBIT_NOTE
+  EXPENSE_ENTRY
+  INCOME_ENTRY
+  POS_BILL
+}
+
+enum BillingDocumentStatus {
+  DRAFT
+  HOLD
+  CONFIRMED
+  COMPLETED
+  CANCELLED
+  VOID
+}
+
+enum ShiftStatus {
+  OPEN
+  CLOSED
 }
 
 enum TableStatus {
@@ -120,6 +156,12 @@ enum NotificationType {
   SUCCESS
 }
 
+enum LedgerEntryType {
+  DEBIT
+  CREDIT
+  ADJUSTMENT
+}
+
 model Business {
   id          String   @id @default(uuid())
   name        String
@@ -141,9 +183,17 @@ model Business {
   permissions       Permission[]
   rolePermissions   RolePermission[]
   customerGroups    CustomerGroup[]
+  customerTypes     CustomerType[]
   customers         Customer[]
+  customerContacts  CustomerContact[]
+  customerAddresses CustomerAddress[]
+  customerLedgers   CustomerLedger[]
   supplierGroups    SupplierGroup[]
+  supplierTypes     SupplierType[]
   suppliers         Supplier[]
+  supplierContacts  SupplierContact[]
+  supplierAddresses SupplierAddress[]
+  supplierLedgers   SupplierLedger[]
   categories        Category[]
   subCategories     SubCategory[]
   brands            Brand[]
@@ -160,7 +210,12 @@ model Business {
   bills             Bill[]
   billItems         BillItem[]
   invoices          Invoice[]
+  billingDocuments  BillingDocument[]
+  billingDocumentItems BillingDocumentItem[]
   payments          Payment[]
+  cashRegisters     CashRegister[]
+  cashShifts        CashShift[]
+  posTerminals      PosTerminal[]
   expenses          Expense[]
   expenseCategories ExpenseCategory[]
   taxes             Tax[]
@@ -204,7 +259,9 @@ model Branch {
   users              User[]
   employees          Employee[]
   customers          Customer[]
+  customerLedgers    CustomerLedger[]
   suppliers          Supplier[]
+  supplierLedgers    SupplierLedger[]
   products           Product[]
   productVariants    ProductVariant[]
   warehouses         Warehouse[]
@@ -214,6 +271,10 @@ model Branch {
   salesOrders        SalesOrder[]
   bills              Bill[]
   invoices           Invoice[]
+  billingDocuments   BillingDocument[]
+  cashRegisters      CashRegister[]
+  cashShifts         CashShift[]
+  posTerminals       PosTerminal[]
   payments           Payment[]
   expenses           Expense[]
   priceLists         PriceList[]
@@ -373,14 +434,43 @@ model CustomerGroup {
   @@map("customer_groups")
 }
 
+model CustomerType {
+  id         String   @id @default(uuid())
+  businessId String
+  name       String
+  description String?
+  createdBy  String?
+  updatedBy  String?
+  deletedBy  String?
+  deletedAt  DateTime?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  business  Business   @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  customers Customer[]
+
+  @@unique([businessId, name])
+  @@index([businessId, deletedAt])
+  @@map("customer_types")
+}
+
 model Customer {
   id              String   @id @default(uuid())
   businessId      String
   branchId        String?
   customerGroupId String?
+  customerTypeId  String?
   name            String
   phone           String?
   email           String?
+  gstNumber       String?
+  panNumber       String?
+  tinNumber       String?
+  creditLimit     Float    @default(0)
+  outstandingBalance Float @default(0)
+  notes           String?
+  tags            Json?
+  isActive        Boolean  @default(true)
   createdBy       String?
   updatedBy       String?
   deletedBy       String?
@@ -391,10 +481,17 @@ model Customer {
   business      Business       @relation(fields: [businessId], references: [id], onDelete: Cascade)
   branch        Branch?        @relation(fields: [branchId], references: [id], onDelete: SetNull)
   customerGroup CustomerGroup? @relation(fields: [customerGroupId], references: [id], onDelete: SetNull)
+  customerType  CustomerType?  @relation(fields: [customerTypeId], references: [id], onDelete: SetNull)
+  contacts      CustomerContact[]
+  addresses     CustomerAddress[]
+  ledgers       CustomerLedger[]
+  billingDocuments BillingDocument[]
   bills         Bill[]
   salesOrders   SalesOrder[]
 
   @@unique([businessId, phone])
+  @@index([businessId, email])
+  @@index([businessId, name, deletedAt])
   @@index([businessId, branchId, deletedAt])
   @@map("customers")
 }
@@ -418,14 +515,43 @@ model SupplierGroup {
   @@map("supplier_groups")
 }
 
+model SupplierType {
+  id         String   @id @default(uuid())
+  businessId String
+  name       String
+  description String?
+  createdBy  String?
+  updatedBy  String?
+  deletedBy  String?
+  deletedAt  DateTime?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  business  Business   @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  suppliers Supplier[]
+
+  @@unique([businessId, name])
+  @@index([businessId, deletedAt])
+  @@map("supplier_types")
+}
+
 model Supplier {
   id              String   @id @default(uuid())
   businessId      String
   branchId        String?
   supplierGroupId String?
+  supplierTypeId  String?
   name            String
   phone           String?
   email           String?
+  gstNumber       String?
+  panNumber       String?
+  tinNumber       String?
+  creditLimit     Float    @default(0)
+  outstandingBalance Float @default(0)
+  notes           String?
+  tags            Json?
+  isActive        Boolean  @default(true)
   createdBy       String?
   updatedBy       String?
   deletedBy       String?
@@ -436,11 +562,172 @@ model Supplier {
   business      Business       @relation(fields: [businessId], references: [id], onDelete: Cascade)
   branch        Branch?        @relation(fields: [branchId], references: [id], onDelete: SetNull)
   supplierGroup SupplierGroup? @relation(fields: [supplierGroupId], references: [id], onDelete: SetNull)
+  supplierType  SupplierType?  @relation(fields: [supplierTypeId], references: [id], onDelete: SetNull)
+  contacts      SupplierContact[]
+  addresses     SupplierAddress[]
+  ledgers       SupplierLedger[]
+  billingDocuments BillingDocument[]
   purchaseOrders PurchaseOrder[]
 
   @@unique([businessId, phone])
+  @@index([businessId, email])
+  @@index([businessId, name, deletedAt])
   @@index([businessId, branchId, deletedAt])
   @@map("suppliers")
+}
+
+model CustomerContact {
+  id         String   @id @default(uuid())
+  businessId String
+  customerId String
+  name       String
+  designation String?
+  phone      String?
+  email      String?
+  isPrimary  Boolean  @default(false)
+  createdBy  String?
+  updatedBy  String?
+  deletedBy  String?
+  deletedAt  DateTime?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  business Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  customer Customer @relation(fields: [customerId], references: [id], onDelete: Cascade)
+
+  @@index([businessId, customerId, deletedAt])
+  @@map("customer_contacts")
+}
+
+model SupplierContact {
+  id         String   @id @default(uuid())
+  businessId String
+  supplierId String
+  name       String
+  designation String?
+  phone      String?
+  email      String?
+  isPrimary  Boolean  @default(false)
+  createdBy  String?
+  updatedBy  String?
+  deletedBy  String?
+  deletedAt  DateTime?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  business Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  supplier Supplier @relation(fields: [supplierId], references: [id], onDelete: Cascade)
+
+  @@index([businessId, supplierId, deletedAt])
+  @@map("supplier_contacts")
+}
+
+model CustomerAddress {
+  id         String   @id @default(uuid())
+  businessId String
+  customerId String
+  label      String?
+  address1   String
+  address2   String?
+  city       String?
+  state      String?
+  country    String?
+  postalCode String?
+  isPrimary  Boolean  @default(false)
+  createdBy  String?
+  updatedBy  String?
+  deletedBy  String?
+  deletedAt  DateTime?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  business Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  customer Customer @relation(fields: [customerId], references: [id], onDelete: Cascade)
+
+  @@index([businessId, customerId, deletedAt])
+  @@map("customer_addresses")
+}
+
+model SupplierAddress {
+  id         String   @id @default(uuid())
+  businessId String
+  supplierId String
+  label      String?
+  address1   String
+  address2   String?
+  city       String?
+  state      String?
+  country    String?
+  postalCode String?
+  isPrimary  Boolean  @default(false)
+  createdBy  String?
+  updatedBy  String?
+  deletedBy  String?
+  deletedAt  DateTime?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  business Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  supplier Supplier @relation(fields: [supplierId], references: [id], onDelete: Cascade)
+
+  @@index([businessId, supplierId, deletedAt])
+  @@map("supplier_addresses")
+}
+
+model CustomerLedger {
+  id            String          @id @default(uuid())
+  businessId    String
+  branchId      String?
+  customerId    String
+  entryType     LedgerEntryType
+  amount        Float
+  balanceAfter  Float
+  referenceType String?
+  referenceId   String?
+  remarks       String?
+  metadata      Json?
+  createdBy     String?
+  updatedBy     String?
+  deletedBy     String?
+  deletedAt     DateTime?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  business Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  branch   Branch?  @relation(fields: [branchId], references: [id], onDelete: SetNull)
+  customer Customer @relation(fields: [customerId], references: [id], onDelete: Cascade)
+
+  @@index([businessId, customerId, createdAt])
+  @@index([businessId, branchId, createdAt])
+  @@map("customer_ledgers")
+}
+
+model SupplierLedger {
+  id            String          @id @default(uuid())
+  businessId    String
+  branchId      String?
+  supplierId    String
+  entryType     LedgerEntryType
+  amount        Float
+  balanceAfter  Float
+  referenceType String?
+  referenceId   String?
+  remarks       String?
+  metadata      Json?
+  createdBy     String?
+  updatedBy     String?
+  deletedBy     String?
+  deletedAt     DateTime?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  business Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  branch   Branch?  @relation(fields: [branchId], references: [id], onDelete: SetNull)
+  supplier Supplier @relation(fields: [supplierId], references: [id], onDelete: Cascade)
+
+  @@index([businessId, supplierId, createdAt])
+  @@index([businessId, branchId, createdAt])
+  @@map("supplier_ledgers")
 }
 
 model Category {
@@ -558,6 +845,7 @@ model Product {
   purchaseItems   PurchaseItem[]
   salesItems      SalesItem[]
   billItems       BillItem[]
+  billingDocumentItems BillingDocumentItem[]
   variants        ProductVariant[]
   inventories     Inventory[]
 
@@ -819,9 +1107,11 @@ model Payment {
   branchId   String?
   invoiceId  String?
   billId     String?
+  billingDocumentId String?
   method     PaymentMethod
   amount     Float
   reference  String?
+  paymentMeta Json?
   createdBy  String?
   updatedBy  String?
   deletedBy  String?
@@ -833,9 +1123,170 @@ model Payment {
   branch   Branch?  @relation(fields: [branchId], references: [id], onDelete: SetNull)
   invoice  Invoice? @relation(fields: [invoiceId], references: [id], onDelete: SetNull)
   bill     Bill?    @relation(fields: [billId], references: [id], onDelete: SetNull)
+  billingDocument BillingDocument? @relation(fields: [billingDocumentId], references: [id], onDelete: SetNull)
 
   @@index([businessId, branchId, method, createdAt])
   @@map("payments")
+}
+
+model BillingDocument {
+  id          String                @id @default(uuid())
+  businessId  String
+  branchId    String?
+  customerId  String?
+  supplierId  String?
+  shiftId     String?
+  terminalId  String?
+  type        BillingDocumentType
+  status      BillingDocumentStatus @default(DRAFT)
+  documentNo  String
+  subtotal    Float                 @default(0)
+  discount    Float                 @default(0)
+  taxTotal    Float                 @default(0)
+  cgstTotal   Float                 @default(0)
+  sgstTotal   Float                 @default(0)
+  igstTotal   Float                 @default(0)
+  roundOff    Float                 @default(0)
+  grandTotal  Float                 @default(0)
+  paidAmount  Float                 @default(0)
+  dueAmount   Float                 @default(0)
+  couponCode  String?
+  offerCode   String?
+  isInclusiveTax Boolean            @default(false)
+  isHold      Boolean               @default(false)
+  isVoided    Boolean               @default(false)
+  voidReason  String?
+  notes       String?
+  createdBy   String?
+  updatedBy   String?
+  deletedBy   String?
+  deletedAt   DateTime?
+  createdAt   DateTime              @default(now())
+  updatedAt   DateTime              @updatedAt
+
+  business  Business  @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  branch    Branch?   @relation(fields: [branchId], references: [id], onDelete: SetNull)
+  customer  Customer? @relation(fields: [customerId], references: [id], onDelete: SetNull)
+  supplier  Supplier? @relation(fields: [supplierId], references: [id], onDelete: SetNull)
+  shift     CashShift? @relation(fields: [shiftId], references: [id], onDelete: SetNull)
+  terminal  PosTerminal? @relation(fields: [terminalId], references: [id], onDelete: SetNull)
+  items     BillingDocumentItem[]
+  payments  Payment[]
+
+  @@unique([businessId, documentNo])
+  @@index([businessId, branchId, type, status, createdAt])
+  @@index([businessId, customerId, createdAt])
+  @@index([businessId, supplierId, createdAt])
+  @@map("billing_documents")
+}
+
+model BillingDocumentItem {
+  id                String   @id @default(uuid())
+  businessId        String
+  billingDocumentId String
+  productId         String?
+  description       String
+  quantity          Float
+  unitPrice         Float
+  discount          Float    @default(0)
+  taxPercent        Float    @default(0)
+  taxAmount         Float    @default(0)
+  lineTotal         Float
+  stockImpactQty    Float    @default(0)
+  createdBy         String?
+  updatedBy         String?
+  deletedBy         String?
+  deletedAt         DateTime?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  business        Business        @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  billingDocument BillingDocument @relation(fields: [billingDocumentId], references: [id], onDelete: Cascade)
+  product         Product?        @relation(fields: [productId], references: [id], onDelete: SetNull)
+
+  @@index([businessId, billingDocumentId, deletedAt])
+  @@index([businessId, productId, createdAt])
+  @@map("billing_document_items")
+}
+
+model CashRegister {
+  id         String   @id @default(uuid())
+  businessId String
+  branchId   String?
+  name       String
+  code       String
+  isActive   Boolean  @default(true)
+  createdBy  String?
+  updatedBy  String?
+  deletedBy  String?
+  deletedAt  DateTime?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  business Business   @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  branch   Branch?    @relation(fields: [branchId], references: [id], onDelete: SetNull)
+  shifts   CashShift[]
+
+  @@unique([businessId, code])
+  @@index([businessId, branchId, isActive, deletedAt])
+  @@map("cash_registers")
+}
+
+model CashShift {
+  id             String      @id @default(uuid())
+  businessId     String
+  branchId       String?
+  registerId     String
+  openingUserId  String
+  closingUserId  String?
+  openingBalance Float
+  closingBalance Float?
+  openedAt       DateTime    @default(now())
+  closedAt       DateTime?
+  status         ShiftStatus @default(OPEN)
+  remarks        String?
+  createdBy      String?
+  updatedBy      String?
+  deletedBy      String?
+  deletedAt      DateTime?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  business        Business          @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  branch          Branch?           @relation(fields: [branchId], references: [id], onDelete: SetNull)
+  register        CashRegister      @relation(fields: [registerId], references: [id], onDelete: Restrict)
+  billingDocuments BillingDocument[]
+  terminals       PosTerminal[]
+
+  @@index([businessId, branchId, status, openedAt])
+  @@index([businessId, registerId, openedAt])
+  @@map("cash_shifts")
+}
+
+model PosTerminal {
+  id          String   @id @default(uuid())
+  businessId  String
+  branchId    String?
+  shiftId     String?
+  name        String
+  code        String
+  deviceId    String?
+  isActive    Boolean  @default(true)
+  createdBy   String?
+  updatedBy   String?
+  deletedBy   String?
+  deletedAt   DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  business Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  branch   Branch?  @relation(fields: [branchId], references: [id], onDelete: SetNull)
+  shift    CashShift? @relation(fields: [shiftId], references: [id], onDelete: SetNull)
+  billingDocuments BillingDocument[]
+
+  @@unique([businessId, code])
+  @@index([businessId, branchId, shiftId, isActive, deletedAt])
+  @@map("pos_terminals")
 }
 
 model ExpenseCategory {

@@ -4,8 +4,8 @@ import { api } from '../api/client';
 import { useAuthStore } from '../store/authStore';
 
 export default function Login() {
-  const [email, setEmail] = useState('owner@demobistro.test');
-  const [password, setPassword] = useState('Password@123');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const setSession = useAuthStore((s) => s.setSession);
@@ -59,11 +59,6 @@ export default function Login() {
         >
           {loading ? 'Signing in…' : 'Sign in'}
         </button>
-
-        <p className="text-xs text-slate-400 mt-4">
-          Demo accounts (after seeding): owner@demobistro.test, manager@demobistro.test, cashier@demobistro.test,
-          kitchen@demobistro.test, waiter@demobistro.test — password Password@123
-        </p>
       </form>
     </div>
   );
