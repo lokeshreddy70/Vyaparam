@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: smartbiz-postgres
+  namespace: smartbiz
+spec:
+  serviceName: smartbiz-postgres
+  replicas: 1
+  selector:
+    matchLabels:
+      app: smartbiz-postgres
+  template:
+    metadata:
+      labels:
+        app: smartbiz-postgres
+    spec:
+      containers:
+        - name: postgres
+          image: postgres:16-alpine
+          ports:
+            - containerPort: 5432
+          env:
+            - name: POSTGRES_DB
+              value: vyaparam_db
+            - name: POSTGRES_USER
+              value: vyaparam
+            - name: POSTGRES_PASSWORD
+              value: change_me
+          volumeMounts:
+            - name: pgdata
+              mountPath: /var/lib/postgresql/data
+          resources:
+            requests:
+              cpu: 100m
+              memory: 256Mi
+            limits:
+              cpu: 500m
+              memory: 1Gi
+  volumeClaimTemplates:
+    - metadata:
+        name: pgdata
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: 20Gi

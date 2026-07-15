@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: smartbiz-redis
+  namespace: smartbiz
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: smartbiz-redis
+  template:
+    metadata:
+      labels:
+        app: smartbiz-redis
+    spec:
+      containers:
+        - name: redis
+          image: redis:7-alpine
+          args: ["--appendonly", "yes"]
+          ports:
+            - containerPort: 6379
+          resources:
+            requests:
+              cpu: 50m
+              memory: 64Mi
+            limits:
+              cpu: 300m
+              memory: 256Mi

@@ -1,22 +1,18 @@
-import { create } from 'zustand';
-import { persist } from 'zustand/middleware';
+import { create } from "zustand";
+import { persist } from "zustand/middleware";
+import type { AuthUser } from "../types/app";
 
-export interface AuthUser {
-  id: string;
-  name: string;
-  email: string;
-  role: 'SUPER_ADMIN' | 'OWNER' | 'MANAGER' | 'CASHIER' | 'KITCHEN_STAFF' | 'WAITER';
-  businessId: string;
-}
-
-interface AuthState {
+type AuthState = {
   user: AuthUser | null;
   accessToken: string | null;
   refreshToken: string | null;
+  permissions: string[];
   setSession: (user: AuthUser, accessToken: string, refreshToken: string) => void;
   setTokens: (accessToken: string, refreshToken: string) => void;
+  setUser: (user: AuthUser) => void;
+  setPermissions: (permissions: string[]) => void;
   logout: () => void;
-}
+};
 
 export const useAuthStore = create<AuthState>()(
   persist(
@@ -24,10 +20,15 @@ export const useAuthStore = create<AuthState>()(
       user: null,
       accessToken: null,
       refreshToken: null,
-      setSession: (user, accessToken, refreshToken) => set({ user, accessToken, refreshToken }),
+      permissions: [],
+      setSession: (user, accessToken, refreshToken) =>
+        set({ user, accessToken, refreshToken }),
       setTokens: (accessToken, refreshToken) => set({ accessToken, refreshToken }),
-      logout: () => set({ user: null, accessToken: null, refreshToken: null }),
+      setUser: (user) => set({ user }),
+      setPermissions: (permissions) => set({ permissions }),
+      logout: () =>
+        set({ user: null, accessToken: null, refreshToken: null, permissions: [] }),
     }),
-    { name: 'vyaparam-auth' },
+    { name: "vyaparam-admin-auth" },
   ),
 );

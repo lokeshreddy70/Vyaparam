@@ -1,0 +1,45 @@
+namespace: smartbiz
+
+images:
+  backend: ghcr.io/smartbiz/backend:latest
+  frontend: ghcr.io/smartbiz/frontend:latest
+
+backend:
+  replicas: 2
+  servicePort: 3000
+  resources:
+    requests:
+      cpu: 200m
+      memory: 256Mi
+    limits:
+      cpu: 1000m
+      memory: 1Gi
+
+frontend:
+  replicas: 2
+  servicePort: 80
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 500m
+      memory: 512Mi
+
+ingress:
+  enabled: true
+  host: smartbiz.example.com
+  tlsSecret: smartbiz-tls
+
+env:
+  NODE_ENV: production
+  PORT: "3000"
+  CORS_ALLOWED_ORIGINS: "*"
+  REQUEST_SIZE_LIMIT: "1mb"
+  SLOW_QUERY_THRESHOLD_MS: "500"
+  DATABASE_URL: postgresql://vyaparam:change_me@smartbiz-postgres:5432/vyaparam_db?schema=public
+  REDIS_URL: redis://smartbiz-redis:6379
+
+secrets:
+  JWT_ACCESS_SECRET: replace-me-access
+  JWT_REFRESH_SECRET: replace-me-refresh

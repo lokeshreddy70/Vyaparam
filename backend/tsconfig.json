@@ -10,7 +10,6 @@
     "sourceMap": true,
     "rootDir": "./src",
     "outDir": "./dist",
-    "baseUrl": "./",
     "incremental": true,
     "skipLibCheck": true,
     "strictNullChecks": true,
@@ -19,7 +18,6 @@
     "forceConsistentCasingInFileNames": true,
     "esModuleInterop": true,
     "resolveJsonModule": true,
-    "moduleResolution": "node",
     "lib": ["ES2021", "DOM"]
   },
   "exclude": ["node_modules", "dist", "prisma"]

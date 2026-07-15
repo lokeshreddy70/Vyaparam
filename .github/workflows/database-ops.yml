@@ -1,0 +1,35 @@
+name: Database Operations
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 2 * * *"
+
+jobs:
+  migrate-and-backup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install backend dependencies
+        run: npm --prefix backend ci
+
+      - name: Prisma migrate deploy
+        run: bash database/scripts/migrate.sh
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+
+      - name: Backup database
+        run: bash database/scripts/backup.sh
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          BACKUP_DIR: ./database/backups
+
+      - name: Validate restore logic (optional test DB)
+        run: bash database/scripts/validate-restore.sh
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}

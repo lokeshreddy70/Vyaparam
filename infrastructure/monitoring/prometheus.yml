@@ -1,0 +1,10 @@
+global:
+  scrape_interval: 15s
+
+scrape_configs:
+  - job_name: "smartbiz-backend"
+    metrics_path: /api/v1/monitoring/metrics
+    static_configs:
+      - targets: ["backend:3000"]
+        labels:
+          service: smartbiz-backend

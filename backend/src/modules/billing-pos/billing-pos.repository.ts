@@ -22,11 +22,14 @@ export class BillingPosRepository {
     tx: Prisma.TransactionClient,
     businessId: string,
     type: BillingDocumentType,
+    config?: { prefix?: string; series?: string; financialYear?: string },
   ) {
     const count = await tx.billingDocument.count({ where: { businessId, type } });
-    const yyyy = new Date().getFullYear();
-    const prefix = type.replace(/_/g, "").slice(0, 6);
-    return `${prefix}-${yyyy}-${String(count + 1).padStart(6, "0")}`;
+    const yyyy = new Date().getFullYear().toString();
+    const prefix = (config?.prefix || type.replace(/_/g, "").slice(0, 6)).toUpperCase();
+    const series = (config?.series || "A").toUpperCase();
+    const fy = config?.financialYear || yyyy;
+    return `${prefix}-${series}-${fy}-${String(count + 1).padStart(6, "0")}`;
   }
 
   findDocument(businessId: string, id: string) {

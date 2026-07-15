@@ -3,5 +3,33 @@
 @tailwind utilities;
 
 body {
-  @apply bg-slate-50 text-slate-900;
+  @apply bg-slate-50 text-slate-900 antialiased;
+  font-family: "IBM Plex Sans", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.bg-app-grid {
+  background-image:
+    radial-gradient(circle at 15% 20%, rgba(14, 116, 144, 0.08), transparent 35%),
+    radial-gradient(circle at 85% 10%, rgba(56, 189, 248, 0.08), transparent 30%),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.95), rgba(248, 250, 252, 0.96));
+}
+
+.kpi-card {
+  @apply rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-800 dark:bg-slate-950;
+}
+
+@keyframes loading {
+  0% {
+    transform: translateX(-120%);
+  }
+  50% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(220%);
+  }
 }

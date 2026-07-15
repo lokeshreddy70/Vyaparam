@@ -9,16 +9,23 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@hookform/resolvers": "^3.9.0",
+    "@tanstack/react-query": "^5.56.2",
+    "@tanstack/react-table": "^8.21.3",
+    "@tanstack/react-virtual": "^3.14.6",
     "axios": "^1.7.7",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "lucide-react": "^1.24.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-hook-form": "^7.53.0",
     "react-router-dom": "^6.26.2",
+    "recharts": "^3.9.2",
     "socket.io-client": "^4.7.5",
+    "tailwind-merge": "^3.6.0",
     "zod": "^3.23.8",
-    "zustand": "^4.5.5",
-    "@hookform/resolvers": "^3.9.0",
-    "@tanstack/react-query": "^5.56.2"
+    "zustand": "^4.5.5"
   },
   "devDependencies": {
     "@types/react": "^18.3.5",

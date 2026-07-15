@@ -1,4 +1,22 @@
 {
   "private": true,
-  "workspaces": ["backend"]
+  "workspaces": ["backend"],
+  "scripts": {
+    "install:all": "npm install --prefix backend && npm install --prefix frontend",
+    "prisma:generate": "npm run prisma:generate --prefix backend",
+    "prisma:migrate:status": "cd backend && npx prisma migrate status --schema prisma/schema.prisma",
+    "prisma:migrate:deploy": "bash database/scripts/migrate.sh",
+    "db:backup": "bash database/scripts/backup.sh",
+    "db:restore": "bash database/scripts/restore.sh",
+    "db:restore:validate": "bash database/scripts/validate-restore.sh",
+    "build": "npm run build --prefix backend && npm run build --prefix frontend",
+    "start:dev": "npm run start:dev --prefix backend",
+    "compose:dev": "docker compose -f docker-compose.dev.yml up --build",
+    "compose:prod": "docker compose -f docker-compose.prod.yml up -d",
+    "compose:monitoring": "docker compose -f docker-compose.monitoring.yml up -d",
+    "env:validate": "node scripts/ops/validate-env.mjs",
+    "audit:security": "bash scripts/ops/security-audit.sh",
+    "load:test": "bash scripts/ops/load-test.sh",
+    "stress:test": "node tests/performance/enterprise-stress.mjs"
+  }
 }

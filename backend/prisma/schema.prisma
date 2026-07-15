@@ -156,10 +156,177 @@ enum NotificationType {
   SUCCESS
 }
 
+enum NotificationChannel {
+  IN_APP
+  PUSH
+  EMAIL
+  SMS
+  WHATSAPP
+}
+
+enum NotificationPriority {
+  LOW
+  MEDIUM
+  HIGH
+  CRITICAL
+}
+
+enum NotificationDeliveryStatus {
+  QUEUED
+  PROCESSING
+  SENT
+  FAILED
+  RETRY
+  CANCELLED
+}
+
+enum NotificationEventType {
+  ANNOUNCEMENT
+  BROADCAST
+  REMINDER
+  TASK
+  ATTENDANCE
+  PAYROLL
+  INVENTORY
+  LOW_STOCK
+  OUT_OF_STOCK
+  SALES
+  PURCHASE
+  SUBSCRIPTION
+  INVOICE
+  SYSTEM
+  SECURITY
+  FAILED_LOGIN
+  PASSWORD_RESET
+  EMAIL_VERIFICATION
+}
+
+enum OtpPurpose {
+  PASSWORD_RESET
+  EMAIL_VERIFICATION
+  LOGIN_2FA
+}
+
+enum FileCategory {
+  COMPANY_LOGO
+  PRODUCT_IMAGE
+  EMPLOYEE_PHOTO
+  CUSTOMER_DOCUMENT
+  SUPPLIER_DOCUMENT
+  INVOICE_PDF
+  QUOTATION_PDF
+  PURCHASE_PDF
+  RECEIPT_PDF
+  BARCODE
+  QR_CODE
+  ATTACHMENT
+  OTHER
+}
+
+enum StorageProvider {
+  LOCAL
+  S3
+  R2
+  AZURE_BLOB
+  GCS
+}
+
+enum FileStatus {
+  ACTIVE
+  ARCHIVED
+  DELETED
+}
+
+enum FileVisibility {
+  PRIVATE
+  BUSINESS
+  PUBLIC
+}
+
+enum BackgroundJobType {
+  CLEANUP
+  BACKUP
+  NOTIFICATION
+  AUDIT_ROLLUP
+  CUSTOM
+}
+
+enum BackgroundJobStatus {
+  QUEUED
+  RUNNING
+  SUCCESS
+  FAILED
+  RETRY
+  CANCELLED
+}
+
+enum BackgroundJobPriority {
+  LOW
+  MEDIUM
+  HIGH
+  CRITICAL
+}
+
+enum BusinessConfigAssetType {
+  LOGO
+  DOCUMENT
+  IMAGE
+  INVOICE_TEMPLATE
+  RECEIPT_TEMPLATE
+}
+
 enum LedgerEntryType {
   DEBIT
   CREDIT
   ADJUSTMENT
+}
+
+enum EmploymentType {
+  FULL_TIME
+  PART_TIME
+  CONTRACT
+  INTERN
+  TEMPORARY
+}
+
+enum EmployeeLifecycleStatus {
+  ACTIVE
+  RESIGNED
+  TERMINATED
+}
+
+enum AttendanceStatus {
+  PRESENT
+  ABSENT
+  HALF_DAY
+  ON_LEAVE
+}
+
+enum LeaveRequestStatus {
+  PENDING
+  APPROVED
+  REJECTED
+  CANCELLED
+}
+
+enum PayrollRunStatus {
+  DRAFT
+  PROCESSED
+  PAID
+}
+
+enum HrNotificationType {
+  SHIFT_REMINDER
+  ATTENDANCE_REMINDER
+  LEAVE_NOTIFICATION
+  PAYROLL_NOTIFICATION
+}
+
+enum HrDocumentType {
+  PHOTO
+  IDENTITY
+  CONTRACT
+  OTHER
 }
 
 model Business {
@@ -228,7 +395,26 @@ model Business {
   kitchenOrders     KitchenOrder[]
   orders            Order[]
   notifications     Notification[]
+  notificationTemplates    NotificationTemplate[]
+  notificationPreferences  NotificationPreference[]
+  notificationQueueItems   NotificationQueue[]
+  notificationDeliveries   NotificationDelivery[]
+  notificationAuditLogs    NotificationAuditLog[]
+  announcements            Announcement[]
+  reminders                Reminder[]
+  otpRequests              OtpRequest[]
+  fileObjects              FileObject[]
+  fileVersions             FileVersion[]
+  fileAttachments          FileAttachment[]
+  fileSignedUrls           FileSignedUrl[]
+  fileAuditLogs            FileAuditLog[]
+  apiRequestLogs           ApiRequestLog[]
+  apiErrorLogs             ApiErrorLog[]
+  backgroundJobs           BackgroundJob[]
+  backgroundJobRuns        BackgroundJobRun[]
   settings          Setting[]
+  businessConfiguration BusinessConfiguration?
+  businessConfigAssets  BusinessConfigAsset[]
   subscriptionPlans SubscriptionPlan[]
   subscriptions     Subscription[]
   featureFlags      FeatureFlag[]
@@ -237,6 +423,29 @@ model Business {
   auditLogs         AuditLog[]
   activityLogs      ActivityLog[]
   errorLogs         ErrorLog[]
+  departments             Department[]
+  designations            Designation[]
+  employeeEmergencyContacts EmployeeEmergencyContact[]
+  employeeDocuments       EmployeeDocument[]
+  attendanceShifts        AttendanceShift[]
+  attendanceRecords       AttendanceRecord[]
+  attendanceBreaks        AttendanceBreak[]
+  attendanceCorrections   AttendanceCorrection[]
+  leaveTypes              LeaveType[]
+  leaveBalances           LeaveBalance[]
+  leaveRequests           LeaveRequest[]
+  holidayCalendars        HolidayCalendar[]
+  weeklyOffConfigurations WeeklyOffConfiguration[]
+  salaryComponents        SalaryComponent[]
+  employeeSalaryComponents EmployeeSalaryComponent[]
+  payrollRuns             PayrollRun[]
+  payrollItems            PayrollItem[]
+  roleTemplates           RoleTemplate[]
+  customRoles             CustomRole[]
+  customRolePermissions   CustomRolePermission[]
+  employeeRoleAssignments EmployeeRoleAssignment[]
+  employeeKpis            EmployeeKpi[]
+  hrNotifications         HrNotification[]
 
   @@index([deletedAt])
   @@map("businesses")
@@ -285,12 +494,37 @@ model Branch {
   orders             Order[]
   kitchenOrders      KitchenOrder[]
   notifications      Notification[]
+  notificationPreferences  NotificationPreference[]
+  notificationQueueItems   NotificationQueue[]
+  announcements            Announcement[]
+  reminders                Reminder[]
+  fileObjects              FileObject[]
+  fileAttachments          FileAttachment[]
+  apiRequestLogs           ApiRequestLog[]
+  apiErrorLogs             ApiErrorLog[]
+  backgroundJobs           BackgroundJob[]
   settings           Setting[]
   refreshTokens      RefreshToken[]
   sessions           Session[]
   auditLogs          AuditLog[]
   activityLogs       ActivityLog[]
   errorLogs          ErrorLog[]
+  departments             Department[]
+  designations            Designation[]
+  attendanceShifts        AttendanceShift[]
+  attendanceRecords       AttendanceRecord[]
+  attendanceBreaks        AttendanceBreak[]
+  attendanceCorrections   AttendanceCorrection[]
+  leaveBalances           LeaveBalance[]
+  leaveRequests           LeaveRequest[]
+  holidayCalendars        HolidayCalendar[]
+  weeklyOffConfigurations WeeklyOffConfiguration[]
+  employeeSalaryComponents EmployeeSalaryComponent[]
+  payrollRuns             PayrollRun[]
+  payrollItems            PayrollItem[]
+  employeeRoleAssignments EmployeeRoleAssignment[]
+  employeeKpis            EmployeeKpi[]
+  hrNotifications         HrNotification[]
 
   @@unique([businessId, name])
   @@index([businessId, deletedAt])
@@ -326,6 +560,8 @@ model User {
   auditLogs        AuditLog[]
   activityLogs     ActivityLog[]
   errorLogs        ErrorLog[]
+  apiRequestLogs   ApiRequestLog[]
+  apiErrorLogs     ApiErrorLog[]
 
   @@index([businessId, branchId, deletedAt])
   @@map("users")
@@ -338,6 +574,15 @@ model Employee {
   userId     String   @unique
   employeeNo String
   designation String?
+  departmentId String?
+  designationId String?
+  managerEmployeeId String?
+  employmentType EmploymentType?
+  salaryBase Float? @default(0)
+  joiningDate DateTime?
+  resignationDate DateTime?
+  terminationDate DateTime?
+  lifecycleStatus EmployeeLifecycleStatus @default(ACTIVE)
   createdBy  String?
   updatedBy  String?
   deletedBy  String?
@@ -348,10 +593,625 @@ model Employee {
   business Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
   branch   Branch?  @relation(fields: [branchId], references: [id], onDelete: SetNull)
   user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  department Department? @relation(fields: [departmentId], references: [id], onDelete: SetNull)
+  designationRef Designation? @relation(fields: [designationId], references: [id], onDelete: SetNull)
+  manager Employee? @relation("EmployeeManager", fields: [managerEmployeeId], references: [id], onDelete: SetNull)
+  subordinates Employee[] @relation("EmployeeManager")
+  emergencyContacts EmployeeEmergencyContact[]
+  documents EmployeeDocument[]
+  attendanceRecords AttendanceRecord[]
+  attendanceBreaks AttendanceBreak[]
+  attendanceCorrections AttendanceCorrection[]
+  leaveBalances LeaveBalance[]
+  leaveRequests LeaveRequest[]
+  employeeSalaryComponents EmployeeSalaryComponent[]
+  payrollItems PayrollItem[]
+  roleAssignments EmployeeRoleAssignment[]
+  kpis EmployeeKpi[]
+  sentHrNotifications HrNotification[] @relation("HrNotificationSender")
+  receivedHrNotifications HrNotification[] @relation("HrNotificationReceiver")
 
   @@unique([businessId, employeeNo])
   @@index([businessId, branchId, deletedAt])
+  @@index([businessId, departmentId, designationId, lifecycleStatus, deletedAt])
   @@map("employees")
+}
+
+model Department {
+  id         String   @id @default(uuid())
+  businessId String
+  branchId   String?
+  name       String
+  code       String
+  createdBy  String?
+  updatedBy  String?
+  deletedBy  String?
+  deletedAt  DateTime?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  business Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  branch   Branch?  @relation(fields: [branchId], references: [id], onDelete: SetNull)
+  employees Employee[]
+  designations Designation[]
+  employeeRoleAssignments EmployeeRoleAssignment[]
+
+  @@unique([businessId, code])
+  @@unique([businessId, branchId, name])
+  @@index([businessId, branchId, deletedAt])
+  @@map("departments")
+}
+
+model Designation {
+  id           String   @id @default(uuid())
+  businessId   String
+  branchId     String?
+  departmentId String?
+  name         String
+  code         String
+  createdBy    String?
+  updatedBy    String?
+  deletedBy    String?
+  deletedAt    DateTime?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  business   Business    @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  branch     Branch?     @relation(fields: [branchId], references: [id], onDelete: SetNull)
+  department Department? @relation(fields: [departmentId], references: [id], onDelete: SetNull)
+  employees  Employee[]
+
+  @@unique([businessId, code])
+  @@unique([businessId, branchId, name])
+  @@index([businessId, branchId, departmentId, deletedAt])
+  @@map("designations")
+}
+
+model EmployeeEmergencyContact {
+  id          String   @id @default(uuid())
+  businessId  String
+  employeeId  String
+  name        String
+  relationship String?
+  phone       String
+  email       String?
+  address     String?
+  isPrimary   Boolean  @default(false)
+  createdBy   String?
+  updatedBy   String?
+  deletedBy   String?
+  deletedAt   DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  business Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  employee Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+
+  @@index([businessId, employeeId, deletedAt])
+  @@map("employee_emergency_contacts")
+}
+
+model EmployeeDocument {
+  id          String         @id @default(uuid())
+  businessId  String
+  employeeId  String
+  type        HrDocumentType
+  title       String
+  fileName    String
+  mimeType    String
+  extension   String?
+  sizeBytes   Int
+  storagePath String
+  metadata    Json?
+  createdBy   String?
+  updatedBy   String?
+  deletedBy   String?
+  deletedAt   DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  business Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  employee Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+
+  @@index([businessId, employeeId, type, deletedAt])
+  @@map("employee_documents")
+}
+
+model AttendanceShift {
+  id           String   @id @default(uuid())
+  businessId   String
+  branchId     String?
+  name         String
+  code         String
+  startTime    String
+  endTime      String
+  breakMinutes Int      @default(0)
+  graceMinutes Int      @default(0)
+  createdBy    String?
+  updatedBy    String?
+  deletedBy    String?
+  deletedAt    DateTime?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  business  Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  branch    Branch?  @relation(fields: [branchId], references: [id], onDelete: SetNull)
+  attendanceRecords AttendanceRecord[]
+
+  @@unique([businessId, code])
+  @@index([businessId, branchId, deletedAt])
+  @@map("attendance_shifts")
+}
+
+model AttendanceRecord {
+  id                String   @id @default(uuid())
+  businessId        String
+  branchId          String?
+  employeeId        String
+  shiftId           String?
+  attendanceDate    DateTime
+  clockInAt         DateTime?
+  clockOutAt        DateTime?
+  breakMinutes      Int      @default(0)
+  workingMinutes    Int      @default(0)
+  overtimeMinutes   Int      @default(0)
+  lateByMinutes     Int      @default(0)
+  earlyExitMinutes  Int      @default(0)
+  geoMeta           Json?
+  status            AttendanceStatus @default(PRESENT)
+  correctionStatus  String?
+  createdBy         String?
+  updatedBy         String?
+  deletedBy         String?
+  deletedAt         DateTime?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  business  Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  branch    Branch?  @relation(fields: [branchId], references: [id], onDelete: SetNull)
+  employee  Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+  shift     AttendanceShift? @relation(fields: [shiftId], references: [id], onDelete: SetNull)
+  breaks    AttendanceBreak[]
+  corrections AttendanceCorrection[]
+
+  @@unique([businessId, employeeId, attendanceDate])
+  @@index([businessId, branchId, attendanceDate, deletedAt])
+  @@index([businessId, employeeId, attendanceDate, deletedAt])
+  @@map("attendance_records")
+}
+
+model AttendanceBreak {
+  id                 String   @id @default(uuid())
+  businessId         String
+  branchId           String?
+  employeeId         String
+  attendanceRecordId String
+  breakStartAt       DateTime
+  breakEndAt         DateTime?
+  durationMinutes    Int      @default(0)
+  createdBy          String?
+  updatedBy          String?
+  deletedBy          String?
+  deletedAt          DateTime?
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+
+  business Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  branch   Branch?  @relation(fields: [branchId], references: [id], onDelete: SetNull)
+  employee Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+  attendanceRecord AttendanceRecord @relation(fields: [attendanceRecordId], references: [id], onDelete: Cascade)
+
+  @@index([businessId, employeeId, breakStartAt, deletedAt])
+  @@index([businessId, attendanceRecordId, deletedAt])
+  @@map("attendance_breaks")
+}
+
+model AttendanceCorrection {
+  id                 String   @id @default(uuid())
+  businessId         String
+  branchId           String?
+  employeeId         String
+  attendanceRecordId String
+  requestedById      String?
+  approvedById       String?
+  reason             String
+  requestPayload     Json?
+  status             String   @default("PENDING")
+  reviewedAt         DateTime?
+  createdBy          String?
+  updatedBy          String?
+  deletedBy          String?
+  deletedAt          DateTime?
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+
+  business Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  branch   Branch?  @relation(fields: [branchId], references: [id], onDelete: SetNull)
+  employee Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+  attendanceRecord AttendanceRecord @relation(fields: [attendanceRecordId], references: [id], onDelete: Cascade)
+
+  @@index([businessId, employeeId, status, createdAt])
+  @@index([businessId, attendanceRecordId, deletedAt])
+  @@map("attendance_corrections")
+}
+
+model LeaveType {
+  id            String   @id @default(uuid())
+  businessId    String
+  name          String
+  code          String
+  maxDaysPerYear Float   @default(0)
+  isPaid        Boolean  @default(true)
+  createdBy     String?
+  updatedBy     String?
+  deletedBy     String?
+  deletedAt     DateTime?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  business Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  leaveBalances LeaveBalance[]
+  leaveRequests LeaveRequest[]
+
+  @@unique([businessId, code])
+  @@index([businessId, deletedAt])
+  @@map("leave_types")
+}
+
+model LeaveBalance {
+  id             String   @id @default(uuid())
+  businessId     String
+  branchId       String?
+  employeeId     String
+  leaveTypeId    String
+  year           Int
+  allocatedDays  Float    @default(0)
+  usedDays       Float    @default(0)
+  carryForwardDays Float  @default(0)
+  createdBy      String?
+  updatedBy      String?
+  deletedBy      String?
+  deletedAt      DateTime?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  business  Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  branch    Branch?  @relation(fields: [branchId], references: [id], onDelete: SetNull)
+  employee  Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+  leaveType LeaveType @relation(fields: [leaveTypeId], references: [id], onDelete: Cascade)
+
+  @@unique([businessId, employeeId, leaveTypeId, year])
+  @@index([businessId, branchId, year, deletedAt])
+  @@map("leave_balances")
+}
+
+model LeaveRequest {
+  id            String   @id @default(uuid())
+  businessId    String
+  branchId      String?
+  employeeId    String
+  leaveTypeId   String
+  fromDate      DateTime
+  toDate        DateTime
+  totalDays     Float
+  reason        String?
+  status        LeaveRequestStatus @default(PENDING)
+  approvedById  String?
+  reviewedAt    DateTime?
+  rejectionReason String?
+  createdBy     String?
+  updatedBy     String?
+  deletedBy     String?
+  deletedAt     DateTime?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  business  Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  branch    Branch?  @relation(fields: [branchId], references: [id], onDelete: SetNull)
+  employee  Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+  leaveType LeaveType @relation(fields: [leaveTypeId], references: [id], onDelete: Cascade)
+
+  @@index([businessId, employeeId, status, createdAt])
+  @@index([businessId, branchId, fromDate, toDate, deletedAt])
+  @@map("leave_requests")
+}
+
+model HolidayCalendar {
+  id          String   @id @default(uuid())
+  businessId  String
+  branchId    String?
+  holidayDate DateTime
+  name        String
+  description String?
+  createdBy   String?
+  updatedBy   String?
+  deletedBy   String?
+  deletedAt   DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  business Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  branch   Branch?  @relation(fields: [branchId], references: [id], onDelete: SetNull)
+
+  @@unique([businessId, branchId, holidayDate, name])
+  @@index([businessId, branchId, holidayDate, deletedAt])
+  @@map("holiday_calendars")
+}
+
+model WeeklyOffConfiguration {
+  id         String   @id @default(uuid())
+  businessId String
+  branchId   String?
+  weekday    Int
+  isActive   Boolean  @default(true)
+  createdBy  String?
+  updatedBy  String?
+  deletedBy  String?
+  deletedAt  DateTime?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  business Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  branch   Branch?  @relation(fields: [branchId], references: [id], onDelete: SetNull)
+
+  @@unique([businessId, branchId, weekday])
+  @@index([businessId, branchId, deletedAt])
+  @@map("weekly_off_configurations")
+}
+
+model SalaryComponent {
+  id          String   @id @default(uuid())
+  businessId  String
+  name        String
+  code        String
+  type        String
+  amountType  String
+  defaultValue Float   @default(0)
+  isTaxable   Boolean  @default(false)
+  isActive    Boolean  @default(true)
+  createdBy   String?
+  updatedBy   String?
+  deletedBy   String?
+  deletedAt   DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  business Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  employeeSalaryComponents EmployeeSalaryComponent[]
+  payrollItems PayrollItem[]
+
+  @@unique([businessId, code])
+  @@index([businessId, type, isActive, deletedAt])
+  @@map("salary_components")
+}
+
+model EmployeeSalaryComponent {
+  id                String   @id @default(uuid())
+  businessId        String
+  branchId          String?
+  employeeId        String
+  salaryComponentId String
+  value             Float
+  effectiveFrom     DateTime
+  effectiveTo       DateTime?
+  createdBy         String?
+  updatedBy         String?
+  deletedBy         String?
+  deletedAt         DateTime?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  business Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  branch   Branch?  @relation(fields: [branchId], references: [id], onDelete: SetNull)
+  employee Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+  salaryComponent SalaryComponent @relation(fields: [salaryComponentId], references: [id], onDelete: Cascade)
+
+  @@index([businessId, employeeId, effectiveFrom, deletedAt])
+  @@index([businessId, salaryComponentId, deletedAt])
+  @@map("employee_salary_components")
+}
+
+model PayrollRun {
+  id          String   @id @default(uuid())
+  businessId  String
+  branchId    String?
+  periodYear  Int
+  periodMonth Int
+  status      PayrollRunStatus @default(DRAFT)
+  processedAt DateTime?
+  createdBy   String?
+  updatedBy   String?
+  deletedBy   String?
+  deletedAt   DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  business Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  branch   Branch?  @relation(fields: [branchId], references: [id], onDelete: SetNull)
+  payrollItems PayrollItem[]
+
+  @@unique([businessId, branchId, periodYear, periodMonth])
+  @@index([businessId, status, periodYear, periodMonth])
+  @@map("payroll_runs")
+}
+
+model PayrollItem {
+  id                String   @id @default(uuid())
+  businessId        String
+  branchId          String?
+  payrollRunId      String
+  employeeId        String
+  salaryComponentId String?
+  componentType     String
+  amount            Float
+  remarks           String?
+  createdBy         String?
+  updatedBy         String?
+  deletedBy         String?
+  deletedAt         DateTime?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  business Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  branch   Branch?  @relation(fields: [branchId], references: [id], onDelete: SetNull)
+  payrollRun PayrollRun @relation(fields: [payrollRunId], references: [id], onDelete: Cascade)
+  employee Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+  salaryComponent SalaryComponent? @relation(fields: [salaryComponentId], references: [id], onDelete: SetNull)
+
+  @@index([businessId, payrollRunId, employeeId, deletedAt])
+  @@index([businessId, salaryComponentId, deletedAt])
+  @@map("payroll_items")
+}
+
+model RoleTemplate {
+  id          String   @id @default(uuid())
+  businessId  String
+  name        String
+  code        String
+  description String?
+  permissions Json?
+  createdBy   String?
+  updatedBy   String?
+  deletedBy   String?
+  deletedAt   DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  business Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  customRoles CustomRole[]
+
+  @@unique([businessId, code])
+  @@index([businessId, deletedAt])
+  @@map("role_templates")
+}
+
+model CustomRole {
+  id             String   @id @default(uuid())
+  businessId     String
+  roleTemplateId String?
+  name           String
+  code           String
+  description    String?
+  createdBy      String?
+  updatedBy      String?
+  deletedBy      String?
+  deletedAt      DateTime?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  business Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  roleTemplate RoleTemplate? @relation(fields: [roleTemplateId], references: [id], onDelete: SetNull)
+  permissions CustomRolePermission[]
+  assignments EmployeeRoleAssignment[]
+
+  @@unique([businessId, code])
+  @@index([businessId, roleTemplateId, deletedAt])
+  @@map("custom_roles")
+}
+
+model CustomRolePermission {
+  id           String   @id @default(uuid())
+  businessId   String
+  customRoleId String
+  permission   String
+  scopeType    String?
+  scopeValue   String?
+  createdBy    String?
+  updatedBy    String?
+  deletedBy    String?
+  deletedAt    DateTime?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  business Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  customRole CustomRole @relation(fields: [customRoleId], references: [id], onDelete: Cascade)
+
+  @@index([businessId, customRoleId, deletedAt])
+  @@index([businessId, permission, scopeType, scopeValue])
+  @@map("custom_role_permissions")
+}
+
+model EmployeeRoleAssignment {
+  id           String   @id @default(uuid())
+  businessId   String
+  branchId     String?
+  departmentId String?
+  employeeId   String
+  customRoleId String
+  featurePermissions Json?
+  createdBy    String?
+  updatedBy    String?
+  deletedBy    String?
+  deletedAt    DateTime?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  business   Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  branch     Branch?  @relation(fields: [branchId], references: [id], onDelete: SetNull)
+  department Department? @relation(fields: [departmentId], references: [id], onDelete: SetNull)
+  employee   Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+  customRole CustomRole @relation(fields: [customRoleId], references: [id], onDelete: Cascade)
+
+  @@index([businessId, employeeId, deletedAt])
+  @@index([businessId, branchId, departmentId, deletedAt])
+  @@map("employee_role_assignments")
+}
+
+model EmployeeKpi {
+  id            String   @id @default(uuid())
+  businessId    String
+  branchId      String?
+  employeeId    String
+  periodStart   DateTime
+  periodEnd     DateTime
+  salesAmount   Float    @default(0)
+  attendanceScore Float  @default(0)
+  leaveScore    Float    @default(0)
+  totalScore    Float    @default(0)
+  metadata      Json?
+  createdBy     String?
+  updatedBy     String?
+  deletedBy     String?
+  deletedAt     DateTime?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  business Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  branch   Branch?  @relation(fields: [branchId], references: [id], onDelete: SetNull)
+  employee Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+
+  @@index([businessId, employeeId, periodStart, periodEnd])
+  @@index([businessId, branchId, periodStart, deletedAt])
+  @@map("employee_kpis")
+}
+
+model HrNotification {
+  id           String   @id @default(uuid())
+  businessId   String
+  branchId     String?
+  employeeId   String?
+  senderEmployeeId String?
+  type         HrNotificationType
+  title        String
+  message      String
+  payload      Json?
+  isRead       Boolean  @default(false)
+  readAt       DateTime?
+  createdBy    String?
+  updatedBy    String?
+  deletedBy    String?
+  deletedAt    DateTime?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  business Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  branch   Branch?  @relation(fields: [branchId], references: [id], onDelete: SetNull)
+  employee Employee? @relation("HrNotificationReceiver", fields: [employeeId], references: [id], onDelete: SetNull)
+  senderEmployee Employee? @relation("HrNotificationSender", fields: [senderEmployeeId], references: [id], onDelete: SetNull)
+
+  @@index([businessId, employeeId, isRead, createdAt])
+  @@index([businessId, branchId, type, createdAt])
+  @@map("hr_notifications")
 }
 
 model RoleEntity {
@@ -1598,8 +2458,19 @@ model Notification {
   branchId   String?
   userId     String?
   type       NotificationType @default(INFO)
+  channel    NotificationChannel @default(IN_APP)
+  eventType  NotificationEventType?
   title      String
   message    String
+  priority   NotificationPriority @default(MEDIUM)
+  payload    Json?
+  templateId String?
+  queueId    String?
+  deliveryStatus NotificationDeliveryStatus @default(QUEUED)
+  retryCount Int @default(0)
+  scheduledAt DateTime?
+  deliveredAt DateTime?
+  readAt     DateTime?
   isRead     Boolean          @default(false)
   createdBy  String?
   updatedBy  String?
@@ -1610,9 +2481,384 @@ model Notification {
 
   business Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
   branch   Branch?  @relation(fields: [branchId], references: [id], onDelete: SetNull)
+  template NotificationTemplate? @relation(fields: [templateId], references: [id], onDelete: SetNull)
+  queue    NotificationQueue? @relation(fields: [queueId], references: [id], onDelete: SetNull)
+  deliveries NotificationDelivery[]
 
   @@index([businessId, branchId, isRead, createdAt])
+  @@index([businessId, userId, deliveryStatus, priority, scheduledAt])
+  @@index([businessId, channel, eventType, createdAt])
   @@map("notifications")
+}
+
+model NotificationTemplate {
+  id          String   @id @default(uuid())
+  businessId  String
+  code        String
+  name        String
+  description String?
+  channel     NotificationChannel
+  eventType   NotificationEventType
+  subject     String?
+  title       String
+  body        String
+  variables   Json?
+  isActive    Boolean  @default(true)
+  version     Int      @default(1)
+  createdBy   String?
+  updatedBy   String?
+  deletedBy   String?
+  deletedAt   DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  business      Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  notifications Notification[]
+  queueItems    NotificationQueue[]
+
+  @@unique([businessId, code])
+  @@index([businessId, channel, eventType, isActive, deletedAt])
+  @@map("notification_templates")
+}
+
+model NotificationPreference {
+  id         String   @id @default(uuid())
+  businessId String
+  branchId   String?
+  userId     String
+  eventType  NotificationEventType
+  inAppEnabled   Boolean @default(true)
+  pushEnabled    Boolean @default(true)
+  emailEnabled   Boolean @default(true)
+  smsEnabled     Boolean @default(false)
+  whatsappEnabled Boolean @default(false)
+  quietHours     Json?
+  createdBy   String?
+  updatedBy   String?
+  deletedBy   String?
+  deletedAt   DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  business Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  branch   Branch?  @relation(fields: [branchId], references: [id], onDelete: SetNull)
+
+  @@unique([businessId, userId, eventType])
+  @@index([businessId, branchId, userId, deletedAt])
+  @@map("notification_preferences")
+}
+
+model NotificationQueue {
+  id           String   @id @default(uuid())
+  businessId   String
+  branchId     String?
+  userId       String?
+  templateId   String?
+  channel      NotificationChannel
+  eventType    NotificationEventType
+  priority     NotificationPriority @default(MEDIUM)
+  status       NotificationDeliveryStatus @default(QUEUED)
+  subject      String?
+  title        String
+  message      String
+  payload      Json?
+  recipient    String?
+  metadata     Json?
+  scheduledAt  DateTime?
+  processedAt  DateTime?
+  nextRetryAt  DateTime?
+  retryCount   Int      @default(0)
+  maxRetries   Int      @default(3)
+  lastError    String?
+  createdBy    String?
+  updatedBy    String?
+  deletedBy    String?
+  deletedAt    DateTime?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  business      Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  branch        Branch?  @relation(fields: [branchId], references: [id], onDelete: SetNull)
+  template      NotificationTemplate? @relation(fields: [templateId], references: [id], onDelete: SetNull)
+  notifications Notification[]
+  deliveries    NotificationDelivery[]
+  audits        NotificationAuditLog[]
+
+  @@index([businessId, status, priority, scheduledAt, nextRetryAt])
+  @@index([businessId, channel, eventType, createdAt])
+  @@index([businessId, userId, deletedAt])
+  @@map("notification_queue")
+}
+
+model NotificationDelivery {
+  id            String   @id @default(uuid())
+  businessId    String
+  queueId       String
+  notificationId String?
+  channel       NotificationChannel
+  provider      String?
+  recipient     String?
+  status        NotificationDeliveryStatus @default(QUEUED)
+  responseCode  String?
+  responseBody  String?
+  errorMessage  String?
+  deliveredAt   DateTime?
+  createdBy     String?
+  updatedBy     String?
+  deletedBy     String?
+  deletedAt     DateTime?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  business     Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  queue        NotificationQueue @relation(fields: [queueId], references: [id], onDelete: Cascade)
+  notification Notification? @relation(fields: [notificationId], references: [id], onDelete: SetNull)
+
+  @@index([businessId, queueId, status, createdAt])
+  @@index([businessId, channel, status, deliveredAt])
+  @@map("notification_deliveries")
+}
+
+model NotificationAuditLog {
+  id          String   @id @default(uuid())
+  businessId  String
+  queueId     String?
+  action      String
+  actorUserId String?
+  details     Json?
+  createdBy   String?
+  updatedBy   String?
+  deletedBy   String?
+  deletedAt   DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  business Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  queue    NotificationQueue? @relation(fields: [queueId], references: [id], onDelete: SetNull)
+
+  @@index([businessId, queueId, createdAt])
+  @@index([businessId, actorUserId, createdAt])
+  @@map("notification_audit_logs")
+}
+
+model Announcement {
+  id          String   @id @default(uuid())
+  businessId  String
+  branchId    String?
+  title       String
+  message     String
+  audience    String   @default("ALL")
+  priority    NotificationPriority @default(MEDIUM)
+  startsAt    DateTime?
+  endsAt      DateTime?
+  isActive    Boolean  @default(true)
+  createdBy   String?
+  updatedBy   String?
+  deletedBy   String?
+  deletedAt   DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  business Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  branch   Branch?  @relation(fields: [branchId], references: [id], onDelete: SetNull)
+
+  @@index([businessId, branchId, isActive, startsAt, endsAt])
+  @@map("announcements")
+}
+
+model Reminder {
+  id          String   @id @default(uuid())
+  businessId  String
+  branchId    String?
+  userId      String?
+  eventType   NotificationEventType
+  title       String
+  message     String
+  payload     Json?
+  remindAt    DateTime
+  isProcessed Boolean  @default(false)
+  processedAt DateTime?
+  createdBy   String?
+  updatedBy   String?
+  deletedBy   String?
+  deletedAt   DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  business Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  branch   Branch?  @relation(fields: [branchId], references: [id], onDelete: SetNull)
+
+  @@index([businessId, isProcessed, remindAt])
+  @@index([businessId, userId, eventType, remindAt])
+  @@map("reminders")
+}
+
+model OtpRequest {
+  id           String   @id @default(uuid())
+  businessId   String
+  userId       String?
+  purpose      OtpPurpose
+  channel      NotificationChannel
+  recipient    String
+  codeHash     String
+  expiresAt    DateTime
+  consumedAt   DateTime?
+  attempts     Int      @default(0)
+  maxAttempts  Int      @default(5)
+  status       NotificationDeliveryStatus @default(QUEUED)
+  createdBy    String?
+  updatedBy    String?
+  deletedBy    String?
+  deletedAt    DateTime?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  business Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+
+  @@index([businessId, recipient, purpose, createdAt])
+  @@index([businessId, expiresAt, consumedAt])
+  @@map("otp_requests")
+}
+
+model FileObject {
+  id                   String         @id @default(uuid())
+  businessId           String
+  branchId             String?
+  category             FileCategory
+  entityType           String?
+  entityId             String?
+  visibility           FileVisibility @default(PRIVATE)
+  status               FileStatus     @default(ACTIVE)
+  storageProvider      StorageProvider @default(LOCAL)
+  latestVersion        Int            @default(1)
+  metadata             Json?
+  tags                 Json?
+  virusScanStatus      String?        @default("PENDING")
+  isCompressed         Boolean        @default(false)
+  hasThumbnail         Boolean        @default(false)
+  createdBy            String?
+  updatedBy            String?
+  deletedBy            String?
+  deletedAt            DateTime?
+  createdAt            DateTime       @default(now())
+  updatedAt            DateTime       @updatedAt
+
+  business             Business       @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  branch               Branch?        @relation(fields: [branchId], references: [id], onDelete: SetNull)
+  versions             FileVersion[]
+  attachments          FileAttachment[]
+  signedUrls           FileSignedUrl[]
+  auditLogs            FileAuditLog[]
+
+  @@index([businessId, category, entityType, entityId, deletedAt])
+  @@index([businessId, status, createdAt])
+  @@index([businessId, branchId, createdAt])
+  @@map("file_objects")
+}
+
+model FileVersion {
+  id                   String          @id @default(uuid())
+  fileId               String
+  businessId           String
+  versionNo            Int
+  storageProvider      StorageProvider @default(LOCAL)
+  bucket               String?
+  objectKey            String
+  fileName             String
+  mimeType             String
+  extension            String?
+  sizeBytes            Int
+  checksum             String?
+  width                Int?
+  height               Int?
+  thumbnailObjectKey   String?
+  isCompressed         Boolean         @default(false)
+  createdBy            String?
+  updatedBy            String?
+  deletedBy            String?
+  deletedAt            DateTime?
+  createdAt            DateTime        @default(now())
+  updatedAt            DateTime        @updatedAt
+
+  business             Business        @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  file                 FileObject      @relation(fields: [fileId], references: [id], onDelete: Cascade)
+
+  @@unique([fileId, versionNo])
+  @@index([businessId, fileId, createdAt])
+  @@index([businessId, objectKey])
+  @@map("file_versions")
+}
+
+model FileAttachment {
+  id                   String   @id @default(uuid())
+  businessId           String
+  branchId             String?
+  fileId               String
+  module               String
+  recordId             String
+  label                String?
+  metadata             Json?
+  createdBy            String?
+  updatedBy            String?
+  deletedBy            String?
+  deletedAt            DateTime?
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+
+  business             Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  branch               Branch?  @relation(fields: [branchId], references: [id], onDelete: SetNull)
+  file                 FileObject @relation(fields: [fileId], references: [id], onDelete: Cascade)
+
+  @@index([businessId, module, recordId, deletedAt])
+  @@index([businessId, fileId, deletedAt])
+  @@map("file_attachments")
+}
+
+model FileSignedUrl {
+  id                   String   @id @default(uuid())
+  businessId           String
+  fileId               String
+  tokenHash            String
+  expiresAt            DateTime
+  maxDownloads         Int      @default(1)
+  downloadCount        Int      @default(0)
+  usedAt               DateTime?
+  createdBy            String?
+  updatedBy            String?
+  deletedBy            String?
+  deletedAt            DateTime?
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+
+  business             Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  file                 FileObject @relation(fields: [fileId], references: [id], onDelete: Cascade)
+
+  @@unique([tokenHash])
+  @@index([businessId, fileId, expiresAt])
+  @@index([businessId, expiresAt, usedAt])
+  @@map("file_signed_urls")
+}
+
+model FileAuditLog {
+  id                   String   @id @default(uuid())
+  businessId           String
+  fileId               String?
+  action               String
+  actorUserId          String?
+  details              Json?
+  createdBy            String?
+  updatedBy            String?
+  deletedBy            String?
+  deletedAt            DateTime?
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+
+  business             Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  file                 FileObject? @relation(fields: [fileId], references: [id], onDelete: SetNull)
+
+  @@index([businessId, fileId, createdAt])
+  @@index([businessId, actorUserId, createdAt])
+  @@map("file_audit_logs")
 }
 
 model Setting {
@@ -1634,6 +2880,106 @@ model Setting {
   @@unique([businessId, branchId, key])
   @@index([businessId, deletedAt])
   @@map("settings")
+}
+
+model BusinessConfiguration {
+  id         String   @id @default(uuid())
+  businessId String   @unique
+
+  businessName String?
+  logoAssetId  String? @unique
+  gst          String?
+  pan          String?
+  fssai        String?
+  address      String?
+  phone        String?
+  email        String?
+  website      String?
+
+  invoicePrefix String @default("INV")
+  invoiceSeries String @default("A")
+  financialYear String?
+
+  taxCgst Float @default(0)
+  taxSgst Float @default(0)
+  taxIgst Float @default(0)
+  taxCess Float @default(0)
+
+  currency     String @default("INR")
+  language     String @default("en-IN")
+  timeZone     String @default("Asia/Kolkata")
+  theme        String @default("light")
+  dateFormat   String @default("DD-MM-YYYY")
+  numberFormat String @default("en-IN")
+
+  printerConfiguration   Json?
+  receiptTemplate        Json?
+  invoiceTemplate        Json?
+  barcodeSettings        Json?
+  qrSettings             Json?
+  branchManagement       Json?
+  branchSettings         Json?
+  workingHours           Json?
+  businessStatus         Json?
+  subscriptionInformation Json?
+  storageSettings        Json?
+  backupSettings         Json?
+  notificationSettings   Json?
+  emailSettings          Json?
+  smsSettings            Json?
+  pushNotificationSettings Json?
+  securitySettings       Json?
+  passwordPolicy         Json?
+  sessionTimeoutMinutes  Int   @default(60)
+  loginPolicy            Json?
+  featureFlags           Json?
+  moduleToggles          Json?
+  apiKeys                Json?
+  thirdPartyIntegrations Json?
+  fileStorageConfiguration Json?
+  businessPreferences    Json?
+
+  createdBy String?
+  updatedBy String?
+  deletedBy String?
+  deletedAt DateTime?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  business  Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  logoAsset BusinessConfigAsset? @relation("BusinessConfigurationLogo", fields: [logoAssetId], references: [id], onDelete: SetNull)
+  assets    BusinessConfigAsset[] @relation("BusinessConfigurationAssets")
+
+  @@index([businessId, deletedAt])
+  @@map("business_configurations")
+}
+
+model BusinessConfigAsset {
+  id              String                  @id @default(uuid())
+  businessId      String
+  configurationId String?
+  type            BusinessConfigAssetType
+  fileName        String
+  mimeType        String
+  extension       String?
+  sizeBytes       Int
+  storagePath     String
+  publicUrl       String?
+  metadata        Json?
+  createdBy       String?
+  updatedBy       String?
+  deletedBy       String?
+  deletedAt       DateTime?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  business      Business               @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  configuration BusinessConfiguration? @relation("BusinessConfigurationAssets", fields: [configurationId], references: [id], onDelete: SetNull)
+  logoOfConfiguration BusinessConfiguration? @relation("BusinessConfigurationLogo")
+
+  @@index([businessId, type, deletedAt])
+  @@index([configurationId, deletedAt])
+  @@map("business_config_assets")
 }
 
 model SubscriptionPlan {
@@ -1814,6 +3160,128 @@ model ErrorLog {
 
   @@index([businessId, branchId, createdAt])
   @@map("error_logs")
+}
+
+model ApiRequestLog {
+  id            String   @id @default(uuid())
+  businessId    String?
+  branchId      String?
+  userId        String?
+  correlationId String
+  method        String
+  path          String
+  statusCode    Int
+  durationMs    Int
+  ipAddress     String?
+  userAgent     String?
+  requestBody   Json?
+  responseBody  Json?
+  metadata      Json?
+  createdBy     String?
+  updatedBy     String?
+  deletedBy     String?
+  deletedAt     DateTime?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  business Business? @relation(fields: [businessId], references: [id], onDelete: SetNull)
+  branch   Branch?   @relation(fields: [branchId], references: [id], onDelete: SetNull)
+  user     User?     @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  @@index([businessId, branchId, createdAt])
+  @@index([correlationId, createdAt])
+  @@index([path, method, createdAt])
+  @@map("api_request_logs")
+}
+
+model ApiErrorLog {
+  id            String   @id @default(uuid())
+  businessId    String?
+  branchId      String?
+  userId        String?
+  correlationId String?
+  method        String?
+  path          String?
+  statusCode    Int?
+  message       String
+  stack         String?
+  errorType     String?
+  context       Json?
+  createdBy     String?
+  updatedBy     String?
+  deletedBy     String?
+  deletedAt     DateTime?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  business Business? @relation(fields: [businessId], references: [id], onDelete: SetNull)
+  branch   Branch?   @relation(fields: [branchId], references: [id], onDelete: SetNull)
+  user     User?     @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  @@index([businessId, branchId, createdAt])
+  @@index([correlationId, createdAt])
+  @@index([path, statusCode, createdAt])
+  @@map("api_error_logs")
+}
+
+model BackgroundJob {
+  id            String                @id @default(uuid())
+  businessId    String
+  branchId      String?
+  type          BackgroundJobType
+  name          String
+  status        BackgroundJobStatus   @default(QUEUED)
+  priority      BackgroundJobPriority @default(MEDIUM)
+  payload       Json?
+  result        Json?
+  correlationId String?
+  retryCount    Int                   @default(0)
+  maxRetries    Int                   @default(3)
+  scheduledAt   DateTime?
+  startedAt     DateTime?
+  finishedAt    DateTime?
+  nextRetryAt   DateTime?
+  lastError     String?
+  createdBy     String?
+  updatedBy     String?
+  deletedBy     String?
+  deletedAt     DateTime?
+  createdAt     DateTime              @default(now())
+  updatedAt     DateTime              @updatedAt
+
+  business Business           @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  branch   Branch?            @relation(fields: [branchId], references: [id], onDelete: SetNull)
+  runs     BackgroundJobRun[]
+
+  @@index([businessId, status, priority, scheduledAt, nextRetryAt])
+  @@index([businessId, type, createdAt])
+  @@index([correlationId, createdAt])
+  @@map("background_jobs")
+}
+
+model BackgroundJobRun {
+  id            String              @id @default(uuid())
+  businessId    String
+  jobId         String
+  status        BackgroundJobStatus @default(RUNNING)
+  startedAt     DateTime            @default(now())
+  finishedAt    DateTime?
+  durationMs    Int?
+  errorMessage  String?
+  result        Json?
+  createdBy     String?
+  updatedBy     String?
+  deletedBy     String?
+  deletedAt     DateTime?
+  createdAt     DateTime            @default(now())
+  updatedAt     DateTime            @updatedAt
+
+  business Business      @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  job      BackgroundJob @relation(fields: [jobId], references: [id], onDelete: Cascade)
+
+  @@index([businessId, jobId, startedAt])
+  @@index([businessId, status, createdAt])
+  @@map("background_job_runs")
 }
 
 model PasswordReset {

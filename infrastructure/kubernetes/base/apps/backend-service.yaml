@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: smartbiz-backend
+  namespace: smartbiz
+spec:
+  selector:
+    app: smartbiz-backend
+  ports:
+    - name: http
+      port: 3000
+      targetPort: 3000

@@ -1,35 +1,35 @@
 ﻿version: "3.9"
 
 services:
-	postgres:
-		image: postgres:16-alpine
-		container_name: vyaparam-postgres
-		environment:
-			POSTGRES_DB: vyaparam_db
-			POSTGRES_USER: vyaparam
-			POSTGRES_PASSWORD: vyaparam
-		ports:
-			- "5432:5432"
-		volumes:
-			- pgdata:/var/lib/postgresql/data
+  postgres:
+    image: postgres:16-alpine
+    container_name: vyaparam-postgres
+    environment:
+      POSTGRES_DB: vyaparam_db
+      POSTGRES_USER: vyaparam
+      POSTGRES_PASSWORD: vyaparam
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
 
-	redis:
-		image: redis:7-alpine
-		container_name: vyaparam-redis
-		ports:
-			- "6379:6379"
+  redis:
+    image: redis:7-alpine
+    container_name: vyaparam-redis
+    ports:
+      - "6379:6379"
 
-	backend:
-		build:
-			context: ./backend
-		container_name: vyaparam-backend
-		env_file:
-			- ./backend/.env.example
-		ports:
-			- "3000:3000"
-		depends_on:
-			- postgres
-			- redis
+  backend:
+    build:
+      context: ./backend
+    container_name: vyaparam-backend
+    env_file:
+      - ./backend/.env.example
+    ports:
+      - "3000:3000"
+    depends_on:
+      - postgres
+      - redis
 
 volumes:
-	pgdata:
+  pgdata:

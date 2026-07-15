@@ -1,0 +1,23 @@
+name: Load Test
+
+on:
+  workflow_dispatch:
+
+jobs:
+  stress:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run load test suite
+        run: bash scripts/ops/load-test.sh
+        env:
+          STRESS_BASE_URL: ${{ secrets.STRESS_BASE_URL }}

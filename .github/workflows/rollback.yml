@@ -1,0 +1,23 @@
+name: Rollback
+
+on:
+  workflow_dispatch:
+    inputs:
+      backend_tag:
+        description: "Backend image tag to rollback to"
+        required: true
+      frontend_tag:
+        description: "Frontend image tag to rollback to"
+        required: true
+
+jobs:
+  rollback:
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Helm rollback deploy
+        run: |
+          echo "Configure kubectl context using environment secrets"
+          echo "helm upgrade --install smartbiz infrastructure/kubernetes/helm/smartbiz --set images.backend=ghcr.io/${{ github.repository_owner }}/smartbiz-backend:${{ github.event.inputs.backend_tag }} --set images.frontend=ghcr.io/${{ github.repository_owner }}/smartbiz-frontend:${{ github.event.inputs.frontend_tag }}"

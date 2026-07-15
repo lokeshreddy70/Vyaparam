@@ -9,6 +9,7 @@ import {
   ShiftStatus,
 } from "@prisma/client";
 import { PrismaService } from "../../prisma/prisma.service";
+import { SettingsService } from "../settings/settings.service";
 import {
   BillingDocumentQueryDto,
   CloseShiftDto,
@@ -49,6 +50,7 @@ export class BillingPosService {
   constructor(
     private readonly prisma: PrismaService,
     private readonly repository: BillingPosRepository,
+    private readonly settingsService: SettingsService,
   ) {}
 
   private isSalesType(type: BillingDocumentType) {
@@ -63,12 +65,16 @@ export class BillingPosService {
     return this.returnTypes.has(type);
   }
 
-  private calcTotals(dto: CreateBillingDocumentDto) {
+  private calcTotals(
+    dto: CreateBillingDocumentDto,
+    taxConfig: { cgst: number; sgst: number; igst: number; cess: number; defaultTaxPercent: number },
+  ) {
+    const defaultTaxPercent = taxConfig.defaultTaxPercent;
     const rows = dto.items.map((item) => {
       const lineBase = item.quantity * item.unitPrice;
       const discount = item.discount ?? 0;
       const taxable = Math.max(0, lineBase - discount);
-      const taxPercent = item.taxPercent ?? 0;
+      const taxPercent = item.taxPercent ?? defaultTaxPercent;
       const taxAmount = dto.isInclusiveTax
         ? taxable - taxable / (1 + taxPercent / 100)
         : (taxable * taxPercent) / 100;
@@ -80,10 +86,10 @@ export class BillingPosService {
     const lineDiscount = rows.reduce((sum, row) => sum + row.discount, 0);
     const discount = lineDiscount + (dto.discount ?? 0);
     const taxTotal = rows.reduce((sum, row) => sum + row.taxAmount, 0);
-    const taxableTax = taxTotal;
-    const cgstTotal = taxableTax / 2;
-    const sgstTotal = taxableTax / 2;
-    const igstTotal = 0;
+    const splitPercent = taxConfig.cgst + taxConfig.sgst + taxConfig.igst + taxConfig.cess;
+    const cgstTotal = splitPercent > 0 ? (taxTotal * taxConfig.cgst) / splitPercent : taxTotal / 2;
+    const sgstTotal = splitPercent > 0 ? (taxTotal * taxConfig.sgst) / splitPercent : taxTotal / 2;
+    const igstTotal = splitPercent > 0 ? (taxTotal * taxConfig.igst) / splitPercent : 0;
     const roundOff = dto.roundOff ?? 0;
     const grandTotal = Math.max(0, subtotal - discount + (dto.isInclusiveTax ? 0 : taxTotal) + roundOff);
 
@@ -93,12 +99,20 @@ export class BillingPosService {
   async createDocument(businessId: string, userId: string, dto: CreateBillingDocumentDto) {
     if (!dto.items.length) throw new BadRequestException("items required");
 
-    const totals = this.calcTotals(dto);
+    const [taxConfig, invoiceConfig] = await Promise.all([
+      this.settingsService.getTaxConfiguration(businessId),
+      this.settingsService.getInvoiceConfiguration(businessId),
+    ]);
+    const totals = this.calcTotals(dto, taxConfig);
 
     let documentId: string;
     try {
       documentId = await this.prisma.$transaction(async (tx) => {
-      const documentNo = await this.repository.nextDocumentNo(tx, businessId, dto.type);
+      const documentNo = await this.repository.nextDocumentNo(tx, businessId, dto.type, {
+        prefix: invoiceConfig.invoice.prefix ?? undefined,
+        series: invoiceConfig.invoice.series ?? undefined,
+        financialYear: invoiceConfig.invoice.financialYear ?? undefined,
+      });
 
       const doc = await tx.billingDocument.create({
         data: {
@@ -278,7 +292,19 @@ export class BillingPosService {
   async findOne(businessId: string, id: string) {
     const document = await this.repository.findDocument(businessId, id);
     if (!document) throw new NotFoundException("Document not found");
-    return document;
+    const [invoiceConfiguration, reportConfiguration, printerConfiguration] = await Promise.all([
+      this.settingsService.getInvoiceConfiguration(businessId),
+      this.settingsService.getReportConfiguration(businessId),
+      this.settingsService.getPrinterConfiguration(businessId),
+    ]);
+    return {
+      ...document,
+      configuration: {
+        invoice: invoiceConfiguration,
+        report: reportConfiguration,
+        printer: printerConfiguration,
+      },
+    };
   }
 
   async updateStatus(businessId: string, userId: string, id: string, dto: UpdateDocumentStatusDto) {

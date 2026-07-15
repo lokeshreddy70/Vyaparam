@@ -1,0 +1,46 @@
+name: CI
+
+on:
+  push:
+    branches: ["main", "develop"]
+  pull_request:
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install root dependencies
+        run: npm ci
+
+      - name: Install backend dependencies
+        run: npm --prefix backend ci
+
+      - name: Install frontend dependencies
+        run: npm --prefix frontend ci
+
+      - name: Validate environment contract
+        run: node scripts/ops/validate-env.mjs
+        env:
+          NODE_ENV: production
+          PORT: "3000"
+          DATABASE_URL: postgresql://user:pass@localhost:5432/db
+          REDIS_URL: redis://localhost:6379
+          JWT_ACCESS_SECRET: 0123456789abcdefghijklmnopqrstuvwxyz
+          JWT_REFRESH_SECRET: abcdefghijklmnopqrstuvwxyz0123456789
+          CORS_ALLOWED_ORIGINS: "*"
+
+      - name: Build backend and frontend
+        run: npm run build
+
+      - name: Backend unit tests
+        run: npm --prefix backend test -- --runInBand
+
+      - name: Dependency audit
+        run: bash scripts/ops/security-audit.sh

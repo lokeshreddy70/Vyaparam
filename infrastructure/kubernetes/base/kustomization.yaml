@@ -1,0 +1,16 @@
+resources:
+  - namespace.yaml
+  - apps/backend-configmap.yaml
+  - apps/backend-secret.template.yaml
+  - apps/backend-deployment.yaml
+  - apps/backend-service.yaml
+  - apps/frontend-deployment.yaml
+  - apps/frontend-service.yaml
+  - data/postgres-statefulset.yaml
+  - data/postgres-service.yaml
+  - data/redis-deployment.yaml
+  - data/redis-service.yaml
+  - apps/ingress.yaml
+  - apps/hpa-backend.yaml
+  - apps/pdb-backend.yaml
+  - obs/servicemonitor-backend.yaml

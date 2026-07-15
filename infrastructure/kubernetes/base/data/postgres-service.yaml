@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: smartbiz-postgres
+  namespace: smartbiz
+spec:
+  selector:
+    app: smartbiz-postgres
+  ports:
+    - name: postgres
+      port: 5432
+      targetPort: 5432
