@@ -258,7 +258,8 @@ export function PluginPlatformProvider({ children }: PropsWithChildren) {
   const canViewPermission = useCallback(
     (permission?: string) => {
       if (!permission) return true;
-      if (!user) return false;
+      // Keep routes available before authentication; ProtectedRoute handles login redirect.
+      if (!user) return true;
       if (user.role === "SUPER_ADMIN" || user.role === "OWNER") return true;
       return permissionSet.has(permission);
     },

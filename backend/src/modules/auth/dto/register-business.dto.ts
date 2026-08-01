@@ -1,11 +1,33 @@
-import { IsEmail, IsEnum, IsOptional, IsString, Matches, MinLength } from "class-validator";
-import { BusinessType, Role } from "@prisma/client";
+import { IsEmail, IsIn, IsOptional, IsString, Matches, MinLength } from "class-validator";
+
+const BUSINESS_TYPES = [
+  "RESTAURANT",
+  "CAFE",
+  "BAKERY",
+  "GROCERY",
+  "SUPERMARKET",
+  "MEDICAL",
+  "PHARMACY",
+  "CEMENT",
+  "HARDWARE",
+  "PAINT",
+  "ELECTRICAL",
+  "PESTICIDE",
+  "AGRICULTURE",
+  "WHOLESALE",
+  "RETAIL",
+] as const;
+
+type BusinessType = (typeof BUSINESS_TYPES)[number];
+
+const ROLES = ["SUPER_ADMIN", "OWNER", "MANAGER", "CASHIER", "KITCHEN_STAFF", "WAITER"] as const;
+type Role = (typeof ROLES)[number];
 
 export class RegisterBusinessDto {
   @IsString()
   businessName: string;
 
-  @IsEnum(BusinessType)
+  @IsIn(BUSINESS_TYPES)
   businessType: BusinessType;
 
   @IsOptional()
@@ -28,6 +50,6 @@ export class RegisterBusinessDto {
   password: string;
 
   @IsOptional()
-  @IsEnum(Role)
+  @IsIn(ROLES)
   role?: Role;
 }

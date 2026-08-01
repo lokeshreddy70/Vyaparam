@@ -5,7 +5,7 @@ export class CreateBusinessDto {
   @IsString()
   name: string;
 
-  @IsEnum(BusinessType)
+  @IsString()
   type: BusinessType;
 
   @IsOptional()

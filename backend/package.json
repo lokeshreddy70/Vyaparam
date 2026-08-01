@@ -4,7 +4,10 @@
   "description": "Vyaparam core engine + restaurant vertical API",
   "private": true,
   "scripts": {
+    "postinstall": "prisma generate --schema prisma/schema.prisma",
     "build": "nest build",
+    "lint": "eslint src --ext .ts --config ../eslint.config.js --max-warnings=0",
+    "typecheck": "tsc --noEmit -p tsconfig.build.json",
     "start": "node dist/main.js",
     "start:dev": "ts-node --prefer-ts-exts src/main.ts",
     "start:prod": "node dist/main.js",

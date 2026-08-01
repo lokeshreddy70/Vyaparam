@@ -5,6 +5,8 @@ import { PrismaService } from "../../prisma/prisma.service";
 
 @Injectable()
 export class LoggingInterceptor implements NestInterceptor {
+  private readonly shouldPersistApiLogs = process.env.PERSIST_API_REQUEST_LOGS === "true" && process.env.VERCEL !== "1";
+
   constructor(private readonly prisma: PrismaService) {}
 
   intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
@@ -35,25 +37,27 @@ export class LoggingInterceptor implements NestInterceptor {
         const responseSnapshot =
           responseBody && typeof responseBody === "object" ? responseBody : { value: responseBody };
 
-        void this.prisma.apiRequestLog.create({
-          data: {
-            businessId,
-            branchId,
-            userId,
-            correlationId,
-            method,
-            path: url,
-            statusCode,
-            durationMs: duration,
-            ipAddress: request.ip ?? null,
-            userAgent: request.headers["user-agent"]?.toString() ?? null,
-            requestBody,
-            responseBody: responseSnapshot,
-            metadata: { requestId },
-            createdBy: userId,
-            updatedBy: userId,
-          },
-        }).catch(() => undefined);
+        if (this.shouldPersistApiLogs) {
+          void this.prisma.apiRequestLog.create({
+            data: {
+              businessId,
+              branchId,
+              userId,
+              correlationId,
+              method,
+              path: url,
+              statusCode,
+              durationMs: duration,
+              ipAddress: request.ip ?? null,
+              userAgent: request.headers["user-agent"]?.toString() ?? null,
+              requestBody,
+              responseBody: responseSnapshot,
+              metadata: { requestId },
+              createdBy: userId,
+              updatedBy: userId,
+            },
+          }).catch(() => undefined);
+        }
 
         // eslint-disable-next-line no-console
         console.log(

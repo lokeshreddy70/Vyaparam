@@ -158,7 +158,7 @@ export class UpdateSupplierDto extends CreateSupplierDto {
 }
 
 export class SupplierLedgerEntryDto {
-  @IsEnum(LedgerEntryType)
+  @IsString()
   entryType: LedgerEntryType;
 
   @Type(() => Number)

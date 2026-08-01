@@ -45,20 +45,20 @@ export class MonitorPageQueryDto {
 
 export class JobQueryDto extends MonitorPageQueryDto {
   @IsOptional()
-  @IsEnum(BackgroundJobType)
+  @IsString()
   type?: BackgroundJobType;
 
   @IsOptional()
-  @IsEnum(BackgroundJobStatus)
+  @IsString()
   status?: BackgroundJobStatus;
 
   @IsOptional()
-  @IsEnum(BackgroundJobPriority)
+  @IsString()
   priority?: BackgroundJobPriority;
 }
 
 export class EnqueueJobDto {
-  @IsEnum(BackgroundJobType)
+  @IsString()
   type: BackgroundJobType;
 
   @IsString()
@@ -66,7 +66,7 @@ export class EnqueueJobDto {
   name: string;
 
   @IsOptional()
-  @IsEnum(BackgroundJobPriority)
+  @IsString()
   priority?: BackgroundJobPriority;
 
   @IsOptional()

@@ -8,6 +8,10 @@
     {
       "source": "/api/:match*",
       "destination": "https://backend-lokeshreddy70s-projects.vercel.app/api/:match*"
+    },
+    {
+      "source": "/:path*",
+      "destination": "/index.html"
     }
   ]
 }

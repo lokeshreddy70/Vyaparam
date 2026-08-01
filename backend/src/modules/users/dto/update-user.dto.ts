@@ -11,7 +11,7 @@ export class UpdateUserDto {
   email?: string;
 
   @IsOptional()
-  @IsEnum(Role)
+  @IsString()
   role?: Role;
 
   @IsOptional()

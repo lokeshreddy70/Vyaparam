@@ -33,7 +33,7 @@ export class FileQueryDto {
   branchId?: string;
 
   @IsOptional()
-  @IsEnum(FileCategory)
+  @IsString()
   category?: FileCategory;
 
   @IsOptional()
@@ -58,7 +58,7 @@ export class FileQueryDto {
 }
 
 export class UploadFileMetaDto {
-  @IsEnum(FileCategory)
+  @IsString()
   category: FileCategory;
 
   @IsOptional()
@@ -74,7 +74,7 @@ export class UploadFileMetaDto {
   entityId?: string;
 
   @IsOptional()
-  @IsEnum(FileVisibility)
+  @IsString()
   visibility?: FileVisibility;
 
   @IsOptional()
@@ -214,7 +214,7 @@ export class RestoreBackupDto {
 }
 
 export class BulkUploadDto {
-  @IsEnum(FileCategory)
+  @IsString()
   category: FileCategory;
 
   @IsOptional()
@@ -230,7 +230,7 @@ export class BulkUploadDto {
   entityId?: string;
 
   @IsOptional()
-  @IsEnum(FileVisibility)
+  @IsString()
   visibility?: FileVisibility;
 
   @IsOptional()

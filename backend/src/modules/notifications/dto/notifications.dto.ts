@@ -56,15 +56,15 @@ export class NotificationPageQueryDto {
   toDate?: string;
 
   @IsOptional()
-  @IsEnum(NotificationChannel)
+  @IsString()
   channel?: NotificationChannel;
 
   @IsOptional()
-  @IsEnum(NotificationEventType)
+  @IsString()
   eventType?: NotificationEventType;
 
   @IsOptional()
-  @IsEnum(NotificationDeliveryStatus)
+  @IsString()
   status?: NotificationDeliveryStatus;
 }
 
@@ -81,10 +81,10 @@ export class CreateTemplateDto {
   @IsString()
   description?: string;
 
-  @IsEnum(NotificationChannel)
+  @IsString()
   channel: NotificationChannel;
 
-  @IsEnum(NotificationEventType)
+  @IsString()
   eventType: NotificationEventType;
 
   @IsOptional()
@@ -147,7 +147,7 @@ export class UpsertPreferenceDto {
   @IsString()
   branchId?: string;
 
-  @IsEnum(NotificationEventType)
+  @IsString()
   eventType: NotificationEventType;
 
   @IsOptional()
@@ -188,18 +188,18 @@ export class DispatchNotificationDto {
   @IsString()
   templateCode?: string;
 
-  @IsEnum(NotificationChannel)
+  @IsString()
   channel: NotificationChannel;
 
-  @IsEnum(NotificationEventType)
+  @IsString()
   eventType: NotificationEventType;
 
   @IsOptional()
-  @IsEnum(NotificationType)
+  @IsString()
   type?: NotificationType;
 
   @IsOptional()
-  @IsEnum(NotificationPriority)
+  @IsString()
   priority?: NotificationPriority;
 
   @IsOptional()
@@ -240,14 +240,14 @@ export class BroadcastNotificationDto {
   @IsString()
   templateCode?: string;
 
-  @IsEnum(NotificationChannel)
+  @IsString()
   channel: NotificationChannel;
 
-  @IsEnum(NotificationEventType)
+  @IsString()
   eventType: NotificationEventType;
 
   @IsOptional()
-  @IsEnum(NotificationPriority)
+  @IsString()
   priority?: NotificationPriority;
 
   @IsString()
@@ -285,7 +285,7 @@ export class CreateAnnouncementDto {
   audience?: string;
 
   @IsOptional()
-  @IsEnum(NotificationPriority)
+  @IsString()
   priority?: NotificationPriority;
 
   @IsOptional()
@@ -310,7 +310,7 @@ export class CreateReminderDto {
   @IsString()
   branchId?: string;
 
-  @IsEnum(NotificationEventType)
+  @IsString()
   eventType: NotificationEventType;
 
   @IsString()
@@ -334,10 +334,10 @@ export class RequestOtpDto {
   @IsString()
   userId?: string;
 
-  @IsEnum(OtpPurpose)
+  @IsString()
   purpose: OtpPurpose;
 
-  @IsEnum(NotificationChannel)
+  @IsString()
   channel: NotificationChannel;
 
   @IsString()
@@ -377,11 +377,11 @@ export class TriggerAlertDto {
   branchId?: string;
 
   @IsOptional()
-  @IsEnum(NotificationChannel)
+  @IsString()
   channel?: NotificationChannel;
 
   @IsOptional()
-  @IsEnum(NotificationPriority)
+  @IsString()
   priority?: NotificationPriority;
 
   @IsOptional()

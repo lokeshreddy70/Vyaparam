@@ -37,7 +37,7 @@ export class StockMovementDto {
   @IsNotEmpty()
   inventoryId: string;
 
-  @IsEnum(MovementType)
+  @IsString()
   type: MovementType;
 
   @Type(() => Number)

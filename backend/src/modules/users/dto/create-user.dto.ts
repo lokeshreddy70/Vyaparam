@@ -13,7 +13,7 @@ export class CreateUserDto {
   @Matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z\d]).+$/)
   password: string;
 
-  @IsEnum(Role)
+  @IsString()
   role: Role;
 
   @IsOptional()

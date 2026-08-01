@@ -158,7 +158,7 @@ export class UpdateCustomerDto extends CreateCustomerDto {
 }
 
 export class LedgerEntryDto {
-  @IsEnum(LedgerEntryType)
+  @IsString()
   entryType: LedgerEntryType;
 
   @Type(() => Number)

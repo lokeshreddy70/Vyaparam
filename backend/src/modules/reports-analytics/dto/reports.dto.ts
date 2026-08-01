@@ -54,11 +54,11 @@ export class ReportFiltersDto {
   categoryId?: string;
 
   @IsOptional()
-  @IsEnum(PaymentMethod)
+  @IsString()
   paymentMethod?: PaymentMethod;
 
   @IsOptional()
-  @IsEnum(BillingDocumentStatus)
+  @IsString()
   invoiceStatus?: BillingDocumentStatus;
 
   @IsOptional()
@@ -80,12 +80,12 @@ export class ReportFiltersDto {
 }
 
 export class ExportReportDto extends ReportFiltersDto {
-  @IsEnum(ExportFormat)
+  @IsString()
   format: ExportFormat;
 }
 
 export class ChartQueryDto extends ReportFiltersDto {
   @IsOptional()
-  @IsEnum(ChartType)
+  @IsString()
   chartType?: ChartType;
 }

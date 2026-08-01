@@ -1,6 +1,7 @@
 import { NestFactory } from "@nestjs/core";
 import { ValidationPipe, VersioningType } from "@nestjs/common";
 import { ExpressAdapter } from "@nestjs/platform-express";
+import type { Express } from "express";
 import compression from "compression";
 import { json, urlencoded } from "express";
 import helmet from "helmet";
@@ -42,7 +43,7 @@ export function getCorsOptions() {
   };
 }
 
-export async function createApp(expressInstance?: Parameters<ExpressAdapter>[0]) {
+export async function createApp(expressInstance?: Express) {
   const app = expressInstance
     ? await NestFactory.create(AppModule, new ExpressAdapter(expressInstance), getCorsOptions())
     : await NestFactory.create(AppModule, getCorsOptions());
@@ -50,8 +51,12 @@ export async function createApp(expressInstance?: Parameters<ExpressAdapter>[0])
   app.enableShutdownHooks();
   app.use(requestContextMiddleware);
   app.use(compression());
-  app.use(json({ limit: process.env.REQUEST_SIZE_LIMIT ?? "1mb" }));
-  app.use(urlencoded({ limit: process.env.REQUEST_SIZE_LIMIT ?? "1mb", extended: true }));
+  // In serverless adapters (e.g., Vercel), request body may already be parsed.
+  // Avoid re-parsing streams there to prevent "stream is not readable" errors.
+  if (!expressInstance) {
+    app.use(json({ limit: process.env.REQUEST_SIZE_LIMIT ?? "1mb" }));
+    app.use(urlencoded({ limit: process.env.REQUEST_SIZE_LIMIT ?? "1mb", extended: true }));
+  }
   app.use(
     helmet({
       crossOriginResourcePolicy: { policy: "cross-origin" },

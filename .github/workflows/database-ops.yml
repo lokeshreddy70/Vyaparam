@@ -16,7 +16,7 @@ jobs:
           node-version: 20
 
       - name: Install backend dependencies
-        run: npm --prefix backend ci
+        run: npm --prefix backend install
 
       - name: Prisma migrate deploy
         run: bash database/scripts/migrate.sh

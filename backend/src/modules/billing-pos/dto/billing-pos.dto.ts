@@ -51,7 +51,7 @@ export class BillingItemDto {
 }
 
 export class CreateBillingDocumentDto {
-  @IsEnum(BillingDocumentType)
+  @IsString()
   type: BillingDocumentType;
 
   @IsOptional()
@@ -108,11 +108,11 @@ export class CreateBillingDocumentDto {
 
 export class BillingDocumentQueryDto {
   @IsOptional()
-  @IsEnum(BillingDocumentType)
+  @IsString()
   type?: BillingDocumentType;
 
   @IsOptional()
-  @IsEnum(BillingDocumentStatus)
+  @IsString()
   status?: BillingDocumentStatus;
 
   @IsOptional()
@@ -138,7 +138,7 @@ export class BillingDocumentQueryDto {
 }
 
 export class UpdateDocumentStatusDto {
-  @IsEnum(BillingDocumentStatus)
+  @IsString()
   status: BillingDocumentStatus;
 }
 
@@ -149,7 +149,7 @@ export class VoidDocumentDto {
 }
 
 export class PaymentLineDto {
-  @IsEnum(PaymentMethod)
+  @IsString()
   method: PaymentMethod;
 
   @Type(() => Number)
@@ -258,7 +258,7 @@ export class CreatePosTerminalDto {
 }
 
 export class LedgerAdjustDto {
-  @IsEnum(LedgerEntryType)
+  @IsString()
   entryType: LedgerEntryType;
 
   @Type(() => Number)

@@ -171,7 +171,7 @@ export class CreateEmployeeProfileDto {
   managerEmployeeId?: string;
 
   @IsOptional()
-  @IsEnum(EmploymentType)
+  @IsString()
   employmentType?: EmploymentType;
 
   @IsOptional()
@@ -212,7 +212,7 @@ export class UpdateEmployeeProfileDto {
   managerEmployeeId?: string;
 
   @IsOptional()
-  @IsEnum(EmploymentType)
+  @IsString()
   employmentType?: EmploymentType;
 
   @IsOptional()
@@ -389,7 +389,7 @@ export class LeaveRequestDto {
 }
 
 export class ReviewLeaveRequestDto {
-  @IsEnum(LeaveRequestStatus)
+  @IsString()
   status: LeaveRequestStatus;
 
   @IsOptional()
@@ -648,7 +648,7 @@ export class HrNotificationDto {
   @IsString()
   branchId?: string;
 
-  @IsEnum(HrNotificationType)
+  @IsString()
   type: HrNotificationType;
 
   @IsString()
@@ -666,7 +666,7 @@ export class HrNotificationDto {
 
 export class EmployeeDocumentQueryDto extends PageQueryDto {
   @IsOptional()
-  @IsEnum(HrDocumentType)
+  @IsString()
   type?: HrDocumentType;
 }
 
@@ -677,11 +677,11 @@ export class SessionQueryDto extends PageQueryDto {
 }
 
 export class PayrollStatusDto {
-  @IsEnum(PayrollRunStatus)
+  @IsString()
   status: PayrollRunStatus;
 }
 
 export class AttendanceStatusDto {
-  @IsEnum(AttendanceStatus)
+  @IsString()
   status: AttendanceStatus;
 }

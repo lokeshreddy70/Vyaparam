@@ -1,6 +1,8 @@
 {
   "private": true,
-  "workspaces": ["backend"],
+  "workspaces": [
+    "backend"
+  ],
   "scripts": {
     "install:all": "npm install --prefix backend && npm install --prefix frontend",
     "prisma:generate": "npm run prisma:generate --prefix backend",
@@ -10,6 +12,8 @@
     "db:restore": "bash database/scripts/restore.sh",
     "db:restore:validate": "bash database/scripts/validate-restore.sh",
     "build": "npm run build --prefix backend && npm run build --prefix frontend",
+    "lint": "eslint backend/src frontend/src --ext .ts,.tsx --max-warnings=0",
+    "typecheck": "npm run typecheck --prefix backend && npm run typecheck --prefix frontend",
     "start:dev": "npm run start:dev --prefix backend",
     "compose:dev": "docker compose -f docker-compose.dev.yml up --build",
     "compose:prod": "docker compose -f docker-compose.prod.yml up -d",
@@ -18,5 +22,11 @@
     "audit:security": "bash scripts/ops/security-audit.sh",
     "load:test": "bash scripts/ops/load-test.sh",
     "stress:test": "node tests/performance/enterprise-stress.mjs"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.5",
+    "eslint": "^9.39.5",
+    "globals": "^17.8.0",
+    "typescript-eslint": "^8.65.0"
   }
 }

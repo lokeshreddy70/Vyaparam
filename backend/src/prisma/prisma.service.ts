@@ -7,7 +7,13 @@ export class PrismaService extends PrismaClient implements OnModuleInit, OnModul
   private readonly slowQueryThresholdMs = Number(process.env.SLOW_QUERY_THRESHOLD_MS ?? 500);
 
   constructor() {
-    super();
+    super({
+      datasources: {
+        db: {
+          url: PrismaService.buildRuntimeDbUrl(),
+        },
+      },
+    });
 
     this.$use(async (params, next) => {
       const startedAt = Date.now();
@@ -30,7 +36,34 @@ export class PrismaService extends PrismaClient implements OnModuleInit, OnModul
     });
   }
 
+  private static buildRuntimeDbUrl() {
+    const raw = process.env.DATABASE_URL;
+    if (!raw) return undefined;
+
+    // Keep serverless instances lean: one DB connection per instance prevents spikes.
+    if (process.env.VERCEL === "1") {
+      try {
+        const url = new URL(raw);
+        if (!url.searchParams.has("connection_limit")) {
+          url.searchParams.set("connection_limit", "1");
+        }
+        if (!url.searchParams.has("pool_timeout")) {
+          url.searchParams.set("pool_timeout", "30");
+        }
+        return url.toString();
+      } catch {
+        return raw;
+      }
+    }
+
+    return raw;
+  }
+
   async onModuleInit() {
+    if (process.env.VERCEL === "1") {
+      return;
+    }
+
     try {
       await this.$connect();
     } catch (error) {
