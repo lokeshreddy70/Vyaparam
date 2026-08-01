@@ -1,115 +1,57 @@
-# Vyaparam — Phase 1: Core Engine + Restaurant Vertical
+# SmartBiz / Vyaparam
 
-This is the first working slice of Vyaparam: a real, end-to-end-functional
-system, not a scaffold. It covers the shared multi-tenant engine (auth, RBAC,
-products, categories, customers) plus a complete Restaurant vertical (tables,
-KOT/kitchen display, dine-in ordering, billing, payments).
+Production baseline for the SmartBiz platform monorepo.
 
-**What "Phase 1" means:** the full Vyaparam vision (16 business verticals,
-offline sync, AI features, full test/DevOps suite) is a multi-month build.
-Rather than generate thousands of files of unfinished scaffolding, this phase
-delivers one vertical fully wired to a real Postgres database so you can run
-it, seed it, and actually use it today. Later phases extend the same engine
-with more verticals and features — see "Roadmap" below.
+## Current scope
 
-## Stack
+- Backend API: NestJS + Prisma + PostgreSQL
+- Frontend web app: React + TypeScript + Vite
+- Production workflows: CI, Release, CD Staging, Rollback, Database Operations, Load Test
 
-- **Backend**: NestJS, TypeScript, Prisma, PostgreSQL, Socket.IO, JWT (access + refresh), RBAC
-- **Frontend**: React, TypeScript, Vite, Tailwind CSS, Zustand, TanStack Query, Socket.IO client
-- **Infra**: Docker Compose (Postgres, Redis, backend, frontend)
+## Canonical baseline document
 
-## What's implemented
+- `PRODUCTION_BASELINE.md` is the primary source of truth for:
+  - architecture overview
+  - environment variables
+  - build and deployment flow
+  - rollback and backup procedures
+  - monitoring and disaster recovery notes
 
-- Multi-tenant data model (`Business` scopes every record)
-- JWT auth with refresh tokens (hashed & rotated), RBAC guards for
-  Owner / Manager / Cashier / Kitchen Staff / Waiter
-- Forgot/reset password via OTP (logged to console in dev — wire to
-  SMS/email in Phase 2)
-- Staff creation by Owner/Manager
-- Products & categories (paginated, searchable)
-- Restaurant tables with live status (available/occupied/reserved/cleaning)
-- Order creation with KOT (kitchen order ticket) items
-- Kitchen Display with live WebSocket updates (queued → preparing → ready → served)
-- Billing: invoice generation from a served order, GST-style tax calc,
-  multiple payment methods, partial payments, daily sales report
-- Audit log on login (extend to other actions as needed)
-- Seed script for environment-configured bootstrap data
+## Production runbooks
 
-## Quick start (Docker)
+- Deployment runbook: `docs/deployment/README.md`
+- Production engineering notes: `docs/deployment/production-engineering.md`
+- Database operations and backup policy: `docs/database/README.md`
+- Backup directory policy: `database/backups/README.md`
+- Security and env contract: `docs/security/README.md`
+- Enterprise design system: `docs/ui/SMARTBIZ_DESIGN_SYSTEM.md`
+
+## Baseline validation commands
 
 ```bash
-cp backend/.env.example backend/.env
-docker compose up --build
+npm run lint
+npm run typecheck
+npm run build
+cd backend && npx prisma validate --schema prisma/schema.prisma
 ```
 
-Then, once the backend container is healthy, seed bootstrap data:
+## Environment contract
 
-```bash
-docker compose exec backend npx prisma migrate dev --name init
-docker compose exec backend npm run prisma:seed
-```
+Minimum required variables are validated by:
 
-- Frontend: http://localhost:5173
-- Backend API: http://localhost:3000/api/v1
+- `scripts/ops/validate-env.mjs`
 
-## Local development (without Docker)
+Required keys:
 
-Backend:
-```bash
-cd backend
-npm install
-npx prisma migrate dev --name init
-npm run prisma:seed
-npm run start:dev
-```
+- `NODE_ENV`
+- `PORT`
+- `DATABASE_URL`
+- `REDIS_URL`
+- `JWT_ACCESS_SECRET`
+- `JWT_REFRESH_SECRET`
+- `CORS_ALLOWED_ORIGINS`
 
-Frontend:
-```bash
-cd frontend
-npm install
-npm run dev
-```
+## Notes
 
-## Project structure
-
-```
-vyaparam/
-├── backend/
-│   ├── prisma/schema.prisma      # multi-tenant data model
-│   ├── prisma/seed.ts            # bootstrap seed data
-│   └── src/
-│       ├── auth/                 # JWT, refresh, RBAC, OTP reset
-│       ├── products/ categories/ # shared catalog engine
-│       ├── tables/               # restaurant tables
-│       ├── orders/               # KOT + kitchen WebSocket gateway
-│       ├── billing/              # invoices + payments
-│       └── common/               # guards, decorators
-├── frontend/
-│   └── src/
-│       ├── api/client.ts         # axios + auto refresh-token retry
-│       ├── store/authStore.ts    # zustand auth state
-│       └── pages/                # Login, Dashboard, Tables, KitchenDisplay, POS
-└── docker-compose.yml
-```
-
-## Roadmap (not built yet — next phases)
-
-1. **More verticals** on the same engine: Grocery/Supermarket (barcode,
-   offers), Medical/Pharmacy (batch/expiry/prescriptions), Cement/Hardware
-   (contractors, delivery tracking). Each adds its own Prisma models and
-   NestJS modules without touching the core engine.
-2. **Offline billing**: IndexedDB queue + background sync + conflict
-   resolution for the POS screen.
-3. **Inventory depth**: purchase orders, stock transfer, low-stock/expiry
-   alerts, batch tracking.
-4. **AI-ready hooks**: sales/demand prediction endpoints, smart reports.
-5. **Hardening for scale**: full test suite (unit/integration/e2e),
-   query optimization and indexing for 100k+ SKUs, CI/CD.
-
-## Security notes for production
-
-- Replace the `.env.example` JWT secrets with strong random values.
-- The password-reset OTP store is in-memory for this phase — move to Redis
-  before running more than one backend instance.
-- Add rate limiting rules per endpoint beyond the global throttle already in
-  `app.module.ts`.
+- The root lockfile (`package-lock.json`) tracks root and backend workspace dependencies.
+- Frontend dependencies are tracked in `frontend/package-lock.json`.
