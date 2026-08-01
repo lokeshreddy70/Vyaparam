@@ -43,7 +43,7 @@ jobs:
         run: npm run build
 
       - name: Backend unit tests
-        run: npm --prefix backend test -- --runInBand
+        run: npm --prefix backend run test:ci
 
       - name: Dependency audit
         run: bash scripts/ops/security-audit.sh

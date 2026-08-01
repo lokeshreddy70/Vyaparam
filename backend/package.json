@@ -16,6 +16,7 @@
     "prisma:migrate:dev": "prisma migrate dev",
     "prisma:seed": "ts-node prisma/seed.ts",
     "test": "jest",
+    "test:ci": "jest --runInBand --detectOpenHandles",
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "test:api": "jest --runInBand src/modules/health/health.controller.api.spec.ts",
     "test:coverage": "jest --coverage --runInBand --coverageReporters=text-summary --coverageReporters=lcov"
