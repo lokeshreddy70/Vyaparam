@@ -18,18 +18,37 @@ jobs:
       - name: Install backend dependencies
         run: npm --prefix backend install
 
+      - name: Check database secret availability
+        id: db_secret
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: |
+          if [ -z "${DATABASE_URL:-}" ]; then
+            echo "has_db_url=false" >> "$GITHUB_OUTPUT"
+            echo "DATABASE_URL secret is not configured. Skipping database operations."
+          else
+            echo "has_db_url=true" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Prisma migrate deploy
+        if: steps.db_secret.outputs.has_db_url == 'true'
         run: bash database/scripts/migrate.sh
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
 
       - name: Backup database
+        if: steps.db_secret.outputs.has_db_url == 'true'
         run: bash database/scripts/backup.sh
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
           BACKUP_DIR: ./database/backups
 
       - name: Validate restore logic (optional test DB)
+        if: steps.db_secret.outputs.has_db_url == 'true'
         run: bash database/scripts/validate-restore.sh
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
+
+      - name: Report skipped database operations
+        if: steps.db_secret.outputs.has_db_url != 'true'
+        run: echo "Database operation workflow completed without DB actions because DATABASE_URL is not set."
